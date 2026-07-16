@@ -1439,3 +1439,38 @@ tbody tr:nth-child(even) { background: var(--surface-2); }
     box-shadow: none;
   }
 }
+
+
+.settings-grid .wide-field {
+  grid-column: span 2;
+}
+
+.input-action-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: center;
+}
+
+.input-action-row .btn {
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.settings-grid label small {
+  color: var(--muted);
+  font-size: .72rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 900px) {
+  .settings-grid .wide-field {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 650px) {
+  .input-action-row {
+    grid-template-columns: 1fr;
+  }
+}

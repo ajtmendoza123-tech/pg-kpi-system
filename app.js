@@ -54,7 +54,8 @@
     [
       "themeSelect", "fontSelect", "resetAppBtn", "fileInput", "browseBtn", "dropZone", "fileStatus",
       "uploadedFiles", "mappingDetails", "mappingBadge", "mappingGrid",
-      "companyName", "preparedBy", "month1", "month2", "propertyFilter",
+      "companyName", "preparedBy", "reportHeaderTitle", "comparisonHeaderText",
+      "fillComparisonHeaderBtn", "month1", "month2", "propertyFilter",
       "currencyFilter", "generateBtn", "loadSampleBtn",
       "messageBox", "reportSection", "reportToolbarTitle", "saveHistoryBtn",
       "exportExcelBtn", "printBtn", "printReport", "reportLogo", "reportTitle",
@@ -103,6 +104,18 @@
     els.copyTeamMessageBtn.addEventListener("click", copyTeamMessage);
     els.resetAppBtn.addEventListener("click", resetSession);
 
+    els.fillComparisonHeaderBtn.addEventListener("click", () => {
+      if (!els.month1.value || !els.month2.value) {
+        showMessage("Select Month 1 and Month 2 first.", "error");
+        return;
+      }
+
+      els.comparisonHeaderText.value =
+        `Primary comparison: ${formatMonth(els.month1.value)} vs ${formatMonth(els.month2.value)}`;
+      persistSettings();
+      showMessage("Comparison header filled from the selected dates.", "success");
+    });
+
     els.playerNameMapSelect.addEventListener("change", () => {
       state.mapping.playerName = els.playerNameMapSelect.value;
       syncMappingSelects();
@@ -134,7 +147,8 @@
     });
 
     [
-      els.themeSelect, els.fontSelect, els.companyName, els.preparedBy, els.month1, els.month2,
+      els.themeSelect, els.fontSelect, els.companyName, els.preparedBy,
+      els.reportHeaderTitle, els.comparisonHeaderText, els.month1, els.month2,
       els.propertyFilter, els.currencyFilter,
       els.comparison1From, els.comparison1To, els.comparison2From, els.comparison2To,
       els.comparison3From, els.comparison3To, els.comparison4From, els.comparison4To,
@@ -179,6 +193,8 @@
       fontSelect: els.fontSelect.value,
       companyName: els.companyName.value.trim(),
       preparedBy: els.preparedBy.value.trim(),
+      reportHeaderTitle: els.reportHeaderTitle.value.trim(),
+      comparisonHeaderText: els.comparisonHeaderText.value.trim(),
       month1: els.month1.value,
       month2: els.month2.value,
       propertyFilter: els.propertyFilter.value,
@@ -632,6 +648,8 @@
       generatedAt: new Date().toISOString(),
       companyName: settings.companyName,
       preparedBy: settings.preparedBy,
+      reportHeaderTitle: settings.reportHeaderTitle,
+      comparisonHeaderText: settings.comparisonHeaderText,
       month1: settings.month1,
       month2: settings.month2,
       analysisMonths,
@@ -670,6 +688,8 @@
     return {
       companyName: els.companyName.value.trim() || "Pace Gaming",
       preparedBy: els.preparedBy.value.trim() || "Anne Joy",
+      reportHeaderTitle: els.reportHeaderTitle.value.trim() || "Pace Gaming Internal KPI Report",
+      comparisonHeaderText: els.comparisonHeaderText.value.trim(),
       month1: els.month1.value,
       month2: els.month2.value,
       property: els.propertyFilter.value,
@@ -1044,9 +1064,14 @@
       report.currency ? `Currency: ${report.currency}` : "All currencies"
     ].join(" · ");
 
+    const automaticComparisonHeader =
+      `Primary comparison: ${primaryLabel1} vs ${primaryLabel2}`;
+
     els.reportToolbarTitle.textContent = `${report.monthlyData.length} Monthly KPI Views`;
-    els.reportTitle.textContent = "Pace Gaming Internal KPI Report";
-    els.reportSubtitle.textContent = `Primary comparison: ${primaryLabel1} vs ${primaryLabel2}`;
+    els.reportTitle.textContent =
+      report.reportHeaderTitle || "Pace Gaming Internal KPI Report";
+    els.reportSubtitle.textContent =
+      report.comparisonHeaderText || automaticComparisonHeader;
     els.reportPreparedBy.textContent = report.preparedBy || "Anne Joy";
     els.generatedDate.textContent = formatReportDate(report.generatedAt);
     els.reportSource.textContent = "KPI 2025-2026 · PipelineCRM";
@@ -1512,16 +1537,24 @@
     const titleSlide = pptx.addSlide();
     titleSlide.background = { color: "FFFFFF" };
     addHeader(titleSlide, "Internal KPI Presentation");
-    titleSlide.addText(`${report.companyName} Internal KPI Report`, {
-      x: 0.75, y: 1.45, w: 11.5, h: 0.55, fontSize: 30,
-      fontFace: "Aptos Display", color: primary, bold: true
-    });
+    titleSlide.addText(
+      report.reportHeaderTitle || `${report.companyName} Internal KPI Report`,
+      {
+        x: 0.75, y: 1.45, w: 11.5, h: 0.55, fontSize: 30,
+        fontFace: "Aptos Display", color: primary, bold: true
+      }
+    );
+    titleSlide.addText(
+      report.comparisonHeaderText ||
+        `Primary comparison: ${formatMonth(report.month1)} vs ${formatMonth(report.month2)}`,
+      { x: 0.78, y: 2.05, w: 11.2, h: 0.35, fontSize: 15, color: primary, bold: true }
+    );
     titleSlide.addText(
       `${report.monthlyData.length} monthly KPI views · Prepared by ${report.preparedBy}`,
-      { x: 0.78, y: 2.1, w: 10.5, h: 0.35, fontSize: 15, color: muted }
+      { x: 0.78, y: 2.45, w: 10.5, h: 0.35, fontSize: 13, color: muted }
     );
     titleSlide.addText("Generated from uploaded PipelineCRM rating exports.", {
-      x: 0.78, y: 2.55, w: 10.5, h: 0.25, fontSize: 11, color: muted
+      x: 0.78, y: 2.85, w: 10.5, h: 0.25, fontSize: 11, color: muted
     });
     titleSlide.addShape(pptx.ShapeType.rect, {
       x: 0.78, y: 3.25, w: 11.2, h: 1.3,

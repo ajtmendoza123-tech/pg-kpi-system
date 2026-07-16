@@ -477,3 +477,17 @@ The report footer now displays:
 - Added **Total W/L** to Excel and presentation KPI summaries.
 - Removed the visible **YEAR-OVER-YEAR / Selected theoretical comparisons** section.
 - Removed the comparisons worksheet and comparisons slide from exports.
+
+
+## V23 editable report header
+
+The report settings now include:
+
+- **Report Header Title** — type the exact title to show on the KPI report.
+- **Primary Comparison Header** — type the exact comparison date/header line.
+- **Use Selected Dates** — automatically fills the comparison header from Month 1 and Month 2.
+
+Leaving the comparison field blank keeps the automatic format:
+`Primary comparison: Month 1 vs Month 2`.
+
+The custom header is saved in the browser and used in the website, PDF report, saved report history, and presentation export.

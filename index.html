@@ -171,6 +171,19 @@
           <span>Prepared By</span>
           <input id="preparedBy" type="text" value="Anne Joy" />
         </label>
+        <label class="wide-field">
+          <span>Report Header Title</span>
+          <input id="reportHeaderTitle" type="text" value="Pace Gaming Internal KPI Report" />
+          <small>Type the exact title you want shown on the report.</small>
+        </label>
+        <label class="wide-field">
+          <span>Primary Comparison Header</span>
+          <div class="input-action-row">
+            <input id="comparisonHeaderText" type="text" placeholder="Leave blank to automatically use Month 1 vs Month 2" />
+            <button id="fillComparisonHeaderBtn" class="btn secondary" type="button">Use Selected Dates</button>
+          </div>
+          <small>Example: Primary comparison: May 2025 vs May 2026</small>
+        </label>
         <label>
           <span>Month 1</span>
           <input id="month1" type="month" />
