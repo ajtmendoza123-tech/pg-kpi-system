@@ -61,7 +61,7 @@
       "reportSubtitle", "reportPreparedBy", "generatedDate", "reportSource",
       "reportNotice", "monthLabels", "kpiCards", "topPlayersGrid",
       "playerBookingHead", "playerBookingBody", "agentMonthlyGrid",
-      "yoyCards", "historyList", "theoreticalGraph",
+      "historyList", "theoreticalGraph",
       "exportPptBtn", "copyTeamMessageBtn", "teamShareCopy",
       "playerNameMapSelect", "dealNameMapSelect", "propertyMapSelect", "openFullMappingBtn", "playerMappingStatus",
       "comparison1From", "comparison1To", "comparison2From", "comparison2To",
@@ -1073,7 +1073,6 @@
     renderTopPlayers(report);
     renderPlayerBookingSummary(report);
     renderAgentPerformance(report);
-    renderYearOverYear(report);
     renderTheoreticalGraph(report);
   }
 
@@ -1084,6 +1083,7 @@
       { label: "Total Front Money", key: "frontMoney", type: "currency" },
       { label: "Total Bankroll", key: "bankroll", type: "currency" },
       { label: "Total Theoretical", key: "theoretical", type: "currency" },
+      { label: "Total W/L", key: "playerWinLoss", type: "currency" },
       { label: "Total Commission", key: "commission", type: "currency" }
     ];
 
@@ -1274,39 +1274,6 @@
     `;
   }
 
-  function renderYearOverYear(report) {
-    const comparisons = report.comparisons && report.comparisons.length
-      ? report.comparisons
-      : [
-          buildMonthComparison("2025-05", "2026-05", []),
-          buildMonthComparison("2025-06", "2026-06", []),
-          buildMonthComparison("2026-05", "2026-06", [])
-        ];
-
-    els.yoyCards.innerHTML = comparisons.map(comparison =>
-      fixedYoyHtml(comparison.title, comparison, report.currency)
-    ).join("");
-  }
-
-  function fixedYoyHtml(title, comparison, currency) {
-    const change = comparison.percentChange === null
-      ? "Upload data for both months"
-      : `${comparison.percentChange >= 0 ? "+" : ""}${formatPercent(comparison.percentChange)}`;
-
-    return `
-      <div class="comparison-item">
-        <div>
-          <p><strong>${escapeHtml(title)}</strong></p>
-          <small>${escapeHtml(formatMonth(comparison.fromMonth))}: ${escapeHtml(formatCurrency(comparison.fromValue, currency))} · ${escapeHtml(formatMonth(comparison.toMonth))}: ${escapeHtml(formatCurrency(comparison.toValue, currency))}</small>
-        </div>
-        <div class="comparison-value">
-          ${escapeHtml(formatCurrency(comparison.difference, currency))}
-          <small>${escapeHtml(change)}</small>
-        </div>
-      </div>
-    `;
-  }
-
   function renderTheoreticalGraph(report) {
     if (!els.theoreticalGraph) return;
 
@@ -1450,6 +1417,7 @@
       ["Total Front Money", ...report.monthlyData.map(item => item.summary.frontMoney)],
       ["Total Bankroll", ...report.monthlyData.map(item => item.summary.bankroll)],
       ["Total Theoretical", ...report.monthlyData.map(item => item.summary.theoretical)],
+      ["Total W/L", ...report.monthlyData.map(item => item.summary.playerWinLoss)],
       ["Total Commission", ...report.monthlyData.map(item => item.summary.commission)]
     ];
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(summaryRows), "KPI Summary");
@@ -1494,18 +1462,6 @@
       )
     ];
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(agentRows), "Agent Performance");
-
-    const comparisonRows = [
-      ["Comparison", "From Theoretical", "To Theoretical", "Difference", "% Change"],
-      ...(report.comparisons || []).map(comparison => [
-        comparison.title,
-        comparison.fromValue,
-        comparison.toValue,
-        comparison.difference,
-        comparison.percentChange
-      ])
-    ];
-    XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(comparisonRows), "Comparisons");
 
     const qualityRows = [
       ["Quality Check", "Count"],
@@ -1597,6 +1553,7 @@
         ["Total Front Money", ...chunk.map(item => formatCurrency(item.summary.frontMoney, report.currency))],
         ["Total Bankroll", ...chunk.map(item => formatCurrency(item.summary.bankroll, report.currency))],
         ["Total Theoretical", ...chunk.map(item => formatCurrency(item.summary.theoretical, report.currency))],
+        ["Total W/L", ...chunk.map(item => formatCurrency(item.summary.playerWinLoss, report.currency))],
         ["Total Commission", ...chunk.map(item => formatCurrency(item.summary.commission, report.currency))]
       ];
 
@@ -1654,30 +1611,6 @@
         fontFace: "Aptos", fontSize: 9, color: "1F2937",
         fill: "FFFFFF", margin: 0.05
       });
-    });
-
-    const comparisonSlide = pptx.addSlide();
-    comparisonSlide.background = { color: "FFFFFF" };
-    addHeader(comparisonSlide, "Theoretical Comparisons");
-    comparisonSlide.addText("Selected Theoretical Comparisons", {
-      x: 0.55, y: 1.1, w: 9, h: 0.35, fontSize: 22,
-      fontFace: "Aptos Display", color: primary, bold: true
-    });
-    const comparisonRows = [
-      ["Comparison", "From", "To", "Difference", "% Change"],
-      ...(report.comparisons || []).map(comparison => [
-        comparison.title,
-        formatCurrency(comparison.fromValue, report.currency),
-        formatCurrency(comparison.toValue, report.currency),
-        formatCurrency(comparison.difference, report.currency),
-        comparison.percentChange === null ? "N/A" : formatPercent(comparison.percentChange)
-      ])
-    ];
-    comparisonSlide.addTable(comparisonRows, {
-      x: 0.55, y: 1.65, w: 12.2, h: 4.8,
-      border: { color: line, pt: 1 },
-      fontFace: "Aptos", fontSize: 8.5, color: "1F2937",
-      fill: "FFFFFF", margin: 0.05
     });
 
     const playerSlide = pptx.addSlide();

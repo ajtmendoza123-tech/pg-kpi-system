@@ -469,3 +469,11 @@ The report footer now displays:
 ## V21 KPI scope update
 
 - Added **Total W/L** to the “KPIs included in this report” list.
+
+
+## V22 KPI total and report cleanup
+
+- Added **Total W/L** to the Required Monthly KPI Totals table.
+- Added **Total W/L** to Excel and presentation KPI summaries.
+- Removed the visible **YEAR-OVER-YEAR / Selected theoretical comparisons** section.
+- Removed the comparisons worksheet and comparisons slide from exports.
