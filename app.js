@@ -1128,9 +1128,13 @@
       return `
         <tr>
           <td><strong>${escapeHtml(definition.label)}</strong></td>
-          ${report.monthlyData.map(item =>
-            `<td>${escapeHtml(formatter(item.summary[definition.key] || 0))}</td>`
-          ).join("")}
+          ${report.monthlyData.map(item => {
+            const rawValue = item.summary[definition.key] || 0;
+            const valueClass = definition.key === "playerWinLoss"
+              ? negativeValueClass(rawValue)
+              : "";
+            return `<td class="kpi-total-value${valueClass}">${escapeHtml(formatter(rawValue))}</td>`;
+          }).join("")}
         </tr>
       `;
     }).join("");
@@ -1541,7 +1545,7 @@
       report.reportHeaderTitle || `${report.companyName} Internal KPI Report`,
       {
         x: 0.75, y: 1.45, w: 11.5, h: 0.55, fontSize: 30,
-        fontFace: "Aptos Display", color: primary, bold: true
+        fontFace: "Aptos Display", color: primary, bold: true, align: "center"
       }
     );
     titleSlide.addText(
@@ -1576,7 +1580,7 @@
       addHeader(slide, `Monthly KPI Summary ${chunkIndex + 1}`);
       slide.addText("Required Monthly KPI Totals", {
         x: 0.55, y: 1.1, w: 8.5, h: 0.35, fontSize: 22,
-        fontFace: "Aptos Display", color: primary, bold: true
+        fontFace: "Aptos Display", color: primary, bold: true, align: "center"
       });
 
       const rows = [
@@ -1586,7 +1590,15 @@
         ["Total Front Money", ...chunk.map(item => formatCurrency(item.summary.frontMoney, report.currency))],
         ["Total Bankroll", ...chunk.map(item => formatCurrency(item.summary.bankroll, report.currency))],
         ["Total Theoretical", ...chunk.map(item => formatCurrency(item.summary.theoretical, report.currency))],
-        ["Total W/L", ...chunk.map(item => formatCurrency(item.summary.playerWinLoss, report.currency))],
+        ["Total W/L", ...chunk.map(item => ({
+          text: formatCurrency(item.summary.playerWinLoss, report.currency),
+          options: {
+            color: item.summary.playerWinLoss < 0 ? "C62828" : "1F2937",
+            bold: item.summary.playerWinLoss < 0,
+            align: "center",
+            valign: "mid"
+          }
+        }))],
         ["Total Commission", ...chunk.map(item => formatCurrency(item.summary.commission, report.currency))]
       ];
 
@@ -1594,7 +1606,7 @@
         x: 0.55, y: 1.65, w: 12.2, h: 4.9,
         border: { color: line, pt: 1 },
         fontFace: "Aptos", fontSize: 9.5, color: "1F2937",
-        fill: "FFFFFF", margin: 0.06, autoFit: true
+        fill: "FFFFFF", align: "center", valign: "mid", margin: 0.06, autoFit: true
       });
     });
 
@@ -1604,7 +1616,7 @@
       addHeader(slide, formatMonth(item.month));
       slide.addText(`Top 5 Theoretical Deals and Booking Agent KPIs · ${formatMonth(item.month)}`, {
         x: 0.55, y: 1.1, w: 11.5, h: 0.35, fontSize: 21,
-        fontFace: "Aptos Display", color: primary, bold: true
+        fontFace: "Aptos Display", color: primary, bold: true, align: "center"
       });
 
       const topRows = [
@@ -1625,7 +1637,7 @@
         x: 0.55, y: 1.65, w: 6.05, h: 3.1,
         border: { color: line, pt: 1 },
         fontFace: "Aptos", fontSize: 9, color: "1F2937",
-        fill: "FFFFFF", margin: 0.05
+        fill: "FFFFFF", align: "center", valign: "mid", margin: 0.05
       });
 
       const highestLoss = selectHighestLoss(item.agents);
@@ -1642,7 +1654,7 @@
         x: 6.85, y: 1.65, w: 5.9, h: 3.1,
         border: { color: line, pt: 1 },
         fontFace: "Aptos", fontSize: 9, color: "1F2937",
-        fill: "FFFFFF", margin: 0.05
+        fill: "FFFFFF", align: "center", valign: "mid", margin: 0.05
       });
     });
 
@@ -1673,7 +1685,7 @@
       x: 0.55, y: 1.65, w: 12.2, h: 4.9,
       border: { color: line, pt: 1 },
       fontFace: "Aptos", fontSize: 9, color: "1F2937",
-      fill: "FFFFFF", margin: 0.05
+      fill: "FFFFFF", align: "center", valign: "mid", margin: 0.05
     });
 
     const safeCompany = report.companyName.replace(/[^\w-]+/g, "_");

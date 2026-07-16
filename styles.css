@@ -1474,3 +1474,70 @@ tbody tr:nth-child(even) { background: var(--surface-2); }
     grid-template-columns: 1fr;
   }
 }
+
+
+/* V24 centered PDF/print report */
+@media print {
+  body.kpi-print-mode .app-shell,
+  body.kpi-print-mode .report-section {
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  body.kpi-print-mode .report-paper {
+    width: calc(100% - 20mm) !important;
+    max-width: 270mm !important;
+    margin: 0 auto !important;
+    padding: 10mm !important;
+  }
+
+  body.kpi-print-mode .report-header,
+  body.kpi-print-mode .report-header-copy,
+  body.kpi-print-mode .block-title,
+  body.kpi-print-mode .monthly-card-heading,
+  body.kpi-print-mode .confidential-report-footer {
+    text-align: center !important;
+  }
+
+  body.kpi-print-mode .report-brand {
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100%;
+  }
+
+  body.kpi-print-mode .report-header-details {
+    justify-items: center !important;
+  }
+
+  body.kpi-print-mode .report-header-details p,
+  body.kpi-print-mode .month-labels,
+  body.kpi-print-mode .block-title,
+  body.kpi-print-mode .monthly-card-heading,
+  body.kpi-print-mode .confidential-report-footer {
+    justify-content: center !important;
+  }
+
+  body.kpi-print-mode .report-block {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  body.kpi-print-mode table th,
+  body.kpi-print-mode table td {
+    text-align: center !important;
+    vertical-align: middle !important;
+  }
+
+  body.kpi-print-mode .scope-grid,
+  body.kpi-print-mode .agent-mini-grid,
+  body.kpi-print-mode .monthly-section-grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+.kpi-total-value.negative-value {
+  color: #c62828 !important;
+  font-weight: 900;
+}

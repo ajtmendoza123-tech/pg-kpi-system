@@ -491,3 +491,12 @@ Leaving the comparison field blank keeps the automatic format:
 `Primary comparison: Month 1 vs Month 2`.
 
 The custom header is saved in the browser and used in the website, PDF report, saved report history, and presentation export.
+
+
+## V24 centered exports and negative Total W/L
+
+- The PDF/print report is centered on every page.
+- Report headers, section headings, month labels, footers, and table content are centered in the PDF.
+- Presentation headings and all presentation table cells are centered.
+- Negative **Total W/L** values in Required Monthly KPI Totals appear in red.
+- Negative Total W/L remains red in PDF/print and presentation exports.
