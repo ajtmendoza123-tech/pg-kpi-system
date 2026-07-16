@@ -1541,3 +1541,84 @@ tbody tr:nth-child(even) { background: var(--surface-2); }
   color: #c62828 !important;
   font-weight: 900;
 }
+
+
+.email-export-panel {
+  padding: clamp(20px, 3vw, 32px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.email-export-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
+.email-export-heading h2 { margin:3px 0 5px; }
+.email-export-heading p { margin:0; color:var(--muted); }
+.email-subject-field { display:grid; gap:7px; margin-top:20px; }
+.email-subject-field > span { color:var(--muted); font-size:.78rem; font-weight:800; }
+.email-preview { margin-top:22px; padding:clamp(12px,2vw,24px); overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:#eef2f6; }
+.email-preview > div { min-width:620px; }
+
+
+/* V27 primary report month controls */
+.settings-grid label:has(#month1),
+.settings-grid label:has(#month2),
+.settings-grid label:has(#month3),
+.settings-grid label:has(#month4) {
+  background: color-mix(in srgb, var(--surface-3) 48%, white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+
+.email-draft-field {
+  display: grid;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.email-draft-field > span {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.email-draft-field textarea {
+  width: 100%;
+  min-height: 165px;
+  padding: 12px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--surface);
+  font: inherit;
+  line-height: 1.5;
+}
+
+.email-draft-field textarea:focus {
+  outline: 3px solid color-mix(in srgb, var(--primary-2) 18%, transparent);
+  border-color: var(--primary-2);
+}
+
+.email-draft-field small {
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+
+/* V29 centered email preview */
+.email-preview {
+  text-align: center;
+}
+
+.email-preview > table {
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.email-preview table {
+  margin-left: auto;
+  margin-right: auto;
+}

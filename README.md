@@ -500,3 +500,46 @@ The custom header is saved in the browser and used in the website, PDF report, s
 - Presentation headings and all presentation table cells are centered.
 - Negative **Total W/L** values in Required Monthly KPI Totals appear in red.
 - Negative Total W/L remains red in PDF/print and presentation exports.
+
+
+## V25 Email Format export
+
+The **Email Format** button creates a styled email containing only the 12 approved KPI items. The email can be copied into Gmail or Outlook or downloaded as an HTML file. Negative W/L amounts remain red.
+
+
+## V29 simplified centered email header
+
+The styled email now uses one centered header only:
+
+**Pace Gaming KPI Report for [selected report months]**
+
+Removed from the email header:
+
+- PG badge
+- Internal Monthly Performance Report
+- Primary comparison line
+- Required comparisons line
+- Generated date
+- Source line
+
+The editable draft message, report sections, tables, labels, values, and downloaded HTML email are centered using an email-client-safe table layout. The email subject uses the same automatic month-based header.
+
+
+## V30 upload-control repair
+
+- Restored the missing Report Month 3 and Report Month 4 controls required by the JavaScript.
+- Restored the editable Email Draft Message and Use Suggested Draft controls.
+- Added defensive event binding so a missing optional control cannot prevent file upload buttons from working.
+- Verified that all JavaScript-cached element IDs now exist in the page.
+
+
+## V30 upload-button repair
+
+The Choose Files button stopped responding because the JavaScript expected controls that were missing from the page. V30 restores Month 3, Month 4, Email Draft Message, and Use Suggested Draft so application initialization completes and file upload works again.
+
+
+## V31 email Total W/L correction
+
+- Added **Total W/L** to the styled email's Monthly KPI Totals.
+- Negative Total W/L values display in red and bold.
+- Email Total W/L uses the same monthly `playerWinLoss` calculation as the main KPI report.

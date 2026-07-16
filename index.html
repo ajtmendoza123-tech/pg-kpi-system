@@ -179,10 +179,10 @@
         <label class="wide-field">
           <span>Primary Comparison Header</span>
           <div class="input-action-row">
-            <input id="comparisonHeaderText" type="text" placeholder="Leave blank to automatically use Month 1 vs Month 2" />
+            <input id="comparisonHeaderText" type="text" placeholder="Leave blank to automatically use all selected report months" />
             <button id="fillComparisonHeaderBtn" class="btn secondary" type="button">Use Selected Dates</button>
           </div>
-          <small>Example: Primary comparison: May 2025 vs May 2026</small>
+          <small>Example: Primary comparison: May 2025 vs May 2026 · June 2025 vs June 2026</small>
         </label>
         <label>
           <span>Month 1</span>
@@ -191,6 +191,14 @@
         <label>
           <span>Month 2</span>
           <input id="month2" type="month" />
+        </label>
+        <label>
+          <span>Month 3</span>
+          <input id="month3" type="month" />
+        </label>
+        <label>
+          <span>Month 4</span>
+          <input id="month4" type="month" />
         </label>
         <label>
           <span>Property</span>
@@ -284,9 +292,40 @@
           <button id="saveHistoryBtn" class="btn secondary" type="button">Save to History</button>
           <button id="exportExcelBtn" class="btn secondary" type="button">Export Excel</button>
           <button id="exportPptBtn" class="btn secondary" type="button">Export Presentation</button>
+          <button id="emailFormatBtn" class="btn secondary" type="button">Email Format</button>
           <button id="printBtn" class="btn primary" type="button">Print / Save PDF</button>
         </div>
       </div>
+
+      <section id="emailExportPanel" class="email-export-panel no-print hidden">
+        <div class="email-export-heading">
+          <div>
+            <span class="eyebrow">EMAIL FORMAT</span>
+            <h2>Copy or download the KPI email</h2>
+            <p>Only the approved email KPIs are included.</p>
+          </div>
+          <button id="closeEmailPanelBtn" class="btn ghost" type="button">Close</button>
+        </div>
+
+        <label class="email-subject-field">
+          <span>Email Subject</span>
+          <input id="emailSubject" type="text" />
+        </label>
+
+        <label class="email-draft-field">
+          <span>Email Draft Message</span>
+          <textarea id="emailDraftMessage" rows="8" placeholder="Write the message that will appear above the KPI report."></textarea>
+        </label>
+
+        <div class="button-row">
+          <button id="suggestEmailDraftBtn" class="btn secondary" type="button">Use Suggested Draft</button>
+          <button id="copyEmailBtn" class="btn primary" type="button">Copy Styled Email</button>
+          <button id="downloadEmailBtn" class="btn secondary" type="button">Download Email HTML</button>
+        </div>
+
+        <p class="helper-note">Paste the copied email directly into Gmail or Outlook.</p>
+        <div id="emailPreview" class="email-preview"></div>
+      </section>
 
       <article id="printReport" class="report-paper">
         <header class="report-header simplified-report-header">

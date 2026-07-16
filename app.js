@@ -55,10 +55,13 @@
       "themeSelect", "fontSelect", "resetAppBtn", "fileInput", "browseBtn", "dropZone", "fileStatus",
       "uploadedFiles", "mappingDetails", "mappingBadge", "mappingGrid",
       "companyName", "preparedBy", "reportHeaderTitle", "comparisonHeaderText",
-      "fillComparisonHeaderBtn", "month1", "month2", "propertyFilter",
+      "fillComparisonHeaderBtn", "month1", "month2", "month3", "month4", "propertyFilter",
       "currencyFilter", "generateBtn", "loadSampleBtn",
       "messageBox", "reportSection", "reportToolbarTitle", "saveHistoryBtn",
-      "exportExcelBtn", "printBtn", "printReport", "reportLogo", "reportTitle",
+      "exportExcelBtn", "emailFormatBtn", "emailExportPanel", "emailSubject",
+      "emailDraftMessage", "suggestEmailDraftBtn", "copyEmailBtn", "downloadEmailBtn",
+      "closeEmailPanelBtn", "emailPreview",
+      "printBtn", "printReport", "reportLogo", "reportTitle",
       "reportSubtitle", "reportPreparedBy", "generatedDate", "reportSource",
       "reportNotice", "monthLabels", "kpiCards", "topPlayersGrid",
       "playerBookingHead", "playerBookingBody", "agentMonthlyGrid",
@@ -100,20 +103,36 @@
     els.printBtn.addEventListener("click", printReportWithoutBrowserFooter);
     els.exportExcelBtn.addEventListener("click", exportCurrentReport);
     els.exportPptBtn.addEventListener("click", exportCurrentPresentation);
+    els.emailFormatBtn.addEventListener("click", openEmailExportPanel);
+    els.suggestEmailDraftBtn?.addEventListener("click", () => {
+      if (!state.currentReport) return;
+      els.emailDraftMessage.value = suggestedEmailDraft(state.currentReport);
+      renderEmailPreview(state.currentReport, true);
+      showMessage("Suggested email draft added. You can edit it before copying.", "success");
+    });
+    els.emailDraftMessage?.addEventListener("input", () => {
+      if (state.currentReport) renderEmailPreview(state.currentReport, true);
+    });
+    els.emailSubject?.addEventListener("input", () => {
+      if (state.currentReport) renderEmailPreview(state.currentReport, true);
+    });
+    els.copyEmailBtn.addEventListener("click", copyEmailReport);
+    els.downloadEmailBtn.addEventListener("click", downloadEmailReport);
+    els.closeEmailPanelBtn.addEventListener("click", () => els.emailExportPanel.classList.add("hidden"));
     els.saveHistoryBtn.addEventListener("click", saveCurrentReport);
     els.copyTeamMessageBtn.addEventListener("click", copyTeamMessage);
     els.resetAppBtn.addEventListener("click", resetSession);
 
     els.fillComparisonHeaderBtn.addEventListener("click", () => {
-      if (!els.month1.value || !els.month2.value) {
-        showMessage("Select Month 1 and Month 2 first.", "error");
+      const selectedMonths = getSelectedReportMonthsFromInputs();
+      if (selectedMonths.length < 3) {
+        showMessage("Select at least three different report months first.", "error");
         return;
       }
 
-      els.comparisonHeaderText.value =
-        `Primary comparison: ${formatMonth(els.month1.value)} vs ${formatMonth(els.month2.value)}`;
+      els.comparisonHeaderText.value = formatComparisonHeaderForMonths(selectedMonths);
       persistSettings();
-      showMessage("Comparison header filled from the selected dates.", "success");
+      showMessage("Comparison header filled from all selected report months.", "success");
     });
 
     els.playerNameMapSelect.addEventListener("change", () => {
@@ -148,12 +167,12 @@
 
     [
       els.themeSelect, els.fontSelect, els.companyName, els.preparedBy,
-      els.reportHeaderTitle, els.comparisonHeaderText, els.month1, els.month2,
+      els.reportHeaderTitle, els.comparisonHeaderText, els.month1, els.month2, els.month3, els.month4,
       els.propertyFilter, els.currencyFilter,
       els.comparison1From, els.comparison1To, els.comparison2From, els.comparison2To,
       els.comparison3From, els.comparison3To, els.comparison4From, els.comparison4To,
       els.comparison5From, els.comparison5To, els.comparison6From, els.comparison6To
-    ].forEach(input => input.addEventListener("change", persistSettings));
+    ].forEach(input => input?.addEventListener("change", persistSettings));
 
     els.themeSelect.addEventListener("change", () => {
       document.body.dataset.theme = els.themeSelect.value;
@@ -165,11 +184,10 @@
   }
 
   function setDefaultMonths() {
-    const now = new Date();
-    const month2Date = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-    const month1Date = new Date(now.getFullYear(), now.getMonth() - 2, 1);
-    els.month1.value = toMonthInput(month1Date);
-    els.month2.value = toMonthInput(month2Date);
+    if (els.month1) els.month1.value = "2025-05";
+    if (els.month2) els.month2.value = "2026-05";
+    if (els.month3) els.month3.value = "2025-06";
+    if (els.month4) els.month4.value = "2026-06";
   }
 
   function loadSettings() {
@@ -185,6 +203,8 @@
     if (!els.comparison2To.value) els.comparison2To.value = "2026-06";
     if (!els.comparison3From.value) els.comparison3From.value = "2026-05";
     if (!els.comparison3To.value) els.comparison3To.value = "2026-06";
+    if (els.month3 && !els.month3.value) els.month3.value = els.comparison2From.value || "2025-06";
+    if (els.month4 && !els.month4.value) els.month4.value = els.comparison2To.value || "2026-06";
   }
 
   function persistSettings() {
@@ -197,6 +217,8 @@
       comparisonHeaderText: els.comparisonHeaderText.value.trim(),
       month1: els.month1.value,
       month2: els.month2.value,
+      month3: els.month3.value,
+      month4: els.month4.value,
       propertyFilter: els.propertyFilter.value,
       currencyFilter: els.currencyFilter.value,
       comparison1From: els.comparison1From.value,
@@ -602,8 +624,9 @@
       els.mappingDetails.open = true;
       return;
     }
-    if (!els.month1.value || !els.month2.value) {
-      showMessage("Select both primary reporting months.", "error");
+    const selectedReportMonths = getSelectedReportMonthsFromInputs();
+    if (selectedReportMonths.length < 3) {
+      showMessage("Select at least three different report months before generating the report.", "error");
       return;
     }
     if (!state.normalizedRows.length) {
@@ -650,8 +673,11 @@
       preparedBy: settings.preparedBy,
       reportHeaderTitle: settings.reportHeaderTitle,
       comparisonHeaderText: settings.comparisonHeaderText,
+      reportMonths: settings.reportMonths,
       month1: settings.month1,
       month2: settings.month2,
+      month3: settings.month3,
+      month4: settings.month4,
       analysisMonths,
       monthlyData,
       property: settings.property,
@@ -690,12 +716,48 @@
       preparedBy: els.preparedBy.value.trim() || "Anne Joy",
       reportHeaderTitle: els.reportHeaderTitle.value.trim() || "Pace Gaming Internal KPI Report",
       comparisonHeaderText: els.comparisonHeaderText.value.trim(),
+      reportMonths: getSelectedReportMonthsFromInputs(),
       month1: els.month1.value,
       month2: els.month2.value,
+      month3: els.month3.value,
+      month4: els.month4.value,
       property: els.propertyFilter.value,
       currency: els.currencyFilter.value,
       comparisons: getComparisonSettings()
     };
+  }
+
+  function getSelectedReportMonthsFromInputs() {
+    return [...new Set([
+      els.month1?.value,
+      els.month2?.value,
+      els.month3?.value,
+      els.month4?.value
+    ].filter(Boolean))];
+  }
+
+  function getReportMonths(report) {
+    const months = report?.reportMonths?.length
+      ? report.reportMonths
+      : [report?.month1, report?.month2, report?.month3, report?.month4].filter(Boolean);
+    return [...new Set(months)];
+  }
+
+  function formatComparisonHeaderForMonths(months) {
+    const labels = [...new Set((months || []).filter(Boolean))].map(formatMonth);
+    const pairs = [];
+
+    for (let index = 0; index < labels.length; index += 2) {
+      const pair = labels.slice(index, index + 2);
+      pairs.push(pair.length === 2 ? `${pair[0]} vs ${pair[1]}` : pair[0]);
+    }
+
+    return `Primary comparison: ${pairs.join(" · ")}`;
+  }
+
+  function reportMonthFileToken(report) {
+    const months = getReportMonths(report);
+    return months.length ? months.join("_") : "report";
   }
 
   function getComparisonSettings() {
@@ -708,7 +770,7 @@
   }
 
   function getAnalysisMonths(settings) {
-    const months = new Set([settings.month1, settings.month2].filter(Boolean));
+    const months = new Set((settings.reportMonths || []).filter(Boolean));
     settings.comparisons.forEach(pair => {
       if (pair.from) months.add(pair.from);
       if (pair.to) months.add(pair.to);
@@ -1034,8 +1096,10 @@
     els.reportSection.classList.remove("hidden");
 
     if (!report.comparisons) report.comparisons = [];
+    report.reportMonths = getReportMonths(report);
     if (!report.monthlyData) {
-      report.analysisMonths = [report.month1, report.month2].filter(Boolean);
+      report.reportMonths = getReportMonths(report);
+      report.analysisMonths = report.analysisMonths?.length ? report.analysisMonths : report.reportMonths;
       report.monthlyData = [
         {
           month: report.month1,
@@ -1057,15 +1121,7 @@
       report.playerBookingSummary = buildPlayerBookingSummary(report.monthlyData);
     }
 
-    const primaryLabel1 = formatMonth(report.month1);
-    const primaryLabel2 = formatMonth(report.month2);
-    const filterText = [
-      report.property ? `Property: ${report.property}` : "All properties",
-      report.currency ? `Currency: ${report.currency}` : "All currencies"
-    ].join(" · ");
-
-    const automaticComparisonHeader =
-      `Primary comparison: ${primaryLabel1} vs ${primaryLabel2}`;
+    const automaticComparisonHeader = formatComparisonHeaderForMonths(report.reportMonths);
 
     els.reportToolbarTitle.textContent = `${report.monthlyData.length} Monthly KPI Views`;
     els.reportTitle.textContent =
@@ -1099,6 +1155,10 @@
     renderPlayerBookingSummary(report);
     renderAgentPerformance(report);
     renderTheoreticalGraph(report);
+
+    if (!els.emailExportPanel.classList.contains("hidden")) {
+      renderEmailPreview(report);
+    }
   }
 
   function renderKpiCards(report) {
@@ -1361,8 +1421,7 @@
     const history = getHistory();
     const existingIndex = history.findIndex(item =>
       item.companyName === state.currentReport.companyName &&
-      item.month1 === state.currentReport.month1 &&
-      item.month2 === state.currentReport.month2 &&
+      JSON.stringify(getReportMonths(item)) === JSON.stringify(getReportMonths(state.currentReport)) &&
       item.property === state.currentReport.property &&
       item.currency === state.currentReport.currency
     );
@@ -1386,7 +1445,7 @@
 
     els.historyList.innerHTML = history.map(report => `
       <article class="history-card">
-        <h3>${escapeHtml(formatMonth(report.month1))} vs ${escapeHtml(formatMonth(report.month2))}</h3>
+        <h3>${escapeHtml(formatComparisonHeaderForMonths(getReportMonths(report)).replace(/^Primary comparison:\s*/i, ""))}</h3>
         <p>${escapeHtml(report.companyName)} · ${escapeHtml(report.property || "All properties")}</p>
         <p>Saved ${escapeHtml(formatDateTime(report.generatedAt))}</p>
         <div class="button-row compact">
@@ -1417,6 +1476,380 @@
 
   function getHistory() {
     return safeJsonParse(localStorage.getItem(STORAGE_KEYS.history), []);
+  }
+
+  function openEmailExportPanel() {
+    if (!state.currentReport) {
+      showMessage("Generate a report before creating the email format.", "error");
+      return;
+    }
+    renderEmailPreview(state.currentReport);
+    els.emailExportPanel.classList.remove("hidden");
+    els.emailExportPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function emailPrimaryMonths(report) {
+    const requiredMonths = ["2025-05", "2026-05", "2025-06", "2026-06"];
+    const monthlyData = report.monthlyData || [];
+
+    return requiredMonths.map(month => {
+      const existing = monthlyData.find(item => item.month === month);
+      if (existing) return { ...existing, emailDataAvailable: true };
+
+      return {
+        month,
+        emailDataAvailable: false,
+        summary: {
+          bookings: 0,
+          credit: 0,
+          frontMoney: 0,
+          bankroll: 0,
+          theoretical: 0,
+          playerWinLoss: 0,
+          commission: 0
+        },
+        topPlayers: [],
+        agents: []
+      };
+    });
+  }
+
+  function requiredEmailComparison(report, fromMonth, toMonth) {
+    const stored = (report.comparisons || []).find(item =>
+      item.fromMonth === fromMonth && item.toMonth === toMonth
+    );
+    if (stored) return stored;
+
+    const fromData = (report.monthlyData || []).find(item => item.month === fromMonth);
+    const toData = (report.monthlyData || []).find(item => item.month === toMonth);
+    const fromValue = fromData ? fromData.summary.theoretical || 0 : null;
+    const toValue = toData ? toData.summary.theoretical || 0 : null;
+    const difference = fromValue === null || toValue === null ? null : toValue - fromValue;
+
+    return {
+      fromMonth,
+      toMonth,
+      fromValue,
+      toValue,
+      difference,
+      percentChange: difference === null || !fromValue ? null : difference / Math.abs(fromValue),
+      title: `${formatMonth(fromMonth)} versus ${formatMonth(toMonth)} Month Theoretical`
+    };
+  }
+
+  function emailReportHeaderFor(report) {
+    return `Pace Gaming KPI Report for ${humanMonthList(getReportMonths(report))}`;
+  }
+
+  function emailSubjectFor(report) {
+    return emailReportHeaderFor(report);
+  }
+
+  function emailAmount(value, currency) {
+    return value === null || value === undefined ? "Not available" : escapeHtml(formatCurrency(value, currency));
+  }
+
+  function humanMonthList(months) {
+    const labels = [...new Set((months || []).filter(Boolean))].map(formatMonth);
+    if (!labels.length) return "the selected reporting period";
+    if (labels.length === 1) return labels[0];
+    if (labels.length === 2) return `${labels[0]} and ${labels[1]}`;
+    return `${labels.slice(0, -1).join(", ")}, and ${labels[labels.length - 1]}`;
+  }
+
+  function suggestedEmailDraft(report) {
+    const monthText = humanMonthList(getReportMonths(report));
+    const preparedBy = report.preparedBy || "Anne Joy";
+    return `Hi Dave,\n\nPlease find attached the Pace Gaming KPI report for ${monthText}.\n\nPlease let me know if you have any questions or would like any additional details.\n\nBest regards,\n${preparedBy}`;
+  }
+
+  function emailDraftHtml(message) {
+    const text = String(message || "").trim();
+    if (!text) return "";
+
+    return text
+      .split(/\n\s*\n/)
+      .map(paragraph => `<p style="margin:0 0 14px;white-space:pre-line;text-align:center;">${escapeHtml(paragraph)}</p>`)
+      .join("");
+  }
+
+  function buildEmailReportHtml(report, fullDocument = false) {
+    const months = emailPrimaryMonths(report);
+    const currency = report.currency;
+    const emailHeader = emailReportHeaderFor(report);
+    const draftMessage = els.emailDraftMessage?.value || suggestedEmailDraft(report);
+    const draftSection = emailDraftHtml(draftMessage);
+
+    const totals = [
+      ["Number of Bookings Players (Check-Out Date)", "bookings", "count"],
+      ["Total Credit", "credit", "money"],
+      ["Total Front Money", "frontMoney", "money"],
+      ["Total Bankroll", "bankroll", "money"],
+      ["Total Theoretical", "theoretical", "money"],
+      ["Total W/L", "playerWinLoss", "money"],
+      ["Total Commission", "commission", "money"]
+    ];
+
+    const totalRows = totals.map(([label, key, type]) => `
+      <tr>
+        <td align="center" style="padding:11px;border:1px solid #d8dee6;background:#f7f9fc;font-weight:700;text-align:center;">
+          ${escapeHtml(label)}
+        </td>
+        ${months.map(item => {
+          if (!item.emailDataAvailable) {
+            return `<td align="center" style="padding:11px;border:1px solid #d8dee6;text-align:center;color:#667085;font-weight:700;">Not available</td>`;
+          }
+
+          const value = item.summary[key] || 0;
+          const display = type === "count"
+            ? formatInteger(value)
+            : formatCurrency(value, currency);
+
+          const valueStyle = key === "playerWinLoss" && value < 0
+            ? "color:#c62828;font-weight:900;"
+            : "font-weight:700;";
+
+          return `<td align="center" style="padding:11px;border:1px solid #d8dee6;text-align:center;${valueStyle}">${escapeHtml(display)}</td>`;
+        }).join("")}
+      </tr>
+    `).join("");
+
+    const topFive = months.map(item => {
+      const rows = (item.topPlayers || []).map(player => `
+        <tr>
+          <td align="center" style="padding:9px;border:1px solid #d8dee6;text-align:center;">${escapeHtml(player.name)}</td>
+          <td align="center" style="padding:9px;border:1px solid #d8dee6;text-align:center;${player.winLoss < 0 ? "color:#c62828;font-weight:800;" : "font-weight:700;"}">${escapeHtml(formatCurrency(player.winLoss, currency))}</td>
+          <td align="center" style="padding:9px;border:1px solid #d8dee6;text-align:center;font-weight:700;">${escapeHtml(formatCurrency(player.theoretical, currency))}</td>
+        </tr>
+      `).join("") || `
+        <tr>
+          <td align="center" colspan="3" style="padding:12px;border:1px solid #d8dee6;text-align:center;color:#667085;">
+            No data available for this month
+          </td>
+        </tr>
+      `;
+
+      return `
+        <h3 style="margin:18px 0 8px;text-align:center;color:#172b4d;font-size:16px;">${escapeHtml(formatMonth(item.month))}</h3>
+        <table role="presentation" align="center" width="100%" cellpadding="0" cellspacing="0" style="width:100%;margin:0 auto;border-collapse:collapse;font-size:13px;text-align:center;">
+          <thead>
+            <tr>
+              <th align="center" style="padding:9px;border:1px solid #d8dee6;background:#172b4d;color:#ffffff;text-align:center;">Full Deal Name</th>
+              <th align="center" style="padding:9px;border:1px solid #d8dee6;background:#172b4d;color:#ffffff;text-align:center;">W/L</th>
+              <th align="center" style="padding:9px;border:1px solid #d8dee6;background:#172b4d;color:#ffffff;text-align:center;">Theoretical</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }).join("");
+
+    const agentRows = months.map(item => {
+      const loss = selectHighestLoss(item.agents || []);
+      const bookings = highest(item.agents || [], "bookings");
+      const theoretical = highest(item.agents || [], "theoretical");
+
+      return `
+        <tr>
+          <td align="center" style="padding:10px;border:1px solid #d8dee6;background:#f7f9fc;font-weight:800;text-align:center;">${escapeHtml(formatMonth(item.month))}</td>
+          <td align="center" style="padding:10px;border:1px solid #d8dee6;text-align:center;">
+            ${loss
+              ? `${escapeHtml(loss.name)}<br><span style="${loss.winLoss < 0 ? "color:#c62828;font-weight:800;" : "font-weight:700;"}">${escapeHtml(formatCurrency(loss.winLoss, currency))}</span>`
+              : "No data"}
+          </td>
+          <td align="center" style="padding:10px;border:1px solid #d8dee6;text-align:center;">
+            ${bookings
+              ? `${escapeHtml(bookings.name)}<br><strong>${escapeHtml(formatInteger(bookings.bookings))}</strong>`
+              : "No data"}
+          </td>
+          <td align="center" style="padding:10px;border:1px solid #d8dee6;text-align:center;">
+            ${theoretical
+              ? `${escapeHtml(theoretical.name)}<br><strong>${escapeHtml(formatCurrency(theoretical.theoretical, currency))}</strong>`
+              : "No data"}
+          </td>
+        </tr>
+      `;
+    }).join("");
+
+    const comparisonTables = [
+      requiredEmailComparison(report, "2025-05", "2026-05"),
+      requiredEmailComparison(report, "2025-06", "2026-06")
+    ].map(item => {
+      const difference = item.difference === null
+        ? "Not available"
+        : `${item.difference >= 0 ? "+" : ""}${formatCurrency(item.difference, currency)}`;
+      const percent = item.percentChange === null
+        ? "Not available"
+        : `${item.percentChange >= 0 ? "+" : ""}${formatPercent(item.percentChange)}`;
+
+      return `
+        <table role="presentation" align="center" width="100%" cellpadding="0" cellspacing="0" style="width:100%;margin:0 auto 14px;border-collapse:collapse;font-size:13px;text-align:center;">
+          <tr>
+            <td align="center" colspan="2" style="padding:11px;border:1px solid #d8dee6;background:#eaf2f8;color:#172b4d;font-weight:800;text-align:center;">${escapeHtml(item.title)}</td>
+          </tr>
+          <tr>
+            <td align="center" style="padding:9px;border:1px solid #d8dee6;text-align:center;">${escapeHtml(formatMonth(item.fromMonth))}</td>
+            <td align="center" style="padding:9px;border:1px solid #d8dee6;text-align:center;font-weight:800;">${emailAmount(item.fromValue, currency)}</td>
+          </tr>
+          <tr>
+            <td align="center" style="padding:9px;border:1px solid #d8dee6;text-align:center;">${escapeHtml(formatMonth(item.toMonth))}</td>
+            <td align="center" style="padding:9px;border:1px solid #d8dee6;text-align:center;font-weight:800;">${emailAmount(item.toValue, currency)}</td>
+          </tr>
+          <tr>
+            <td align="center" style="padding:9px;border:1px solid #d8dee6;text-align:center;">Difference</td>
+            <td align="center" style="padding:9px;border:1px solid #d8dee6;text-align:center;font-weight:800;">${escapeHtml(difference)} · ${escapeHtml(percent)}</td>
+          </tr>
+        </table>
+      `;
+    }).join("");
+
+    const body = `
+      <table role="presentation" align="center" width="100%" cellpadding="0" cellspacing="0" style="width:100%;margin:0 auto;border-collapse:collapse;background:#eef2f6;">
+        <tr>
+          <td align="center" style="padding:24px;text-align:center;">
+            <table role="presentation" align="center" width="900" cellpadding="0" cellspacing="0" style="width:100%;max-width:900px;margin:0 auto;border-collapse:collapse;color:#1f2937;font-family:Arial,Helvetica,sans-serif;line-height:1.45;background:#ffffff;">
+              <tr>
+                <td align="center" style="padding:28px 24px;text-align:center;background:#172b4d;color:#ffffff;border-radius:14px 14px 0 0;">
+                  <h1 style="margin:0;font-size:26px;line-height:1.25;color:#ffffff;text-align:center;">
+                    ${escapeHtml(emailHeader)}
+                  </h1>
+                </td>
+              </tr>
+
+              ${draftSection ? `
+                <tr>
+                  <td align="center" style="padding:22px 28px 8px;text-align:center;font-size:14px;color:#1f2937;border-left:1px solid #d8dee6;border-right:1px solid #d8dee6;">
+                    ${draftSection}
+                  </td>
+                </tr>
+              ` : ""}
+
+              <tr>
+                <td align="center" style="padding:24px;text-align:center;border:1px solid #d8dee6;${draftSection ? "border-top:0;" : ""}">
+                  <h2 style="margin:0 0 14px;text-align:center;color:#172b4d;font-size:20px;">Monthly KPI Totals</h2>
+                  <table role="presentation" align="center" width="100%" cellpadding="0" cellspacing="0" style="width:100%;margin:0 auto;border-collapse:collapse;font-size:13px;text-align:center;">
+                    <thead>
+                      <tr>
+                        <th align="center" style="padding:11px;border:1px solid #d8dee6;background:#172b4d;color:#ffffff;text-align:center;">KPI</th>
+                        ${months.map(item => `<th align="center" style="padding:11px;border:1px solid #d8dee6;background:#172b4d;color:#ffffff;text-align:center;">${escapeHtml(formatMonth(item.month))}</th>`).join("")}
+                      </tr>
+                    </thead>
+                    <tbody>${totalRows}</tbody>
+                  </table>
+
+                  <h2 style="margin:28px 0 10px;text-align:center;color:#172b4d;font-size:20px;">Top 5 Theoretical Players (W/L &amp; Theo)</h2>
+                  ${topFive}
+
+                  <h2 style="margin:28px 0 14px;text-align:center;color:#172b4d;font-size:20px;">Booking Agent KPI Performance</h2>
+                  <table role="presentation" align="center" width="100%" cellpadding="0" cellspacing="0" style="width:100%;margin:0 auto;border-collapse:collapse;font-size:13px;text-align:center;">
+                    <thead>
+                      <tr>
+                        <th align="center" style="padding:10px;border:1px solid #d8dee6;background:#172b4d;color:#ffffff;text-align:center;">Month</th>
+                        <th align="center" style="padding:10px;border:1px solid #d8dee6;background:#172b4d;color:#ffffff;text-align:center;">Highest Player Loss</th>
+                        <th align="center" style="padding:10px;border:1px solid #d8dee6;background:#172b4d;color:#ffffff;text-align:center;">Most Bookings</th>
+                        <th align="center" style="padding:10px;border:1px solid #d8dee6;background:#172b4d;color:#ffffff;text-align:center;">Most Aggregate Theoretical</th>
+                      </tr>
+                    </thead>
+                    <tbody>${agentRows}</tbody>
+                  </table>
+
+                  <h2 style="margin:28px 0 14px;text-align:center;color:#172b4d;font-size:20px;">Required Theoretical Comparisons</h2>
+                  ${comparisonTables}
+                </td>
+              </tr>
+
+              <tr>
+                <td align="center" style="padding:14px 24px;text-align:center;background:#f4f6f8;border:1px solid #d8dee6;border-top:0;border-radius:0 0 14px 14px;color:#667085;font-size:11px;text-transform:uppercase;letter-spacing:.06em;">
+                  Internal Copy · Confidential · Prepared by ${escapeHtml(report.preparedBy || "Anne Joy")}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    `;
+
+    if (!fullDocument) return body;
+
+    const documentSubject =
+      els.emailSubject?.value.trim() || emailSubjectFor(report);
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>${escapeHtml(documentSubject)}</title>
+</head>
+<body style="margin:0;padding:0;background:#eef2f6;text-align:center;">
+${body}
+</body>
+</html>`;
+  }
+
+  function emailPlainText(html) {
+    const holder = document.createElement("div");
+    holder.innerHTML = html;
+    return holder.innerText.replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  function renderEmailPreview(report, preserveFields = false) {
+    if (!preserveFields || !els.emailSubject.value.trim()) {
+      els.emailSubject.value = emailSubjectFor(report);
+    }
+    if (!preserveFields || !els.emailDraftMessage.value.trim()) {
+      els.emailDraftMessage.value = suggestedEmailDraft(report);
+    }
+    els.emailPreview.innerHTML = buildEmailReportHtml(report, false);
+  }
+
+  async function copyEmailReport() {
+    if (!state.currentReport) return;
+    const html = buildEmailReportHtml(state.currentReport, false);
+    const plain = emailPlainText(html);
+    try {
+      if (navigator.clipboard && window.ClipboardItem) {
+        await navigator.clipboard.write([new ClipboardItem({
+          "text/html": new Blob([html], { type: "text/html" }),
+          "text/plain": new Blob([plain], { type: "text/plain" })
+        })]);
+      } else {
+        const holder = document.createElement("div");
+        holder.contentEditable = "true";
+        holder.style.position = "fixed";
+        holder.style.left = "-9999px";
+        holder.innerHTML = html;
+        document.body.appendChild(holder);
+        const range = document.createRange();
+        range.selectNodeContents(holder);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("copy");
+        selection.removeAllRanges();
+        holder.remove();
+      }
+      showMessage("Styled email copied. Paste it into Gmail or Outlook.", "success");
+    } catch (error) {
+      console.error(error);
+      showMessage("Copy was blocked. Use Download Email HTML instead.", "error");
+    }
+  }
+
+  function downloadEmailReport() {
+    if (!state.currentReport) return;
+    const html = buildEmailReportHtml(state.currentReport, true);
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    const safeCompany = (state.currentReport.companyName || "Pace_Gaming").replace(/[^\w-]+/g, "_");
+    link.href = url;
+    link.download = `${safeCompany}_KPI_Email_${reportMonthFileToken(state.currentReport)}.html`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    showMessage("Email HTML downloaded.", "success");
   }
 
   function printReportWithoutBrowserFooter() {
@@ -1508,7 +1941,7 @@
     const safeCompany = report.companyName.replace(/[^\w-]+/g, "_");
     XLSX.writeFile(
       workbook,
-      `${safeCompany}_Internal_KPI_Report_${report.month1}_to_${report.month2}.xlsx`
+      `${safeCompany}_Internal_KPI_Report_${reportMonthFileToken(report)}.xlsx`
     );
   }
 
@@ -1550,7 +1983,7 @@
     );
     titleSlide.addText(
       report.comparisonHeaderText ||
-        `Primary comparison: ${formatMonth(report.month1)} vs ${formatMonth(report.month2)}`,
+        formatComparisonHeaderForMonths(getReportMonths(report)),
       { x: 0.78, y: 2.05, w: 11.2, h: 0.35, fontSize: 15, color: primary, bold: true }
     );
     titleSlide.addText(
@@ -1690,7 +2123,7 @@
 
     const safeCompany = report.companyName.replace(/[^\w-]+/g, "_");
     await pptx.writeFile({
-      fileName: `${safeCompany}_Internal_KPI_Presentation_${report.month1}_to_${report.month2}.pptx`
+      fileName: `${safeCompany}_Internal_KPI_Presentation_${reportMonthFileToken(report)}.pptx`
     });
     showMessage("Presentation exported successfully.", "success");
   }
@@ -1710,8 +2143,10 @@
       const blob = await response.blob();
       const file = new File([blob], "sample_rating_export.csv", { type: "text/csv" });
       await processFiles([file]);
-      els.month1.value = "2026-05";
-      els.month2.value = "2026-06";
+      els.month1.value = "2025-05";
+      els.month2.value = "2026-05";
+      els.month3.value = "2025-06";
+      els.month4.value = "2026-06";
       els.comparison1From.value = "2025-05";
       els.comparison1To.value = "2026-05";
       els.comparison2From.value = "2025-06";
