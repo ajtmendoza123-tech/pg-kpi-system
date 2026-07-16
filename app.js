@@ -60,8 +60,8 @@
       "exportExcelBtn", "printBtn", "printReport", "reportLogo", "reportTitle",
       "reportSubtitle", "reportPreparedBy", "generatedDate", "reportSource",
       "reportNotice", "monthLabels", "kpiCards", "topPlayersGrid",
-      "propertyHighlights", "playerBookingHead", "playerBookingBody", "agentMonthlyGrid",
-      "yoyCards", "qualityChecks", "reportFooter", "historyList", "theoreticalGraph",
+      "playerBookingHead", "playerBookingBody", "agentMonthlyGrid",
+      "yoyCards", "qualityChecks", "historyList", "theoreticalGraph",
       "exportPptBtn", "copyTeamMessageBtn", "teamShareCopy",
       "playerNameMapSelect", "dealNameMapSelect", "propertyMapSelect", "openFullMappingBtn", "playerMappingStatus",
       "bookingDetailsHead", "bookingDetailsBody",
@@ -736,17 +736,25 @@
 
   function groupTopPlayers(rows) {
     const groups = new Map();
+
     rows.forEach(row => {
-      const key = normalizeName(row.playerName);
+      const dealName = cleanText(row.dealName);
+      const key = normalizeName(dealName);
       if (!key) return;
+
       if (!groups.has(key)) {
-        groups.set(key, { name: row.playerName, winLoss: 0, theoretical: 0, bookings: 0 });
+        groups.set(key, {
+          name: dealName,
+          winLoss: 0,
+          theoretical: 0
+        });
       }
+
       const group = groups.get(key);
       group.winLoss += row.playerWinLoss || 0;
       group.theoretical += row.theoretical || 0;
-      group.bookings += 1;
     });
+
     return [...groups.values()]
       .sort((a, b) => b.theoretical - a.theoretical)
       .slice(0, 5);
@@ -1030,7 +1038,6 @@
     els.reportPreparedBy.textContent = report.preparedBy;
     els.generatedDate.textContent = formatDateTime(report.generatedAt);
     els.reportSource.textContent = report.sourceFiles?.length ? report.sourceFiles.join(", ") : "Saved report";
-    els.reportFooter.textContent = `${report.companyName} Internal KPI System`;
     els.reportLogo.classList.add("small-logo");
     els.reportLogo.innerHTML = `<img src="logo.png" alt="Pace Gaming logo" />`;
     els.monthLabels.innerHTML = report.monthlyData
@@ -1052,7 +1059,6 @@
 
     renderKpiCards(report);
     renderTopPlayers(report);
-    renderPropertyPerformance(report);
     renderPlayerBookingSummary(report);
     renderAgentPerformance(report);
     renderYearOverYear(report);
@@ -1062,12 +1068,11 @@
 
   function renderKpiCards(report) {
     const definitions = [
-      { label: "Number of Bookings (Based on Deal Name)", key: "bookings", type: "integer" },
+      { label: "Number of Bookings Players (Check-Out Date)", key: "bookings", type: "integer" },
       { label: "Total Credit", key: "credit", type: "currency" },
       { label: "Total Front Money", key: "frontMoney", type: "currency" },
       { label: "Total Bankroll", key: "bankroll", type: "currency" },
       { label: "Total Theoretical", key: "theoretical", type: "currency" },
-      { label: "Total Player W/L", key: "playerWinLoss", type: "currency" },
       { label: "Total Commission", key: "commission", type: "currency" }
     ];
 
@@ -1106,12 +1111,11 @@
       <article class="monthly-report-card">
         <div class="monthly-card-heading">
           <span>${escapeHtml(formatMonth(item.month))}</span>
-          <strong>${formatInteger(item.summary.bookings)} deals</strong>
         </div>
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Player</th><th>Total W/L</th><th>Theoretical</th><th>Bookings</th></tr>
+              <tr><th>Deal Name</th><th>Total W/L</th><th>Theoretical</th></tr>
             </thead>
             <tbody>
               ${renderPlayerRowsHtml(item.topPlayers, report.currency)}
@@ -1124,30 +1128,16 @@
 
   function renderPlayerRowsHtml(rows, currency) {
     if (!rows.length) {
-      return `<tr><td class="empty-row" colspan="4">No player data available</td></tr>`;
+      return `<tr><td class="empty-row" colspan="3">No deal data available</td></tr>`;
     }
+
     return rows.map(row => `
       <tr>
         <td>${escapeHtml(row.name)}</td>
         <td>${escapeHtml(formatCurrency(row.winLoss, currency))}</td>
         <td><strong>${escapeHtml(formatCurrency(row.theoretical, currency))}</strong></td>
-        <td>${formatInteger(row.bookings)}</td>
       </tr>
     `).join("");
-  }
-
-  function renderPropertyPerformance(report) {
-    els.propertyHighlights.innerHTML = report.monthlyData.map(item => {
-      const property = item.properties[0];
-      return `
-        <article class="property-card">
-          <span>${escapeHtml(formatMonth(item.month))}</span>
-          <h3>${escapeHtml(property?.name || "No property data")}</h3>
-          <p>${property ? `${formatInteger(property.bookings)} booking rows · ${formatInteger(property.uniquePlayers)} unique players` : "0 bookings"}</p>
-          <small>${property ? `${formatCurrency(property.theoretical, report.currency)} theoretical` : "No data"}</small>
-        </article>
-      `;
-    }).join("");
   }
 
   function formatPlayerProperties(properties) {
@@ -1421,20 +1411,24 @@
 
     const summaryRows = [
       ["KPI", ...report.monthlyData.map(item => formatMonth(item.month))],
-      ["Number of Bookings (Based on Deal Name)", ...report.monthlyData.map(item => item.summary.bookings)],
+      ["Number of Bookings Players (Check-Out Date)", ...report.monthlyData.map(item => item.summary.bookings)],
       ["Total Credit", ...report.monthlyData.map(item => item.summary.credit)],
       ["Total Front Money", ...report.monthlyData.map(item => item.summary.frontMoney)],
       ["Total Bankroll", ...report.monthlyData.map(item => item.summary.bankroll)],
       ["Total Theoretical", ...report.monthlyData.map(item => item.summary.theoretical)],
-      ["Total Player W/L", ...report.monthlyData.map(item => item.summary.playerWinLoss)],
       ["Total Commission", ...report.monthlyData.map(item => item.summary.commission)]
     ];
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(summaryRows), "KPI Summary");
 
     const playerRows = [
-      ["Month", "Player", "Win/Loss", "Theoretical", "Bookings"],
+      ["Month", "Deal Name", "Win/Loss", "Theoretical"],
       ...report.monthlyData.flatMap(item =>
-        item.topPlayers.map(row => [formatMonth(item.month), row.name, row.winLoss, row.theoretical, row.bookings])
+        item.topPlayers.map(row => [
+          formatMonth(item.month),
+          row.name,
+          row.winLoss,
+          row.theoretical
+        ])
       )
     ];
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(playerRows), "Top Players");
@@ -1466,20 +1460,6 @@
       )
     ];
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(agentRows), "Agent Performance");
-
-    const propertyRows = [
-      ["Month", "Property", "Booking Rows", "Unique Players", "Theoretical"],
-      ...report.monthlyData.flatMap(item =>
-        item.properties.map(row => [
-          formatMonth(item.month),
-          row.name,
-          row.bookings,
-          row.uniquePlayers,
-          row.theoretical
-        ])
-      )
-    ];
-    XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(propertyRows), "Property Performance");
 
     const comparisonRows = [
       ["Comparison", "From Theoretical", "To Theoretical", "Difference", "% Change"],
@@ -1578,12 +1558,11 @@
 
       const rows = [
         ["KPI", ...chunk.map(item => formatMonth(item.month))],
-        ["Bookings (Based on Deal Name)", ...chunk.map(item => formatInteger(item.summary.bookings))],
+        ["Number of Bookings Players (Check-Out Date)", ...chunk.map(item => formatInteger(item.summary.bookings))],
         ["Total Credit", ...chunk.map(item => formatCurrency(item.summary.credit, report.currency))],
         ["Total Front Money", ...chunk.map(item => formatCurrency(item.summary.frontMoney, report.currency))],
         ["Total Bankroll", ...chunk.map(item => formatCurrency(item.summary.bankroll, report.currency))],
         ["Total Theoretical", ...chunk.map(item => formatCurrency(item.summary.theoretical, report.currency))],
-        ["Total Player W/L", ...chunk.map(item => formatCurrency(item.summary.playerWinLoss, report.currency))],
         ["Total Commission", ...chunk.map(item => formatCurrency(item.summary.commission, report.currency))]
       ];
 
@@ -1599,18 +1578,17 @@
       const slide = pptx.addSlide();
       slide.background = { color: "FFFFFF" };
       addHeader(slide, formatMonth(item.month));
-      slide.addText(`Top Players and Booking Agent KPIs · ${formatMonth(item.month)}`, {
+      slide.addText(`Top 5 Theoretical Deals and Booking Agent KPIs · ${formatMonth(item.month)}`, {
         x: 0.55, y: 1.1, w: 11.5, h: 0.35, fontSize: 21,
         fontFace: "Aptos Display", color: primary, bold: true
       });
 
       const topRows = [
-        ["Top 5 Player", "W/L", "Theoretical", "Bookings"],
+        ["Top 5 Deal Name", "W/L", "Theoretical"],
         ...item.topPlayers.map(row => [
           row.name,
           formatCurrency(row.winLoss, report.currency),
-          formatCurrency(row.theoretical, report.currency),
-          String(row.bookings)
+          formatCurrency(row.theoretical, report.currency)
         ])
       ];
       slide.addTable(topRows, {
@@ -1623,14 +1601,12 @@
       const highestLoss = selectHighestLoss(item.agents);
       const mostBookings = highest(item.agents, "bookings");
       const highestTheo = highest(item.agents, "theoretical");
-      const property = item.properties[0];
 
       const highlights = [
         ["KPI", "Result"],
         ["Agent with Highest Player Loss", highestLoss ? `${highestLoss.name} · ${formatCurrency(highestLoss.winLoss, report.currency)}` : "—"],
         ["Agent with Most Bookings", mostBookings ? `${mostBookings.name} · ${formatInteger(mostBookings.bookings)}` : "—"],
-        ["Agent with Most Aggregate Theoretical", highestTheo ? `${highestTheo.name} · ${formatCurrency(highestTheo.theoretical, report.currency)}` : "—"],
-        ["Most Frequent Property", property ? `${property.name} · ${formatInteger(property.bookings)} booking rows` : "—"]
+        ["Agent with Most Aggregate Theoretical", highestTheo ? `${highestTheo.name} · ${formatCurrency(highestTheo.theoretical, report.currency)}` : "—"]
       ];
       slide.addTable(highlights, {
         x: 6.85, y: 1.65, w: 5.9, h: 3.1,

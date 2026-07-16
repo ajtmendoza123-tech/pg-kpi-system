@@ -408,3 +408,17 @@ Ranking order:
 2. Highest Total Theoretical as the tie-breaker
 
 The same Top 10 list is used in the website report, Excel export, and presentation export.
+
+
+## V17 required report alignment
+
+The visible KPI report now follows the required Pace Gaming list.
+
+- Number of Bookings Players uses Deal Name and Check-Out Date.
+- Top 5 Theoretical Players uses Deal Name.
+- The Top 5 table shows only Deal Name, W/L, and Theoretical.
+- The Bookings column was removed from the Top 5 table.
+- The separate Most Frequent Property report was removed.
+- The Top 10 Frequent Players section remains based on Player Full Name and Property.
+- The report footer was removed.
+- Excel and presentation exports follow the same Top 5 structure.

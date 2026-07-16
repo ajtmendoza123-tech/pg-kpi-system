@@ -303,20 +303,19 @@
             </div>
           </div>
           <div class="scope-grid">
-            <span>Number of Bookings (Based on Deal Name)</span>
+            <span>Number of Bookings Players (Check-Out Date)</span>
             <span>Total Credit</span>
             <span>Total Front Money</span>
             <span>Total Bankroll</span>
             <span>Total Theoretical</span>
-            <span>Total Player W/L</span>
             <span>Top 5 Theoretical Players (W/L &amp; Theo)</span>
             <span>Total Commission</span>
             <span>Booking Agent with Highest Player Loss</span>
             <span>Booking Agent with Most Bookings</span>
             <span>Booking Agent with Most Aggregate Theoretical</span>
-            <span>Most Frequent Property</span>
-            <span>Player Booking Summary</span>
-            <span>Up to 6 Theoretical Comparisons</span>
+            <span>May 2025 versus May 2026 Month Theoretical</span>
+            <span>June 2025 versus June 2026 Month Theoretical</span>
+            <span>Top 10 Frequent Players (Full Name &amp; Property)</span>
           </div>
         </section>
 
@@ -335,37 +334,25 @@
           <div class="block-title">
             <div>
               <p class="eyebrow">TOP 5 THEORETICAL PLAYERS</p>
-              <h2>W/L, theoretical, and number of bookings</h2>
+              <h2>W/L and theoretical by Deal Name</h2>
             </div>
           </div>
           <div id="topPlayersGrid" class="monthly-section-grid"></div>
         </section>
 
-        <section class="report-grid two-column">
-          <div class="report-block">
-            <div class="block-title">
-              <div>
-                <p class="eyebrow">PROPERTY PERFORMANCE</p>
-                <h2>Most frequent property</h2>
-              </div>
+        <section class="report-block">
+          <div class="block-title">
+            <div>
+              <p class="eyebrow">PLAYER BOOKINGS</p>
+              <h2>Top 10 Players by Total Bookings</h2>
+              <p class="section-note">Uses Player Full Name for the player and Property for the property count. Shows only the 10 players with the highest total booking count.</p>
             </div>
-            <div id="propertyHighlights" class="monthly-card-grid"></div>
           </div>
-
-          <div class="report-block">
-            <div class="block-title">
-              <div>
-                <p class="eyebrow">PLAYER BOOKINGS</p>
-                <h2>Top 10 Players by Total Bookings</h2>
-                <p class="section-note">Shows only the 10 players with the highest total booking count. Player identity uses the mapped Full Name column.</p>
-              </div>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <thead id="playerBookingHead"></thead>
-                <tbody id="playerBookingBody"></tbody>
-              </table>
-            </div>
+          <div class="table-wrap">
+            <table>
+              <thead id="playerBookingHead"></thead>
+              <tbody id="playerBookingBody"></tbody>
+            </table>
           </div>
         </section>
 
@@ -413,10 +400,6 @@
           </div>
         </section>
 
-        <footer class="report-footer">
-          <p>Generated from uploaded PipelineCRM rating exports.</p>
-          <p id="reportFooter">Pace Gaming KPI System</p>
-        </footer>
       </article>
     </section>
 
@@ -433,7 +416,7 @@
       <div id="teamShareCopy" class="share-copy">
         <p>Hi team, please use the Pace Gaming Internal KPI System to generate monthly KPI reports from PipelineCRM rating exports.</p>
         <p>Upload the exported CSV/XLSX file, confirm the column mapping, choose the report months and comparison dates, then export the report as PDF, Excel, or presentation.</p>
-        <p>For accuracy, keep Check-Out Date, Player Name, Owner / Trip Contact (Deal Owner), Property, Credit, Front Money, Bankroll, Theoretical, Player Win/Loss, and Commission in the export. Deal Name is used to calculate Number of Bookings. Primary Contact Owner is optional.</p>
+        <p>For accuracy, keep Check-Out Date, Player Name, Owner / Trip Contact (Deal Owner), Property, Credit, Front Money, Bankroll, Theoretical, Player Win/Loss, and Commission in the export. Deal Name and Check-Out Date are used for Number of Bookings Players. Primary Contact Owner is optional.</p>
       </div>
     </section>
 
