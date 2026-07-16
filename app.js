@@ -96,7 +96,7 @@
 
     els.generateBtn.addEventListener("click", generateReport);
     els.loadSampleBtn.addEventListener("click", loadDemoData);
-    els.printBtn.addEventListener("click", () => window.print());
+    els.printBtn.addEventListener("click", printReportWithoutBrowserFooter);
     els.exportExcelBtn.addEventListener("click", exportCurrentReport);
     els.exportPptBtn.addEventListener("click", exportCurrentPresentation);
     els.saveHistoryBtn.addEventListener("click", saveCurrentReport);
@@ -533,6 +533,33 @@
       return;
     }
 
+    const exactDealNameHeader = state.headers.find(
+      header => normalizeHeader(header) === "deal name"
+    );
+
+    if (
+      exactDealNameHeader &&
+      normalizeHeader(state.mapping.dealName) !== normalizeHeader(exactDealNameHeader)
+    ) {
+      showMessage("For W/L and Theoretical, Deal Name Source must be mapped to the DEAL NAME column so the property, player, and date appear.", "error");
+      els.dealNameMapSelect.value = exactDealNameHeader;
+      state.mapping.dealName = exactDealNameHeader;
+      syncMappingSelects();
+      normalizeAllRows();
+      els.dealNameMapSelect.focus();
+      return;
+    }
+
+    if (
+      state.mapping.dealName &&
+      state.mapping.playerName &&
+      normalizeHeader(state.mapping.dealName) === normalizeHeader(state.mapping.playerName)
+    ) {
+      showMessage("Deal Name and Player Full Name cannot use the same column. Map Deal Name to DEAL NAME.", "error");
+      els.dealNameMapSelect.focus();
+      return;
+    }
+
     const previewNames = state.normalizedRows
       .map(row => row.playerName)
       .filter(Boolean)
@@ -734,27 +761,13 @@
   }
 
   function groupTopPlayers(rows) {
-    const groups = new Map();
-
-    rows.forEach(row => {
-      const dealName = cleanText(row.dealName);
-      const key = normalizeName(dealName);
-      if (!key) return;
-
-      if (!groups.has(key)) {
-        groups.set(key, {
-          name: dealName,
-          winLoss: 0,
-          theoretical: 0
-        });
-      }
-
-      const group = groups.get(key);
-      group.winLoss += row.playerWinLoss || 0;
-      group.theoretical += row.theoretical || 0;
-    });
-
-    return [...groups.values()]
+    return rows
+      .filter(row => cleanText(row.dealName))
+      .map(row => ({
+        name: cleanText(row.dealName),
+        winLoss: row.playerWinLoss || 0,
+        theoretical: row.theoretical || 0
+      }))
       .sort((a, b) => b.theoretical - a.theoretical)
       .slice(0, 5);
   }
@@ -1113,7 +1126,7 @@
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Deal Name</th><th>Total W/L</th><th>Theoretical</th></tr>
+              <tr><th>Full Deal Name (Property · Player · Date)</th><th>Total W/L</th><th>Theoretical</th></tr>
             </thead>
             <tbody>
               ${renderPlayerRowsHtml(item.topPlayers, report.currency)}
@@ -1410,6 +1423,21 @@
     return safeJsonParse(localStorage.getItem(STORAGE_KEYS.history), []);
   }
 
+  function printReportWithoutBrowserFooter() {
+    document.body.classList.add("kpi-print-mode");
+
+    const cleanup = () => {
+      document.body.classList.remove("kpi-print-mode");
+      window.removeEventListener("afterprint", cleanup);
+    };
+
+    window.addEventListener("afterprint", cleanup);
+    window.print();
+
+    // Fallback cleanup for browsers that do not reliably fire afterprint.
+    window.setTimeout(cleanup, 1500);
+  }
+
   function exportCurrentReport() {
     if (!state.currentReport || typeof XLSX === "undefined") return;
     const report = state.currentReport;
@@ -1427,7 +1455,7 @@
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.aoa_to_sheet(summaryRows), "KPI Summary");
 
     const playerRows = [
-      ["Month", "Deal Name", "Win/Loss", "Theoretical"],
+      ["Month", "Full Deal Name (Property - Player - Date)", "Win/Loss", "Theoretical"],
       ...report.monthlyData.flatMap(item =>
         item.topPlayers.map(row => [
           formatMonth(item.month),
@@ -1590,7 +1618,7 @@
       });
 
       const topRows = [
-        ["Top 5 Deal Name", "W/L", "Theoretical"],
+        ["Top 5 Full Deal Name", "W/L", "Theoretical"],
         ...item.topPlayers.map(row => [
           row.name,
           {

@@ -1415,3 +1415,27 @@ tbody tr:nth-child(even) { background: var(--surface-2); }
     page-break-inside: avoid;
   }
 }
+
+
+@page {
+  size: landscape;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.kpi-print-mode .report-paper {
+    width: 100%;
+    max-width: none;
+    margin: 0 !important;
+    padding: 12mm !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

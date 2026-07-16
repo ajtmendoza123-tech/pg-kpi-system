@@ -455,3 +455,12 @@ The report footer now displays:
 
 - INTERNAL COPY · CONFIDENTIAL
 - Prepared by Anne Joy
+
+
+## V20 full Deal Name and print-footer correction
+
+- Top 5 W/L and Theoretical now displays the exact full Deal Name from the `DEAL NAME` column.
+- Each de-duplicated Deal Name is treated as one deal; the full text is preserved so property, player, and date remain visible.
+- When a `DEAL NAME` header exists, the report enforces that exact source mapping.
+- Deal Name and Player Full Name cannot be mapped to the same source column.
+- Print CSS now uses a zero-margin page and internal report padding to suppress browser-generated URL and page-number footers such as `file:///... 5/5`.
