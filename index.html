@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pace Gaming monthly KPI report generator for PipelineCRM exports." />
+  <title>Pace Gaming KPI Report System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=Lato:wght@400;700;900&family=Libre+Baskerville:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Merriweather:wght@400;700&family=Montserrat:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700;800&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700;800&family=Raleway:wght@500;600;700;800&family=Roboto+Slab:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+</head>
+<body data-theme="linen">
+  <header class="topbar no-print">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">PG</div>
+      <div>
+        <h1>Pace Gaming Internal KPI System</h1>
+        <p>Clean monthly KPI reports from PipelineCRM exports.</p>
+      </div>
+    </div>
+
+    <nav class="quick-nav no-print" aria-label="Internal report navigation">
+      <a href="#upload">Upload</a>
+      <a href="#settings">Settings</a>
+      <a href="#reportSection">Report</a>
+      <a href="#history">History</a>
+    </nav>
+
+    <div class="top-actions">
+      <label class="compact-field">
+        <span>Theme</span>
+        <select id="themeSelect">
+          <option value="linen">Soft Linen</option>
+          <option value="navy">Executive Navy</option>
+          <option value="pink">Modern Pink</option>
+          <option value="emerald">Emerald</option>
+          <option value="plum">Plum</option>
+          <option value="rose">Rose Quartz</option>
+          <option value="sand">Warm Sand</option>
+          <option value="sky">Soft Sky</option>
+          <option value="sage">Sage Mist</option>
+          <option value="lavender">Soft Lavender</option>
+          <option value="peach">Peach Blush</option>
+          <option value="mint">Fresh Mint</option>
+          <option value="powder">Powder Blue</option>
+          <option value="champagne">Champagne</option>
+          <option value="coral">Coral Cream</option>
+          <option value="silver">Silver Blue</option>
+          <option value="ivory">Ivory Gold</option>
+          <option value="teal">Soft Teal</option>
+          <option value="blush">Blush Beige</option>
+          <option value="olive">Olive Cream</option>
+          <option value="periwinkle">Periwinkle</option>
+          <option value="terracotta">Terracotta Sand</option>
+          <option value="aqua">Aqua Mist</option>
+          <option value="mauve">Mauve Pearl</option>
+        </select>
+      </label>
+      <label class="compact-field">
+        <span>Font</span>
+        <select id="fontSelect">
+          <option value="Inter">Inter</option>
+          <option value="Manrope">Manrope</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="DM Sans">DM Sans</option>
+          <option value="Space Grotesk">Space Grotesk</option>
+          <option value="Playfair Display">Playfair Display</option>
+          <option value="Poppins">Poppins</option>
+          <option value="Lato">Lato</option>
+          <option value="Nunito Sans">Nunito Sans</option>
+          <option value="Raleway">Raleway</option>
+          <option value="Source Sans 3">Source Sans 3</option>
+          <option value="Merriweather">Merriweather</option>
+          <option value="Roboto Slab">Roboto Slab</option>
+          <option value="Libre Baskerville">Libre Baskerville</option>
+        </select>
+      </label>
+      <button id="resetAppBtn" class="btn ghost" type="button">Reset Session</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section id="upload" class="control-panel no-print">
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">STEP 1</span>
+          <h2>Upload exported rating file</h2>
+          <p>Upload one or more PipelineCRM CSV, XLSX, or XLS files. Include Deal Owner for booking-agent KPIs. Primary Contact Owner is optional and is not required in the visible KPI report.</p>
+        </div>
+        <span id="fileStatus" class="status-pill neutral">No file uploaded</span>
+      </div>
+
+      <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Upload rating files">
+        <input id="fileInput" type="file" accept=".csv,.xlsx,.xls" multiple hidden />
+        <div class="upload-icon">⇧</div>
+        <h3>Drop files here or click to browse</h3>
+        <p>Use multiple exports when you need year-over-year comparisons.</p>
+        <button id="browseBtn" class="btn primary" type="button">Choose Files</button>
+      </div>
+
+      <div id="uploadedFiles" class="file-list"></div>
+
+
+      <section id="playerBookingMapping" class="priority-mapping-card">
+        <div class="priority-mapping-copy">
+          <span class="eyebrow">CORE REPORT MAPPING</span>
+          <h3>Map Deal Name, Player Full Name, and Property separately</h3>
+          <p><strong>Number of Bookings</strong> is based on Deal Name. <strong>Player Booking History</strong> uses Player Full Name and Property.</p>
+        </div>
+        <div class="priority-mapping-grid three-column">
+          <label>
+            <span>Player Full Name Source</span>
+            <select id="playerNameMapSelect">
+              <option value="">Select Player Full Name column</option>
+            </select>
+            <small>Recommended: PRIMARY CONTACT FULL NAME</small>
+          </label>
+          <label>
+            <span>Deal Name Source</span>
+            <select id="dealNameMapSelect">
+              <option value="">Select Deal Name column</option>
+            </select>
+            <small>Recommended: DEAL NAME</small>
+          </label>
+          <label>
+            <span>Property Source</span>
+            <select id="propertyMapSelect">
+              <option value="">Select Property column</option>
+            </select>
+            <small>Recommended: PROPERTY</small>
+          </label>
+        </div>
+        <div class="mapping-action-row">
+          <button id="openFullMappingBtn" class="btn secondary" type="button">Open Full Column Mapping</button>
+          <span id="playerMappingStatus" class="status-pill neutral">Waiting for file</span>
+        </div>
+      </section>
+
+      <details id="mappingDetails" class="mapping-card">
+        <summary>
+          <span>
+            <strong>Full Column Mapping</strong>
+            <small>Review or change any source column. Number of Bookings uses Deal Name. Player Booking History uses Player Full Name and Property.</small>
+          </span>
+          <span id="mappingBadge" class="status-pill neutral">Waiting for file</span>
+        </summary>
+        <div class="mapping-body">
+          <div id="mappingGrid" class="mapping-grid"></div>
+        </div>
+      </details>
+    </section>
+
+    <section id="settings" class="control-panel no-print">
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">STEP 2</span>
+          <h2>Choose report settings</h2>
+          <p>Select the two months to compare. The report uses Check-Out Date and automatically excludes records marked Cancelled or Canceled.</p>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <label>
+          <span>Company Name</span>
+          <input id="companyName" type="text" value="Pace Gaming" />
+        </label>
+        <label>
+          <span>Prepared By</span>
+          <input id="preparedBy" type="text" value="Anne Joy" />
+        </label>
+        <label>
+          <span>Month 1</span>
+          <input id="month1" type="month" />
+        </label>
+        <label>
+          <span>Month 2</span>
+          <input id="month2" type="month" />
+        </label>
+        <label>
+          <span>Property</span>
+          <select id="propertyFilter">
+            <option value="">All Properties</option>
+          </select>
+        </label>
+        <label>
+          <span>Currency</span>
+          <select id="currencyFilter">
+            <option value="">All Currencies</option>
+          </select>
+        </label>
+      </div>
+
+
+      <div class="comparison-settings">
+        <div class="comparison-heading">
+          <span class="eyebrow">COMPARISON DATES</span>
+          <h3>Compare any months</h3>
+          <p>Add up to six comparison pairs. Every month used here is automatically included in the KPI totals, Top 5 players, property, player booking, and booking-agent sections.</p>
+        </div>
+        <div class="comparison-grid">
+          <label>
+            <span>Comparison 1 - From</span>
+            <input id="comparison1From" type="month" value="2025-05" />
+          </label>
+          <label>
+            <span>Comparison 1 - To</span>
+            <input id="comparison1To" type="month" value="2026-05" />
+          </label>
+          <label>
+            <span>Comparison 2 - From</span>
+            <input id="comparison2From" type="month" value="2025-06" />
+          </label>
+          <label>
+            <span>Comparison 2 - To</span>
+            <input id="comparison2To" type="month" value="2026-06" />
+          </label>
+          <label>
+            <span>Comparison 3 - From</span>
+            <input id="comparison3From" type="month" value="2026-05" />
+          </label>
+          <label>
+            <span>Comparison 3 - To</span>
+            <input id="comparison3To" type="month" value="2026-06" />
+          </label>
+          <label>
+            <span>Comparison 4 - From</span>
+            <input id="comparison4From" type="month" />
+          </label>
+          <label>
+            <span>Comparison 4 - To</span>
+            <input id="comparison4To" type="month" />
+          </label>
+          <label>
+            <span>Comparison 5 - From</span>
+            <input id="comparison5From" type="month" />
+          </label>
+          <label>
+            <span>Comparison 5 - To</span>
+            <input id="comparison5To" type="month" />
+          </label>
+          <label>
+            <span>Comparison 6 - From</span>
+            <input id="comparison6From" type="month" />
+          </label>
+          <label>
+            <span>Comparison 6 - To</span>
+            <input id="comparison6To" type="month" />
+          </label>
+        </div>
+      </div>
+
+
+      <div class="button-row">
+        <button id="generateBtn" class="btn primary large" type="button" disabled>Generate Monthly Report</button>
+        <button id="loadSampleBtn" class="btn secondary" type="button">Load Demo Data</button>
+      </div>
+      <p class="helper-note">Accuracy note: imported signed values are preserved exactly. Negative numbers stay negative. Player Win/Loss is totaled automatically.</p>
+      <p id="messageBox" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="reportSection" class="report-section hidden">
+      <div class="report-toolbar no-print">
+        <div>
+          <span class="eyebrow">MONTHLY REPORT</span>
+          <h2 id="reportToolbarTitle">KPI Report</h2>
+        </div>
+        <div class="button-row compact">
+          <button id="saveHistoryBtn" class="btn secondary" type="button">Save to History</button>
+          <button id="exportExcelBtn" class="btn secondary" type="button">Export Excel</button>
+          <button id="exportPptBtn" class="btn secondary" type="button">Export Presentation</button>
+          <button id="printBtn" class="btn primary" type="button">Print / Save PDF</button>
+        </div>
+      </div>
+
+      <article id="printReport" class="report-paper">
+        <header class="report-header">
+          <div class="report-brand">
+            <div id="reportLogo" class="report-logo">PG</div>
+            <div>
+              <p class="report-kicker">INTERNAL MONTHLY PERFORMANCE REPORT</p>
+              <h1 id="reportTitle">Pace Gaming KPI Report</h1>
+              <p id="reportSubtitle">Internal monthly comparison based on PipelineCRM check-out dates.</p>
+            </div>
+          </div>
+          <div class="report-meta">
+            <p><span>Prepared by</span><strong id="reportPreparedBy">Anne Joy</strong></p>
+            <p><span>Generated</span><strong id="generatedDate">—</strong></p>
+            <p><span>Source</span><strong id="reportSource">—</strong></p>
+          </div>
+        </header>
+
+        <section id="reportNotice" class="report-notice hidden"></section>
+
+
+        <section class="report-block report-scope">
+          <div class="block-title">
+            <div>
+              <p class="eyebrow">REPORT SCOPE</p>
+              <h2>KPIs included in this report</h2>
+            </div>
+          </div>
+          <div class="scope-grid">
+            <span>Number of Bookings (Based on Deal Name)</span>
+            <span>Total Credit</span>
+            <span>Total Front Money</span>
+            <span>Total Bankroll</span>
+            <span>Total Theoretical</span>
+            <span>Total Player W/L</span>
+            <span>Top 5 Theoretical Players (W/L &amp; Theo)</span>
+            <span>Total Commission</span>
+            <span>Booking Agent with Highest Player Loss</span>
+            <span>Booking Agent with Most Bookings</span>
+            <span>Booking Agent with Most Aggregate Theoretical</span>
+            <span>Most Frequent Property</span>
+            <span>Player Booking Summary</span>
+            <span>Up to 6 Theoretical Comparisons</span>
+          </div>
+        </section>
+
+        <section class="report-block">
+          <div class="block-title">
+            <div>
+              <p class="eyebrow">EXECUTIVE SUMMARY</p>
+              <h2>Required monthly KPI totals</h2>
+            </div>
+            <div id="monthLabels" class="month-labels"></div>
+          </div>
+          <div id="kpiCards" class="monthly-kpi-container"></div>
+        </section>
+
+        <section class="report-block">
+          <div class="block-title">
+            <div>
+              <p class="eyebrow">TOP 5 THEORETICAL PLAYERS</p>
+              <h2>W/L, theoretical, and number of bookings</h2>
+            </div>
+          </div>
+          <div id="topPlayersGrid" class="monthly-section-grid"></div>
+        </section>
+
+        <section class="report-grid two-column">
+          <div class="report-block">
+            <div class="block-title">
+              <div>
+                <p class="eyebrow">PROPERTY PERFORMANCE</p>
+                <h2>Most frequent property</h2>
+              </div>
+            </div>
+            <div id="propertyHighlights" class="monthly-card-grid"></div>
+          </div>
+
+          <div class="report-block">
+            <div class="block-title">
+              <div>
+                <p class="eyebrow">PLAYER BOOKINGS</p>
+                <h2>Top 10 Players by Total Bookings</h2>
+                <p class="section-note">Shows only the 10 players with the highest total booking count. Player identity uses the mapped Full Name column.</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead id="playerBookingHead"></thead>
+                <tbody id="playerBookingBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="report-block">
+          <div class="block-title">
+            <div>
+              <p class="eyebrow">BOOKING AGENTS</p>
+              <h2>Booking agent KPI performance</h2>
+            </div>
+          </div>
+          <div id="agentMonthlyGrid" class="monthly-section-grid"></div>
+        </section>
+
+
+        <section class="report-block">
+          <div class="block-title">
+            <div>
+              <p class="eyebrow">SIMPLE GRAPH</p>
+              <h2>Theoretical comparison graph</h2>
+            </div>
+          </div>
+          <div id="theoreticalGraph" class="simple-chart" aria-label="Theoretical comparison graph"></div>
+        </section>
+
+        <section class="report-grid two-column">
+          <div class="report-block">
+            <div class="block-title">
+              <div>
+                <p class="eyebrow">YEAR-OVER-YEAR</p>
+                <h2>Selected theoretical comparisons</h2>
+              </div>
+            </div>
+            <div id="yoyCards" class="comparison-list"></div>
+          </div>
+
+          <div class="report-block">
+            <div class="block-title">
+              <div>
+                <p class="eyebrow">SUPPLEMENTARY DATA REVIEW</p>
+                <h2>Quality checks</h2>
+              </div>
+            </div>
+            <div id="qualityChecks" class="quality-list"></div>
+          </div>
+        </section>
+
+        <footer class="report-footer">
+          <p>Generated from uploaded PipelineCRM rating exports.</p>
+          <p id="reportFooter">Pace Gaming KPI System</p>
+        </footer>
+      </article>
+    </section>
+
+
+    <section class="control-panel no-print team-copy-panel">
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">INTERNAL TEAM COPY</span>
+          <h2>Copy this when sharing the site</h2>
+          <p>Use this message when sending the KPI system link to the team.</p>
+        </div>
+        <button id="copyTeamMessageBtn" class="btn secondary" type="button">Copy Message</button>
+      </div>
+      <div id="teamShareCopy" class="share-copy">
+        <p>Hi team, please use the Pace Gaming Internal KPI System to generate monthly KPI reports from PipelineCRM rating exports.</p>
+        <p>Upload the exported CSV/XLSX file, confirm the column mapping, choose the report months and comparison dates, then export the report as PDF, Excel, or presentation.</p>
+        <p>For accuracy, keep Check-Out Date, Player Name, Owner / Trip Contact (Deal Owner), Property, Credit, Front Money, Bankroll, Theoretical, Player Win/Loss, and Commission in the export. Deal Name is used to calculate Number of Bookings. Primary Contact Owner is optional.</p>
+      </div>
+    </section>
+
+    <section id="history" class="control-panel no-print">
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">SAVED REPORTS</span>
+          <h2>Monthly report history</h2>
+          <p>Saved reports remain in this browser. Export important reports to Excel or PDF for permanent storage.</p>
+        </div>
+      </div>
+      <div id="historyList" class="history-grid"></div>
+    </section>
+  </main>
+
+  <template id="mappingRowTemplate">
+    <label class="mapping-field">
+      <span class="mapping-label"></span>
+      <select class="mapping-select"></select>
+    </label>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

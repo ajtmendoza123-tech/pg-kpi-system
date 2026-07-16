@@ -1,0 +1,16 @@
+Booking ID,Player Name,Check-Out Date,Booking Agent,Owner / Trip Contact (Deal Owner),Player Owner (Primary Contact Owner),Property,Credit,Front Money,Bankroll,Player Win/Loss,Theoretical,Commission,Currency,Booking Status,Play Rating Complete?,Notes
+PG-250501,Jordan Lee,05/08/2025,Theo,Theo,Kyle,Mohegan Sun,25000,5000,30000,8200,4200,420,USD,Completed,Yes,Demo data
+PG-250502,Maya Chen,05/17/2025,Kyle,Kyle,Dave,Mohegan Sun,40000,10000,50000,12500,6100,610,USD,Completed,Yes,Demo data
+PG-250503,Jordan Lee,05/28/2025,Theo,Theo,Kyle,Hard Rock,25000,2500,27500,-1800,2800,280,USD,Completed,Yes,Demo data
+PG-250601,Chris Park,06/04/2025,Liz,Liz,Dave,Hard Rock,30000,7000,37000,9300,5000,500,USD,Completed,Yes,Demo data
+PG-250602,Maya Chen,06/19/2025,Kyle,Kyle,Dave,Mohegan Sun,40000,12000,52000,10100,5900,590,USD,Completed,Yes,Demo data
+PG-260501,Jordan Lee,05/06/2026,Theo,Theo,Kyle,Mohegan Sun,30000,6000,36000,10500,5300,530,USD,Completed,Yes,Demo data
+PG-260502,Maya Chen,05/14/2026,Kyle,Kyle,Dave,Mohegan Sun,45000,15000,60000,14300,7200,720,USD,Completed,Yes,Demo data
+PG-260503,Chris Park,05/21/2026,Liz,Liz,Dave,Hard Rock,35000,8000,43000,7600,4900,490,USD,Completed,Yes,Demo data
+PG-260504,Jordan Lee,05/29/2026,Theo,Theo,Kyle,Hard Rock,30000,3000,33000,-2200,3300,330,USD,Completed,Yes,Demo data
+PG-260601,Maya Chen,06/03/2026,Kyle,Kyle,Dave,Mohegan Sun,50000,16000,66000,15800,7900,790,USD,Completed,Yes,Demo data
+PG-260602,Chris Park,06/11/2026,Liz,Liz,Dave,Hard Rock,35000,9000,44000,8800,5200,520,USD,Completed,Yes,Demo data
+PG-260603,Alex Rivera,06/18/2026,Theo,Theo,Kyle,Mohegan Sun,20000,5000,25000,6400,3900,390,USD,Completed,Yes,Demo data
+PG-260604,Jordan Lee,06/25/2026,Theo,Theo,Kyle,Hard Rock,30000,4000,34000,11200,5600,560,USD,Completed,Yes,Demo data
+PG-260605,Cancelled Player,06/27/2026,Kyle,Kyle,Dave,Mohegan Sun,25000,5000,30000,0,0,0,USD,Cancelled,No,Excluded demo row
+PG-260606,,06/29/2026,,,,Hard Rock,10000,0,10000,1500,900,90,USD,Completed,No,Data quality demo row
