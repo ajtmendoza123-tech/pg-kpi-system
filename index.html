@@ -276,19 +276,18 @@
       </div>
 
       <article id="printReport" class="report-paper">
-        <header class="report-header">
+        <header class="report-header simplified-report-header">
           <div class="report-brand">
             <div id="reportLogo" class="report-logo">PG</div>
-            <div>
+            <div class="report-header-copy">
               <p class="report-kicker">INTERNAL MONTHLY PERFORMANCE REPORT</p>
-              <h1 id="reportTitle">Pace Gaming KPI Report</h1>
-              <p id="reportSubtitle">Internal monthly comparison based on PipelineCRM check-out dates.</p>
+              <h1 id="reportTitle">Pace Gaming Internal KPI Report</h1>
+              <p id="reportSubtitle">Primary comparison: —</p>
+              <div class="report-header-details">
+                <p><span>Generated date</span><strong id="generatedDate">—</strong></p>
+                <p><span>Source</span><strong id="reportSource">KPI 2025-2026 · PipelineCRM</strong></p>
+              </div>
             </div>
-          </div>
-          <div class="report-meta">
-            <p><span>Prepared by</span><strong id="reportPreparedBy">Anne Joy</strong></p>
-            <p><span>Generated</span><strong id="generatedDate">—</strong></p>
-            <p><span>Source</span><strong id="reportSource">—</strong></p>
           </div>
         </header>
 
@@ -378,28 +377,20 @@
           <div id="theoreticalGraph" class="simple-chart" aria-label="Theoretical comparison graph"></div>
         </section>
 
-        <section class="report-grid two-column">
-          <div class="report-block">
-            <div class="block-title">
-              <div>
-                <p class="eyebrow">YEAR-OVER-YEAR</p>
-                <h2>Selected theoretical comparisons</h2>
-              </div>
+        <section class="report-block">
+          <div class="block-title">
+            <div>
+              <p class="eyebrow">YEAR-OVER-YEAR</p>
+              <h2>Selected theoretical comparisons</h2>
             </div>
-            <div id="yoyCards" class="comparison-list"></div>
           </div>
-
-          <div class="report-block">
-            <div class="block-title">
-              <div>
-                <p class="eyebrow">SUPPLEMENTARY DATA REVIEW</p>
-                <h2>Quality checks</h2>
-              </div>
-            </div>
-            <div id="qualityChecks" class="quality-list"></div>
-          </div>
+          <div id="yoyCards" class="comparison-list"></div>
         </section>
 
+        <footer class="report-footer confidential-report-footer">
+          <p>INTERNAL COPY · CONFIDENTIAL</p>
+          <p>Prepared by <strong id="reportPreparedBy">Anne Joy</strong></p>
+        </footer>
       </article>
     </section>
 

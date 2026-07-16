@@ -61,10 +61,9 @@
       "reportSubtitle", "reportPreparedBy", "generatedDate", "reportSource",
       "reportNotice", "monthLabels", "kpiCards", "topPlayersGrid",
       "playerBookingHead", "playerBookingBody", "agentMonthlyGrid",
-      "yoyCards", "qualityChecks", "historyList", "theoreticalGraph",
+      "yoyCards", "historyList", "theoreticalGraph",
       "exportPptBtn", "copyTeamMessageBtn", "teamShareCopy",
       "playerNameMapSelect", "dealNameMapSelect", "propertyMapSelect", "openFullMappingBtn", "playerMappingStatus",
-      "bookingDetailsHead", "bookingDetailsBody",
       "comparison1From", "comparison1To", "comparison2From", "comparison2To",
       "comparison3From", "comparison3To", "comparison4From", "comparison4To",
       "comparison5From", "comparison5To", "comparison6From", "comparison6To"
@@ -1033,11 +1032,11 @@
     ].join(" · ");
 
     els.reportToolbarTitle.textContent = `${report.monthlyData.length} Monthly KPI Views`;
-    els.reportTitle.textContent = `${report.companyName} Internal KPI Report`;
-    els.reportSubtitle.textContent = `Primary comparison: ${primaryLabel1} vs ${primaryLabel2} · ${filterText}`;
-    els.reportPreparedBy.textContent = report.preparedBy;
-    els.generatedDate.textContent = formatDateTime(report.generatedAt);
-    els.reportSource.textContent = report.sourceFiles?.length ? report.sourceFiles.join(", ") : "Saved report";
+    els.reportTitle.textContent = "Pace Gaming Internal KPI Report";
+    els.reportSubtitle.textContent = `Primary comparison: ${primaryLabel1} vs ${primaryLabel2}`;
+    els.reportPreparedBy.textContent = report.preparedBy || "Anne Joy";
+    els.generatedDate.textContent = formatReportDate(report.generatedAt);
+    els.reportSource.textContent = "KPI 2025-2026 · PipelineCRM";
     els.reportLogo.classList.add("small-logo");
     els.reportLogo.innerHTML = `<img src="logo.png" alt="Pace Gaming logo" />`;
     els.monthLabels.innerHTML = report.monthlyData
@@ -1063,7 +1062,6 @@
     renderAgentPerformance(report);
     renderYearOverYear(report);
     renderTheoreticalGraph(report);
-    renderQualityChecks(report.quality);
   }
 
   function renderKpiCards(report) {
@@ -1134,10 +1132,14 @@
     return rows.map(row => `
       <tr>
         <td>${escapeHtml(row.name)}</td>
-        <td>${escapeHtml(formatCurrency(row.winLoss, currency))}</td>
+        <td class="wl-value${negativeValueClass(row.winLoss)}">${escapeHtml(formatCurrency(row.winLoss, currency))}</td>
         <td><strong>${escapeHtml(formatCurrency(row.theoretical, currency))}</strong></td>
       </tr>
     `).join("");
+  }
+
+  function negativeValueClass(value) {
+    return Number(value) < 0 ? " negative-value" : "";
   }
 
   function formatPlayerProperties(properties) {
@@ -1174,7 +1176,7 @@
         ${months.map(month => `<td>${formatInteger(player.months[month] || 0)}</td>`).join("")}
         <td><strong>${formatInteger(player.totalBookings)}</strong></td>
         <td>${escapeHtml(formatCurrency(player.totalTheoretical, report.currency))}</td>
-        <td>${escapeHtml(formatCurrency(player.totalWinLoss, report.currency))}</td>
+        <td class="wl-value${negativeValueClass(player.totalWinLoss)}">${escapeHtml(formatCurrency(player.totalWinLoss, report.currency))}</td>
       </tr>
     `).join("");
   }
@@ -1217,11 +1219,15 @@
       : key === "bookings"
         ? formatInteger(agent[key])
         : formatCurrency(agent[key], currency);
+    const valueClass = agent && key === "winLoss"
+      ? negativeValueClass(agent[key])
+      : "";
+
     return `
       <div class="agent-mini-card">
         <span>${escapeHtml(label)}</span>
         <strong>${escapeHtml(agent?.name || "—")}</strong>
-        <small>${escapeHtml(value)}</small>
+        <small class="wl-value${valueClass}">${escapeHtml(value)}</small>
       </div>
     `;
   }
@@ -1234,7 +1240,7 @@
       <tr>
         <td>${escapeHtml(row.name)}</td>
         <td>${formatInteger(row.bookings)}</td>
-        <td>${escapeHtml(formatCurrency(row.winLoss, currency))}</td>
+        <td class="wl-value${negativeValueClass(row.winLoss)}">${escapeHtml(formatCurrency(row.winLoss, currency))}</td>
         <td>${escapeHtml(formatCurrency(row.theoretical, currency))}</td>
       </tr>
     `).join("");
@@ -1587,7 +1593,13 @@
         ["Top 5 Deal Name", "W/L", "Theoretical"],
         ...item.topPlayers.map(row => [
           row.name,
-          formatCurrency(row.winLoss, report.currency),
+          {
+            text: formatCurrency(row.winLoss, report.currency),
+            options: {
+              color: row.winLoss < 0 ? "C62828" : "1F2937",
+              bold: row.winLoss < 0
+            }
+          },
           formatCurrency(row.theoretical, report.currency)
         ])
       ];
@@ -1654,7 +1666,13 @@
         formatPlayerProperties(player.properties),
         String(player.totalBookings),
         formatCurrency(player.totalTheoretical, report.currency),
-        formatCurrency(player.totalWinLoss, report.currency)
+        {
+          text: formatCurrency(player.totalWinLoss, report.currency),
+          options: {
+            color: player.totalWinLoss < 0 ? "C62828" : "1F2937",
+            bold: player.totalWinLoss < 0
+          }
+        }
       ])
     ];
     playerSlide.addTable(playerRows, {
@@ -1863,6 +1881,14 @@
   function formatMonth(monthValue) {
     if (!monthValue) return "—";
     return new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(monthValueToDate(monthValue));
+  }
+
+  function formatReportDate(value) {
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    }).format(new Date(value));
   }
 
   function formatDateTime(value) {

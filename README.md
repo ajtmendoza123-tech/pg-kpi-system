@@ -422,3 +422,36 @@ The visible KPI report now follows the required Pace Gaming list.
 - The Top 10 Frequent Players section remains based on Player Full Name and Property.
 - The report footer was removed.
 - Excel and presentation exports follow the same Top 5 structure.
+
+
+## V18 negative W/L formatting
+
+Negative W/L values now display in red in:
+
+- Top 5 Theoretical Players
+- Top 10 Player Booking History
+- Booking Agent Performance
+- Highest Player Loss cards
+- PDF/print output
+- Presentation export
+
+Positive and zero W/L values keep the normal report font color.
+
+
+## V19 report header and confidential footer
+
+The visible report now uses a simplified header containing only:
+
+- Pace Gaming logo
+- INTERNAL MONTHLY PERFORMANCE REPORT
+- Pace Gaming Internal KPI Report
+- Primary comparison dates
+- Generated date
+- Source: KPI 2025-2026 · PipelineCRM
+
+The Supplementary Data Review / Quality Checks section was removed from the visible report.
+
+The report footer now displays:
+
+- INTERNAL COPY · CONFIDENTIAL
+- Prepared by Anne Joy
