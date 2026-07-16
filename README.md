@@ -464,3 +464,8 @@ The report footer now displays:
 - When a `DEAL NAME` header exists, the report enforces that exact source mapping.
 - Deal Name and Player Full Name cannot be mapped to the same source column.
 - Print CSS now uses a zero-margin page and internal report padding to suppress browser-generated URL and page-number footers such as `file:///... 5/5`.
+
+
+## V21 KPI scope update
+
+- Added **Total W/L** to the “KPIs included in this report” list.
