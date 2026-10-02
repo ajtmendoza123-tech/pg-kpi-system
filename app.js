@@ -6,7 +6,8 @@
     history: "paceKpiHistoryV1",
     newProspects: "paceKpiNewProspectsV2",
     prospectDates: "paceKpiProspectDatesV1",
-    totalProspects: "paceKpiTotalProspectsV1"
+    totalProspects: "paceKpiTotalProspectsV1",
+    newPlayerNames: "paceKpiNewPlayerNamesV1"
   };
 
   const FIELD_CONFIG = {
@@ -64,6 +65,7 @@
     loadSettings();
     bindEvents();
     renderProspectDateEditor();
+    renderNewPlayerNameEditor();
     renderTotalProspectInputs();
     renderNewProspectInputMatrix();
     renderHistory();
@@ -79,7 +81,7 @@
       "uploadedFiles", "mappingDetails", "mappingBadge", "mappingGrid",
       "companyName", "preparedBy", "reportHeaderTitle", "comparisonHeaderText", "useLatestMonthsBtn",
       "fillComparisonHeaderBtn", "month1", "month2", "month3", "month4", "propertyFilter",
-      "currencyFilter", "newProspectEntryPanel", "prospectMonthStatus", "prospectDateEditor", "totalProspectEditor",
+      "currencyFilter", "newProspectEntryPanel", "prospectMonthStatus", "prospectDateEditor", "newPlayerNameEditor", "totalProspectEditor",
       "syncPlayerMonthsBtn", "refreshProspectMonthsBtn", "addProspectDateBtn", "clearProspectEntriesBtn",
       "prospectInputHead", "prospectInputBody", "generateBtn", "loadSampleBtn",
       "messageBox", "reportSection", "reportToolbarTitle", "saveHistoryBtn",
@@ -204,6 +206,7 @@
     });
 
     els.syncPlayerMonthsBtn?.addEventListener("click", () => {
+      saveNewPlayerNameInputs();
       saveNewProspectInputs();
       saveTotalProspectInputs();
       const months = syncPlayerDatesFromSelectedComparisons();
@@ -215,6 +218,7 @@
     });
 
     els.refreshProspectMonthsBtn?.addEventListener("click", () => {
+      saveNewPlayerNameInputs();
       saveNewProspectInputs();
       const months = syncProspectDatesFromUploadedKpi();
       if (!months.length) {
@@ -225,6 +229,7 @@
     });
 
     els.addProspectDateBtn?.addEventListener("click", () => {
+      saveNewPlayerNameInputs();
       saveNewProspectInputs();
       const months = getProspectInputMonths();
       if (months.length >= 12) {
@@ -234,6 +239,7 @@
       const nextMonth = months.length ? incrementMonth(months[months.length - 1]) : toMonthInput(new Date());
       setProspectDates([...months, nextMonth]);
       renderProspectDateEditor();
+      renderNewPlayerNameEditor();
       renderTotalProspectInputs();
       renderNewProspectInputMatrix();
     });
@@ -241,6 +247,7 @@
     els.prospectDateEditor?.addEventListener("change", event => {
       const input = event.target.closest("input[data-prospect-date-index]");
       if (!input) return;
+      saveNewPlayerNameInputs();
       saveNewProspectInputs();
       const months = getProspectInputMonths();
       const index = Number(input.dataset.prospectDateIndex);
@@ -253,10 +260,12 @@
         return;
       }
       replaceNewProspectMonth(oldMonth, newMonth);
+      replaceNewPlayerNameMonth(oldMonth, newMonth);
       replaceTotalProspectMonth(oldMonth, newMonth);
       months[index] = newMonth;
       setProspectDates(months);
       renderProspectDateEditor();
+      renderNewPlayerNameEditor();
       renderTotalProspectInputs();
       renderNewProspectInputMatrix();
       persistSettings();
@@ -265,12 +274,14 @@
     els.prospectDateEditor?.addEventListener("click", event => {
       const button = event.target.closest("button[data-remove-prospect-date]");
       if (!button) return;
+      saveNewPlayerNameInputs();
       saveNewProspectInputs();
       const months = getProspectInputMonths();
       const index = Number(button.dataset.removeProspectDate);
       months.splice(index, 1);
       setProspectDates(months);
       renderProspectDateEditor();
+      renderNewPlayerNameEditor();
       renderTotalProspectInputs();
       renderNewProspectInputMatrix();
     });
@@ -280,6 +291,8 @@
       if (!confirmed) return;
       localStorage.removeItem(STORAGE_KEYS.newProspects);
       localStorage.removeItem(STORAGE_KEYS.totalProspects);
+      localStorage.removeItem(STORAGE_KEYS.newPlayerNames);
+      renderNewPlayerNameEditor();
       renderTotalProspectInputs();
       renderNewProspectInputMatrix();
       showMessage("All saved New Player entries were cleared.", "success");
@@ -289,6 +302,14 @@
       const input = event.target.closest("input[data-total-prospect-month]");
       if (!input) return;
       saveTotalProspectInputs();
+    });
+
+    els.newPlayerNameEditor?.addEventListener("input", event => {
+      const textarea = event.target.closest("textarea[data-player-name-month][data-player-name-executive]");
+      if (!textarea) return;
+      saveNewPlayerNameInputs();
+      updateNewPlayerNameCounters();
+      syncProspectCountsFromNameInputs(textarea);
     });
 
     els.prospectInputBody?.addEventListener("input", event => {
@@ -309,6 +330,7 @@
       const isPeriodInput = Boolean(input?.id?.startsWith("month") || input?.id?.startsWith("comparison"));
       if (isPeriodInput) {
         // Keep Manual New Players Added ready BEFORE Generate. Existing values are preserved by month.
+        saveNewPlayerNameInputs();
         saveNewProspectInputs();
         saveTotalProspectInputs();
         syncPlayerDatesFromSelectedComparisons({ silent: true, fallbackToUpload: true });
@@ -751,6 +773,8 @@
   function generateReport() {
     // Capture Manual New Players Added immediately before building the report.
     // This guarantees the values typed before Generate are included even if the user clicks Generate right away.
+    saveNewPlayerNameInputs();
+    syncProspectCountsFromNameInputs();
     saveNewProspectInputs();
     saveTotalProspectInputs();
 
@@ -1042,7 +1066,7 @@
     );
   }
 
-  const NEW_PROSPECT_EXECUTIVES = ["DL", "KA", "KH", "SP", "AJ", "MO", "LR", "CV", "TF"];
+  const NEW_PROSPECT_EXECUTIVES = ["DL", "KA", "SP", "CV", "LR", "TF", "KH"];
 
   function normalizeProspectDates(months) {
     return [...new Set((Array.isArray(months) ? months : [])
@@ -1085,6 +1109,7 @@
     if (!months.length) return [];
     setProspectDates(months);
     renderProspectDateEditor();
+    renderNewPlayerNameEditor();
     renderTotalProspectInputs();
     renderNewProspectInputMatrix();
     if (!silent) persistSettings();
@@ -1106,6 +1131,7 @@
     if (!months.length) return [];
     setProspectDates(months);
     renderProspectDateEditor();
+    renderNewPlayerNameEditor();
     renderTotalProspectInputs();
     renderNewProspectInputMatrix();
     if (!silent) persistSettings();
@@ -1224,6 +1250,149 @@
         <span>${escapeHtml(formatMonth(month))}</span>
         <input type="number" min="0" step="1" inputmode="numeric" data-total-prospect-month="${escapeHtml(month)}" value="${values.has(month) ? escapeHtml(String(values.get(month))) : ""}" placeholder="Enter official total" aria-label="${escapeHtml(`Editable total new players added for ${formatMonth(month)}`)}" />
       </label>`).join("");
+  }
+
+  function normalizeNewPlayerNameEntries(entries, allowedMonths = []) {
+    const allowed = new Set(normalizeProspectDates(allowedMonths));
+    const byKey = new Map();
+    (Array.isArray(entries) ? entries : []).forEach(entry => {
+      const month = String(entry?.month || "").trim();
+      const executive = String(entry?.executive || "").trim().toUpperCase();
+      const name = cleanText(entry?.name || "");
+      if (!/^\d{4}-\d{2}$/.test(month)) return;
+      if (allowed.size && !allowed.has(month)) return;
+      if (!NEW_PROSPECT_EXECUTIVES.includes(executive)) return;
+      if (!name) return;
+      const normalizedName = name.toLocaleLowerCase();
+      byKey.set(`${month}|${executive}|${normalizedName}`, { month, executive, name });
+    });
+    return [...byKey.values()].sort((a, b) => {
+      const monthOrder = a.month.localeCompare(b.month);
+      if (monthOrder) return monthOrder;
+      const executiveOrder = NEW_PROSPECT_EXECUTIVES.indexOf(a.executive) - NEW_PROSPECT_EXECUTIVES.indexOf(b.executive);
+      if (executiveOrder) return executiveOrder;
+      return a.name.localeCompare(b.name);
+    });
+  }
+
+  function getAllStoredNewPlayerNameEntries() {
+    return normalizeNewPlayerNameEntries(safeJsonParse(localStorage.getItem(STORAGE_KEYS.newPlayerNames), []), []);
+  }
+
+  function getNewPlayerNameEntriesForMonths(months) {
+    return normalizeNewPlayerNameEntries(getAllStoredNewPlayerNameEntries(), months);
+  }
+
+  function replaceNewPlayerNameMonth(oldMonth, newMonth) {
+    if (!oldMonth || !newMonth || oldMonth === newMonth) return;
+    const changed = getAllStoredNewPlayerNameEntries().map(entry => entry.month === oldMonth ? { ...entry, month: newMonth } : entry);
+    localStorage.setItem(STORAGE_KEYS.newPlayerNames, JSON.stringify(normalizeNewPlayerNameEntries(changed, [])));
+  }
+
+  function saveNewPlayerNameInputs() {
+    if (!els.newPlayerNameEditor) return;
+    const displayedMonths = new Set(getProspectInputMonths());
+    const preserved = getAllStoredNewPlayerNameEntries().filter(entry => !displayedMonths.has(entry.month));
+    const current = [];
+    els.newPlayerNameEditor.querySelectorAll("textarea[data-player-name-month][data-player-name-executive]").forEach(textarea => {
+      const month = textarea.dataset.playerNameMonth;
+      const executive = textarea.dataset.playerNameExecutive;
+      const seen = new Set();
+      String(textarea.value || "").split(/\r?\n/).forEach(rawName => {
+        const name = cleanText(rawName);
+        if (!name) return;
+        const key = name.toLocaleLowerCase();
+        if (seen.has(key)) return;
+        seen.add(key);
+        current.push({ month, executive, name });
+      });
+    });
+    localStorage.setItem(STORAGE_KEYS.newPlayerNames, JSON.stringify(normalizeNewPlayerNameEntries([...preserved, ...current], [])));
+  }
+
+  function newPlayerNamesForCell(entries, month, executive) {
+    return entries
+      .filter(entry => entry.month === month && entry.executive === executive)
+      .map(entry => entry.name);
+  }
+
+  function updateNewPlayerNameCounters() {
+    if (!els.newPlayerNameEditor) return;
+    let overall = 0;
+    getProspectInputMonths().forEach(month => {
+      let monthTotal = 0;
+      NEW_PROSPECT_EXECUTIVES.forEach(executive => {
+        const textarea = els.newPlayerNameEditor.querySelector(`textarea[data-player-name-month="${CSS.escape(month)}"][data-player-name-executive="${CSS.escape(executive)}"]`);
+        if (!textarea) return;
+        const names = [...new Set(String(textarea.value || "").split(/\r?\n/).map(cleanText).filter(Boolean).map(name => name.toLocaleLowerCase()))];
+        const count = names.length;
+        monthTotal += count;
+        const countEl = els.newPlayerNameEditor.querySelector(`[data-player-name-count="${CSS.escape(month)}|${CSS.escape(executive)}"]`);
+        if (countEl) countEl.textContent = `${count} player${count === 1 ? "" : "s"}`;
+      });
+      overall += monthTotal;
+      const totalEl = els.newPlayerNameEditor.querySelector(`[data-player-name-month-total="${CSS.escape(month)}"]`);
+      if (totalEl) totalEl.textContent = `${formatInteger(monthTotal)} named player${monthTotal === 1 ? "" : "s"}`;
+    });
+    const overallEl = els.newPlayerNameEditor.querySelector("[data-player-name-overall-total]");
+    if (overallEl) overallEl.textContent = `${formatInteger(overall)} named player${overall === 1 ? "" : "s"}`;
+  }
+
+  function syncProspectCountsFromNameInputs(targetTextarea = null) {
+    if (!els.newPlayerNameEditor || !els.prospectInputBody) return;
+    const textareas = targetTextarea
+      ? [targetTextarea]
+      : [...els.newPlayerNameEditor.querySelectorAll("textarea[data-player-name-month][data-player-name-executive]")];
+    textareas.forEach(textarea => {
+      const month = textarea.dataset.playerNameMonth;
+      const executive = textarea.dataset.playerNameExecutive;
+      const names = [...new Set(String(textarea.value || "").split(/\r?\n/).map(cleanText).filter(Boolean).map(name => name.toLocaleLowerCase()))];
+      const countInput = els.prospectInputBody.querySelector(`input[data-prospect-month="${CSS.escape(month)}"][data-prospect-executive="${CSS.escape(executive)}"]`);
+      if (!countInput) return;
+      if (names.length) {
+        countInput.value = String(names.length);
+      } else if (targetTextarea) {
+        // If the user clears a specific names box, clear the auto-derived count for that same box.
+        // During Generate (targetTextarea is null), blank name boxes do not erase manually entered counts.
+        countInput.value = "";
+      }
+    });
+    saveNewProspectInputs();
+    updateNewProspectInputTotals();
+  }
+
+  function renderNewPlayerNameEditor() {
+    if (!els.newPlayerNameEditor) return;
+    const months = getProspectInputMonths();
+    const entries = getNewPlayerNameEntriesForMonths(months);
+    if (!months.length) {
+      els.newPlayerNameEditor.innerHTML = `<p class="prospect-date-empty">Select report months, upload the KPI file, or add a New Player month to enter player names.</p>`;
+      return;
+    }
+    els.newPlayerNameEditor.innerHTML = `
+      <div class="new-player-name-editor-header">
+        <div><strong>Player names are internal only.</strong><span>Enter one player per line. Names are never included in the team PDF or email report.</span></div>
+        <span class="new-player-name-overall-total" data-player-name-overall-total>0 named players</span>
+      </div>
+      <div class="new-player-name-months">
+        ${months.map(month => `
+          <section class="new-player-name-month-card">
+            <div class="new-player-name-month-heading">
+              <h5>${escapeHtml(formatMonth(month))}</h5>
+              <span data-player-name-month-total="${escapeHtml(month)}">0 named players</span>
+            </div>
+            <div class="new-player-name-grid">
+              ${NEW_PROSPECT_EXECUTIVES.map(executive => {
+                const names = newPlayerNamesForCell(entries, month, executive);
+                return `<label class="new-player-name-field">
+                  <span><strong>${escapeHtml(executive)}</strong><small data-player-name-count="${escapeHtml(month)}|${escapeHtml(executive)}">${names.length} player${names.length === 1 ? "" : "s"}</small></span>
+                  <textarea rows="4" data-player-name-month="${escapeHtml(month)}" data-player-name-executive="${escapeHtml(executive)}" placeholder="One player name per line" aria-label="${escapeHtml(`${executive} newly added player names for ${formatMonth(month)}`)}">${escapeHtml(names.join("\n"))}</textarea>
+                </label>`;
+              }).join("")}
+            </div>
+          </section>`).join("")}
+      </div>`;
+    updateNewPlayerNameCounters();
   }
 
   function normalizeNewProspectEntries(entries, allowedMonths = []) {
@@ -3925,6 +4094,8 @@ ${preparedBy}`;
     updateFileStatus();
     updateFilterOptions();
     renderProspectDateEditor();
+    renderNewPlayerNameEditor();
+    renderTotalProspectInputs();
     renderNewProspectInputMatrix();
     applySmartReportingPeriodSuggestions({ force: true, persist: true });
     updateExecutiveSnapshotButtons(null);

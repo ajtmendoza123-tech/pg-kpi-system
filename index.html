@@ -333,12 +333,23 @@
           </div>
         </div>
 
-        <div class="manual-player-step manual-player-total-step">
+        <div class="manual-player-step manual-player-names-step">
           <div class="manual-player-step-heading">
             <span class="manual-step-number">2</span>
             <div>
+              <h4>Add Newly Added Player Names</h4>
+              <p>Enter each new player under the Booking Executive who added them: <strong>DL, KA, SP, CV, LR, TF, or KH</strong>. Enter one player name per line. The system automatically counts the names for the executive breakdown.</p>
+            </div>
+          </div>
+          <div id="newPlayerNameEditor" class="new-player-name-editor" aria-label="Newly added player names by month and booking executive"></div>
+        </div>
+
+        <div class="manual-player-step manual-player-total-step">
+          <div class="manual-player-step-heading">
+            <span class="manual-step-number">3</span>
+            <div>
               <h4>Enter Total New Players Added</h4>
-              <p><strong>This is the editable official total.</strong> Type the total for each month. If you leave a month blank, the system will use the optional Booking Executive breakdown total instead.</p>
+              <p><strong>This is still editable.</strong> Type the official total for each month. If you leave it blank, the system uses the total from the Booking Executive counts generated from the names below.</p>
             </div>
           </div>
           <div id="totalProspectEditor" class="total-prospect-editor prominent-total-player-editor" aria-label="Editable total new players added by month"></div>
@@ -346,7 +357,7 @@
 
         <details class="manual-player-breakdown-details">
           <summary>
-            <span><strong>Optional: Booking Executive breakdown</strong><small>Open only if you want to record how many new players were added by DL, KA, SP, etc.</small></span>
+            <span><strong>Booking Executive count breakdown</strong><small>Counts are filled automatically from the names you enter. You can also enter or adjust counts manually if needed.</small></span>
             <span class="details-open-label">Open breakdown</span>
           </summary>
           <div class="prospect-matrix-wrap">
@@ -355,7 +366,7 @@
               <tbody id="prospectInputBody"></tbody>
             </table>
           </div>
-          <p class="prospect-system-note">The executive breakdown is optional. The <strong>official monthly total above</strong> is the final number used in reports when entered. Leave all executive cells blank if you only need the monthly total.</p>
+          <p class="prospect-system-note">The executive counts are automatically updated from the player-name entries. You can still edit a count manually. The <strong>official monthly total above</strong> remains the final number used in reports when entered.</p>
         </details>
       </section>
 

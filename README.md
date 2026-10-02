@@ -808,3 +808,10 @@ The combined email summary now uses a compact KPI table with one column per uniq
 - The manual growth input is labeled **Number of New Players Added**.
 - Click **Use Selected Report Months** to match New Player input months to the report/comparison dates, or **Use Uploaded KPI Dates** to use Check-Out Date months from the uploaded file.
 - Enter an **Official Total New Players Added** for each month, with an optional Booking Executive breakdown.
+
+
+## V75 manual newly added player names
+
+Before generating a report, Step 3 now lets you record individual newly added player names by month and Booking Executive. Supported executive codes are **DL, KA, SP, CV, LR, TF, and KH**. Enter one player per line. The system counts those names automatically into the Booking Executive new-player breakdown. The official monthly **Total New Players Added** remains editable and overrides the calculated name/count total when entered.
+
+Player names are stored only in the browser for internal tracking. They are **not included in the team PDF or email exports**; external reports continue to use counts and anonymized patron labels.

@@ -1,0 +1,9 @@
+V75 — Manual Newly Added Player Names
+
+- Added an internal manual player-name editor before report generation.
+- New player names are entered by month and Booking Executive: DL, KA, SP, CV, LR, TF, KH.
+- Enter one player per line; duplicate names in the same month/executive are counted once.
+- Executive new-player counts update automatically from the names entered.
+- Official monthly Total New Players Added remains separately editable.
+- Player names are internal only and are not included in team PDFs or email reports, preserving the existing anonymized reporting rule.
+- Existing complete PDF and separate Month-vs-Month PDF download options remain unchanged.
