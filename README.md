@@ -1,3 +1,24 @@
+# V63 ownership-role correction
+
+PipelineCRM ownership fields are now kept separate:
+
+- **Owner / Deal Owner** — the person who booked the trip.
+- **Primary Contact Owner** — the owner of the player/contact; this is **not** the booking executive.
+- **Trip Contact** — the person who booked the trip.
+- Booking Executive KPI attribution uses **Owner / Deal Owner first**, then **Trip Contact**, with the legacy Booking Agent field only as a fallback when both are blank.
+- Top 5 Patron executive codes, Booking Executive performance, comparison PDFs, complete PDF, Excel/PowerPoint data, and combined email summaries all follow the corrected booking attribution.
+
+---
+
+
+## V61 Primary Contact Owner + Email Summary
+
+- Booking Executive is always **Primary Contact Owner**.
+- Primary Contact Owner is required for Booking Executive reporting.
+- Deal Owner / Trip Contact is not used as the Booking Executive source.
+- Anonymized Top 5 patron labels use the Primary Contact Owner executive code.
+- **Copy Email Draft** now creates a real summary with KPI current/prior values, variance, percentage change, and Booking Executive highlights.
+
 # Pace Gaming KPI Report System
 
 A browser-based monthly KPI report generator for PipelineCRM rating exports.
@@ -543,3 +564,247 @@ The Choose Files button stopped responding because the JavaScript expected contr
 - Added **Total W/L** to the styled email's Monthly KPI Totals.
 - Negative Total W/L values display in red and bold.
 - Email Total W/L uses the same monthly `playerWinLoss` calculation as the main KPI report.
+
+## V34 integrated Number of New Prospects system
+
+The Number of New Prospects feature is now built into the main KPI system rather than added as a separate page.
+
+- Manual monthly inputs are available for DL, KA, KH, SP, AJ, MO, LR, CV, and TF.
+- Month columns automatically follow all selected report and comparison months.
+- Entries save automatically in the same browser.
+- Blank executives are hidden from the final report.
+- A manually entered `0` remains visible as a valid value.
+- A monthly total row is calculated automatically.
+- The section appears directly after Required Monthly KPI Totals.
+- The values are included in the website report, Print / Save PDF, Email Format, Excel export, PowerPoint export, and saved report history.
+- Use **Clear Prospect Entries** to erase all saved prospect values.
+
+
+## V35 editable prospect dates and automated totals
+
+- Prospect dates automatically copy the unique Check-Out Date months detected in the uploaded KPI file.
+- Every prospect date remains editable. Dates may be added or removed before report generation.
+- The prospect entry table calculates a live total for every executive, every date, and the full period.
+- The same automated totals are included in the report, email format, Excel export, PowerPoint export, PDF, and saved report history.
+
+## V36 compact PDF layout
+
+- Print / Save PDF now uses a compact A4 landscape layout.
+- Report sections can continue naturally across pages, which removes mostly empty PDF pages.
+- Table headers repeat when a table continues onto another page.
+- Table rows remain together to prevent broken or clipped values.
+- The New Prospects section no longer leaves an unnecessarily large blank area below it.
+
+## V37 PDF pagination fix
+
+- The Number of New Prospects Added section now stays together as one complete table in PDF output.
+- The table is moved to the next page when there is not enough remaining space, instead of splitting executives across two pages.
+- Other report sections continue flowing normally so the following page is still used efficiently.
+
+## V38 final PDF layout refinement
+
+- The New Prospects section remains fully intact and is never divided between pages.
+- Print-only spacing and row height were reduced slightly so the section fits naturally without oversized blank areas.
+- No changes were made to the on-screen report design or calculations.
+
+
+## V39 fixed seven-page PDF export
+
+The Print / Save PDF report now uses an exact page order:
+
+1. Pace Gaming Internal KPI title page
+2. Required Monthly KPI Totals
+3. Number of New Prospects Added
+4. W/L and Theoretical by Full Deal Name for four dates
+5. Top 10 Players by Total Bookings
+6. Booking Agent KPI Performance for four dates
+7. Theoretical Comparison Graph
+
+Each section starts on a new landscape A4 page and is prevented from splitting across pages.
+
+## V40 larger PDF fonts
+
+The seven-page PDF export now uses larger print-only typography for clearer reading. Spacing was adjusted slightly so tables remain complete and the established one-section-per-page layout is preserved.
+
+## V41 extra-large PDF text
+
+PDF-only typography is now significantly larger across Pages 2-7. The seven-page order remains unchanged, and each report section is kept intact on its assigned page.
+
+## V42 maximum-readability PDF
+
+The PDF uses larger report typography, especially for the four-date Top 5 and Booking Agent pages and the Top 10 player table. It remains an exact seven-page landscape report.
+
+
+## V43 separate executive snapshot PDFs
+
+The report toolbar now includes two one-page snapshot PDF buttons. They use Comparison 1 and Comparison 2, which default to May 2025 vs May 2026 and June 2025 vs June 2026. Each snapshot includes aggregate KPI totals, current-month highlights, year-over-year variances, New Prospect totals, and Booking Executive performance. Patron and player names are intentionally excluded from these snapshot reports. The original seven-page internal PDF is still available through Print / Save PDF.
+
+
+## V45 — all reports retained + two separate boss snapshot PDFs
+
+The complete KPI system remains intact, including the seven-page PDF, Excel, PowerPoint, email format, saved history, and all on-screen report sections.
+
+Two additional one-page PDF exports are available after generating the report:
+
+- **May 2025 vs May 2026 Snapshot PDF** — May 2026 totals with May 2025-to-May 2026 variances.
+- **June 2025 vs June 2026 Snapshot PDF** — June 2026 totals with June 2025-to-June 2026 variances.
+
+The two snapshot PDFs never include player or patron names. They use aggregated KPI totals and Booking Executive names only, so Patron # placeholders are not needed.
+
+
+## V46 private 10-page report
+
+The main PDF export now creates one 10-page report with May and June year-over-year divider and snapshot pages. Player and patron names are excluded from the PDF and email. Top theoretical performance is aggregated by Booking Executive. The detailed Top 10 player booking table remains available inside the browser system but is not included in these private outputs.
+
+
+## V47 anonymized Top 5 and executive aliases
+
+- Dave Luber and David Luber are treated as one Booking Executive: David Luber (DL).
+- Kyle Allen uses KA and Sabrina Pinto uses SP.
+- Top 5 Theoretical Players are shown as Patron 1 - [Deal Owner code] through Patron 5 - [Deal Owner code], with W/L and Theoretical values.
+- The anonymized Top 5 appears in the browser report, PDF, email, Excel, and presentation.
+
+## V49 uniform Booking Executive names
+
+Booking Executive names are now standardized in Proper Case throughout all report outputs. Imported names such as `CHUCK VENUTO`, `chuck venuto`, and mixed-case variations display uniformly as `Chuck Venuto`. Chuck Venuto is mapped to Booking Executive code `CV`. Existing known executive aliases and codes remain unchanged.
+
+## V50 PDF export naming
+
+When using **Print / Save PDF**, the browser now suggests a clear, sortable filename using:
+
+`YYYY-MM-DD - Pace Gaming KPI - Date Comparison.pdf`
+
+Example:
+
+`2026-07-21 - Pace Gaming KPI - May 2025 vs May 2026 - June 2025 vs June 2026.pdf`
+
+The first date is the date the report is exported. The comparison dates are added automatically from the report. Separate snapshot PDFs use the same convention and add `Snapshot` at the end.
+
+Executive name correction: only **Chuck Venuto** is mapped to **CV**. No Charles Venuto alias is included.
+
+## V51 cleaner PDF and corrected Pages 9–10
+
+- The PDF uses a cleaner, less busy layout with fewer decorative boxes and stronger spacing.
+- Page 9 shows unique KPI report months only and reads theoretical totals directly from Monthly KPI Totals.
+- The Page 9 chart uses a true zero baseline for signed values.
+- Page 10 shows only the dates included in the KPI report, in the same order as the Monthly KPI Totals page.
+- Prospect totals are recalculated from the displayed dates only.
+
+
+## V52 page numbers and report cleanup
+
+- Added visible `Page X of Y` numbering to every page in the main PDF export.
+- Removed the Theoretical Comparison Graph from the website report and main PDF.
+- The remaining report sections, calculations, email report, Excel export, PowerPoint export, themes, fonts, anonymized patrons, and New Prospects report remain unchanged.
+- With New Prospects data present, the standard main PDF now contains nine pages.
+
+## V53 small footer page numbers
+
+- Page numbers are anchored at the physical bottom footer of each PDF page.
+- Footer numbering uses a small, subtle font so it does not compete with report content.
+- The PDF continues to use `Page X of Y` numbering.
+
+## V54 snapshot page fit correction
+
+- Comparison snapshot pages 4 and 6 are locked to one physical PDF page each.
+- The small page number remains in the bottom footer.
+- Snapshot content no longer spills onto an extra page.
+
+## V55 separate PDF exports and two-page month comparisons
+
+The complete KPI PDF remains available through **Complete PDF Report** and still includes every approved report section.
+
+Two additional separate-PDF buttons are now shown after the report is generated:
+
+- **May 2025 vs May 2026 · 2-Page PDF**
+- **June 2025 vs June 2026 · 2-Page PDF**
+
+Each separate comparison PDF contains:
+
+1. **Year-over-year KPI variance** — prior-year total, current-year total, amount variance, and percentage variance.
+2. **Booking Executive performance** — current bookings, booking variance, theoretical, theoretical variance, W/L, and W/L variance.
+
+The May and June comparison sections inside the complete PDF use this same two-page structure for better readability. Page numbers remain small and centered in the physical footer.
+
+
+## V56 dynamic separate comparison PDFs
+
+The **Separate PDF Options** area is no longer fixed to May and June. It now follows the comparison pairs selected in **Comparison 1 through Comparison 6**. Only complete, unique comparison pairs are shown. Each selected pair exports as the existing two-page comparison PDF: KPI totals/variance on Page 1 and Booking Executive performance/variance on Page 2.
+
+## V57 dynamic complete report and email
+
+- Complete PDF no longer uses fixed May/June comparison periods.
+- Email Format no longer uses fixed May/June monthly totals or snapshots.
+- Complete PDF creates the KPI variance and Booking Executive pages for every comparison pair selected in Comparison 1–6.
+- Email includes the current Monthly KPI View dates plus every selected comparison pair.
+- Separate PDF buttons, Complete PDF filename, report comparison subtitle, and email all follow the same selected periods.
+- Year-over-year and month-over-month comparisons are labeled automatically.
+- New empty sessions default to the two most recently completed months, their prior-year matches, and a current-year month-over-month comparison.
+
+## V59 team email draft and export naming
+
+- Separate comparison PDF names use `YYYY.MMDD - KPI - Month Year vs Month Year.pdf`.
+- Example: `2026.0901 - KPI - July 2025 vs July 2026.pdf`.
+- Each comparison export now includes a **Copy Email Draft** action with a concise team-ready summary for that exact comparison.
+- Complete PDF and downloaded Email HTML follow the same date-first naming convention.
+
+## V60 layout fix
+
+The Separate PDF Options area now uses a responsive full-width grid. Comparison PDF and Copy Email Draft actions stay readable and inside the report panel on desktop, tablet, and mobile widths.
+
+## V62 combined team email summary
+
+The Separate PDF Options area now uses one email draft for all selected comparison reports rather than one draft per PDF. Export the selected two-page comparison PDFs, then click **Copy Combined Email Summary**. The copied draft lists every selected comparison and includes a separate KPI and Booking Executive summary block for each one. Booking Executive highlights continue to use **Primary Contact Owner** only.
+
+## V64 shorter email summary
+
+The combined team email summary is intentionally concise. For each selected comparison it shows Bookings, Theo, W/L, New Prospects, plus one Booking Executive highlight line for Most Bookings and Top Theo. Full KPI and executive detail remains in the attached PDF reports.
+
+
+## V65 narrative email summary
+
+The combined team email is now a short explanation of trends rather than a duplicate of the attached KPI numbers. The Separate PDF area includes editable Subject and Email Body fields plus copy buttons.
+
+
+## V66 simple team email summary
+
+- The combined email summary now focuses only on **Number of Bookings** and **New Prospects Added** for each selected comparison.
+- It no longer repeats theoretical, W/L, commission, or Booking Executive highlights in the email summary because those details are already in the attached PDFs.
+- Each comparison uses one short sentence with the current total and prior-period total.
+- **Copy Email Body** now attempts a rich formatted copy for Gmail/Outlook, with a plain-text fallback.
+
+
+## V67 optional Total Prospects (superseded by V69)
+
+V67 introduced a separate Total Prospects field. In V69, this field is redefined as the editable official **Total New Prospects Added** for each month. It is no longer treated as a different KPI.
+
+
+## V69 editable total new prospects
+
+The New Prospects section includes an optional editable monthly **Total New Prospects Added** field. Enter the official total when needed. If left blank, the system uses the sum of the executive entries. The final total is used throughout PDF, email, Excel, and PowerPoint exports.
+
+## V70 comparison variance display
+
+- Variance and percentage columns now show the magnitude of change without a leading negative sign.
+- Direction is shown with ▲ for increase and ▼ for decrease.
+- Player W/L source totals remain signed exactly as uploaded.
+- W/L variance is presented from Pace/casino perspective: ▲ means Pace won more and ▼ means Pace won less.
+
+## V71 email summary
+
+The combined team email summary now provides a concise month-by-month KPI recap. Each unique month/year selected in the comparison pairs is shown once with Number of Bookings, Total Theoretical, Player Win/Loss, Total Commission, and the Booking Executive with the most bookings. Detailed variances remain in the attached comparison PDFs.
+
+
+## V72 table-style email KPI summary
+
+The combined email summary now uses a compact KPI table with one column per unique month/year and rows for Bookings, Theo, Player Win, Commission, and Top Bookings. Below the monthly table, the email shows separate Year-over-Year and Month-over-Month comparison tables. The rich copy action preserves table formatting when pasted into Gmail or Outlook.
+
+
+## V73 — Separate comparison PDFs and New Players Added
+
+- The report now clearly shows a separate 2-page PDF export button for every selected comparison pair after you click **Generate Monthly Report**.
+- Comparison pairs are fully dynamic. Example: **July 2025 vs July 2026**, **August 2025 vs August 2026**, and **July 2026 vs August 2026** each become their own PDF.
+- A preview under Comparison Dates shows exactly which separate PDFs will be available before generating.
+- The manual growth input is labeled **Number of New Players Added**.
+- Click **Use Selected Report Months** to match New Player input months to the report/comparison dates, or **Use Uploaded KPI Dates** to use Check-Out Date months from the uploaded file.
+- Enter an **Official Total New Players Added** for each month, with an optional Booking Executive breakdown.

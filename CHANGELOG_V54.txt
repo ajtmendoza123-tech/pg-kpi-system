@@ -1,0 +1,6 @@
+Pace Gaming KPI System V54
+
+- Fixed PDF pages 4 and 6 so each comparison snapshot stays entirely on one physical page.
+- Reserved a dedicated footer area for the small page number.
+- Removed the redundant embedded snapshot footer from pages 4 and 6 to prevent overflow.
+- Kept all snapshot metrics, tables, and comparison content intact.

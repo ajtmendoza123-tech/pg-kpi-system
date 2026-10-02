@@ -1,0 +1,8 @@
+V59 — Team Draft + Export Naming
+
+- Separate comparison PDF filenames now use: YYYY.MMDD - KPI - Month Year vs Month Year.pdf
+  Example: 2026.0901 - KPI - July 2025 vs July 2026.pdf
+- Complete PDF uses the same YYYY.MMDD - KPI - comparison naming convention.
+- Downloaded Email HTML uses the same export naming convention with " - Email" appended.
+- Added a Copy Email Draft button beside each selected comparison PDF.
+- The copied draft automatically identifies Year-over-Year vs Month-over-Month and summarizes KPI totals/variances plus Booking Executive performance.

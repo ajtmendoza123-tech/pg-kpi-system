@@ -1,0 +1,7 @@
+V71 — Monthly Email KPI Summary
+
+- Reworked the team email summary to show each unique month/year once instead of repeating comparison narratives.
+- Each month now includes: Number of Bookings, Total Theoretical, Player W/L, Total Commission, and the Booking Executive with the most bookings.
+- Booking Executive attribution continues to use the corrected booking logic from V63 (Deal Owner first, Trip Contact second, source Booking Agent only as fallback).
+- Repeated months shared by YoY and MoM comparisons are summarized only once.
+- Formatted email copy now bolds the month/year headings for easier scanning in Gmail or Outlook.

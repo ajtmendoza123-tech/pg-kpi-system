@@ -1,0 +1,8 @@
+PACE GAMING KPI SYSTEM V49
+
+- Standardized Booking Executive name formatting throughout the system.
+- Names imported in all caps, all lowercase, or mixed case now display in consistent Proper Case.
+- Example: CHUCK VENUTO now displays as Chuck Venuto.
+- Added Chuck Venuto under the CV Booking Executive identity. (Corrected in V50 to remove an unintended Charles alias.)
+- Applied consistently to the browser report, PDF, email, Excel, PowerPoint, snapshots, and saved report history.
+- Existing calculations, anonymized patrons, red negative values, themes, fonts, and report page structure remain unchanged.

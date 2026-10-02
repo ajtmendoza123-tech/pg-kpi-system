@@ -1,0 +1,8 @@
+Pace Gaming KPI System V46
+
+- One Print / Save PDF export now produces one private 10-page report.
+- Pages: title, monthly totals, May comparison title, May snapshot, June comparison title, June snapshot, top theoretical performance, booking-agent KPIs, theoretical graph, new prospects.
+- Player and patron names are excluded from the PDF and email report.
+- Top theoretical performance is aggregated by Booking Executive.
+- Top 10 player booking detail remains available inside the system but is excluded from the PDF and email.
+- Email format follows the same private report order.

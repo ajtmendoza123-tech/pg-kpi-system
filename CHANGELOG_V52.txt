@@ -1,0 +1,7 @@
+PACE GAMING KPI SYSTEM - V52
+
+PDF REPORT UPDATES
+- Added Page X of Y numbering to every page in the main PDF report.
+- Removed the Theoretical Comparison Graph page and its visible website report section.
+- Kept all other KPI report pages and exports unchanged.
+- Standard report length is now 9 pages when New Prospects data is present.

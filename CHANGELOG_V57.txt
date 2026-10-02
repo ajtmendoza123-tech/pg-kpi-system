@@ -1,0 +1,9 @@
+Pace Gaming KPI System V57 — Dynamic Complete PDF + Email
+
+- Removed the remaining hard-coded May 2025 / May 2026 / June 2025 / June 2026 logic from Complete PDF and Email Format.
+- Required Monthly KPI Totals in email now follow the four Monthly KPI View dates selected for the generated report.
+- Complete PDF now creates two pages for every selected comparison pair, not only the first two fixed periods.
+- Email report now includes every selected comparison pair dynamically.
+- Complete PDF filename now uses the actual selected comparison periods.
+- Separate comparison PDF buttons remain dynamic.
+- Existing anonymized Top 5 patrons, Booking Executive sections, New Prospects, negative red highlighting, themes/fonts, and page-number footer behavior remain intact.

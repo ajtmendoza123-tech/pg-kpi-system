@@ -1,0 +1,7 @@
+PACE GAMING KPI SYSTEM V41
+
+- Increased PDF report fonts substantially for normal-size viewing.
+- Enlarged monthly KPI totals and new-prospect tables.
+- Enlarged Top 5, Top 10, and booking-agent table text.
+- Increased card headings, notes, labels, and footer text.
+- Preserved the exact seven-page PDF order and no-split section rules.

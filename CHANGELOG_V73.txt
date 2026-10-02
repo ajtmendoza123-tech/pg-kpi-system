@@ -1,0 +1,12 @@
+V73 — Separate Comparison PDFs + New Players Added Input
+
+- Restored and clarified dynamic separate PDF exports for every selected comparison pair.
+- Each selected comparison exports as its own 2-page PDF:
+  Page 1: KPI totals and variance
+  Page 2: Booking Executive performance and variance
+- Added a comparison preview before report generation so users can see which separate PDFs will be available.
+- Renamed the manual growth KPI to "Number of New Players Added" throughout the visible system/report.
+- Added "Use Selected Report Months" so New Player input dates can match all selected Month 1–4 and Comparison 1–6 periods.
+- Kept "Use Uploaded KPI Dates" and manual Add Player Month controls.
+- Kept editable official monthly total plus optional Booking Executive breakdown.
+- New Player totals continue into complete PDF, separate comparison PDFs, email summary, Excel, and PowerPoint.

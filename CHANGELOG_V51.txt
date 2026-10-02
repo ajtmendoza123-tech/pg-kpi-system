@@ -1,0 +1,12 @@
+PACE GAMING KPI SYSTEM V51
+
+- Simplified the PDF design to reduce visual clutter while retaining all report content.
+- Removed excessive card styling, backgrounds, shadows, and repeated small labels in PDF mode.
+- Page 9 now uses each KPI report month exactly once.
+- Page 9 theoretical values come directly from the monthly KPI totals instead of repeated comparison-pair values.
+- Page 9 now uses a true signed zero-baseline chart: positive values extend right and negative values extend left.
+- Page 10 now uses only the KPI report dates, in the same order as the Monthly KPI Totals page.
+- Page 10 totals are recalculated from the displayed report dates only.
+- Blank executives remain hidden; entered zero values remain visible.
+- Email prospect dates now follow the same four KPI report dates and order.
+- All prior reports, anonymized patrons, executive normalization, red negatives, themes, fonts, exports, and PDF filename conventions remain available.

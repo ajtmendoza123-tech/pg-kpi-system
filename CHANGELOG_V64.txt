@@ -1,0 +1,8 @@
+V64 — Shorter, Clearer Combined Email Summary
+
+- Simplified the combined email summary so it is faster to scan.
+- Each comparison now shows only four key KPIs: Bookings, Theo, W/L, and New Prospects.
+- Variance and percent change stay on the same line.
+- Booking Executive highlights are condensed to one line: Most Bookings and Top Theo.
+- Removed Commission and Highest Player Loss from the email summary only; they remain in the attached reports.
+- Shortened the email intro and Separate PDF Options helper text.

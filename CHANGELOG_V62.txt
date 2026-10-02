@@ -1,0 +1,7 @@
+V62 — Combined Email Summary for Separate Reports
+
+- Removed the per-comparison Copy Email Draft buttons from Separate PDF Options.
+- Added one Copy Combined Email Summary button for all selected comparison PDFs.
+- The combined email lists every selected comparison attachment and provides one KPI/Booking Executive summary block per report.
+- Booking Executive highlights continue to use Primary Contact Owner only.
+- Existing dynamic PDF exports, calculations, themes, filenames, and report layouts remain unchanged.

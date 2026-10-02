@@ -1,0 +1,10 @@
+V55 — Separate PDF Options + Two-Page Month Comparisons
+
+- Kept the complete KPI PDF report and all existing report sections.
+- Added visible buttons to export May and June year-over-year reports as separate PDFs.
+- Each separate month-comparison PDF is exactly two pages:
+  1. Year-over-year KPI totals and variance
+  2. Booking Executive performance and variance
+- Updated the complete PDF so each May/June comparison also uses the same two-page structure.
+- Preserved small page numbers in the physical PDF footer.
+- Preserved anonymized patrons, combined executive aliases, red negative amounts, themes, fonts, email, Excel, PowerPoint, and history features.

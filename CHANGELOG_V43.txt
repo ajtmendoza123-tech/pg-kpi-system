@@ -1,0 +1,7 @@
+V43 - Separate Executive Snapshot PDFs
+
+- Added two separate one-page snapshot PDF buttons based on Comparison 1 and Comparison 2.
+- Defaults produce May 2025 vs May 2026 and June 2025 vs June 2026 reports.
+- Snapshot reports include current-month totals, year-over-year variance, variance percentage, New Prospect totals, and Booking Executive performance.
+- Patron and player names are completely excluded from snapshot PDFs.
+- Existing seven-page internal PDF, Excel, PowerPoint, email, and history features remain unchanged.

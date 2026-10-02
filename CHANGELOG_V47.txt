@@ -1,0 +1,7 @@
+Pace Gaming KPI System V47
+
+- Combined Dave Luber and David Luber into one Booking Executive: David Luber (DL).
+- Added canonical codes for Kyle Allen (KA) and Sabrina Pinto (SP).
+- Restored Top 5 Theoretical Players in the system, PDF, email, Excel, and presentation outputs.
+- Replaced player/deal names with Patron 1 - DL, Patron 2 - KA, and similar Deal Owner labels.
+- Removed the visible privacy-note wording from the report and email.

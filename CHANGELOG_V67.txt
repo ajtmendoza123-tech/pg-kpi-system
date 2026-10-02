@@ -1,0 +1,7 @@
+V67 — Optional Total Prospects
+
+- Added optional Total Prospects input for every prospect month.
+- Total Prospects is a monthly snapshot and is kept separate from New Prospects Added.
+- If entered, Total Prospects appears in the prospect report, comparison snapshots, email summary, Excel, and PowerPoint.
+- If left blank, existing reports remain unchanged.
+- Email summary adds the current month total prospects only when provided.

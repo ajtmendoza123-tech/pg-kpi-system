@@ -1,0 +1,6 @@
+PACE GAMING KPI SYSTEM V40
+
+- Increased PDF font sizes for clearer reading.
+- Enlarged section headings, KPI totals, new prospect totals, Top 5 player tables, Top 10 booking table, and booking-agent KPI tables.
+- Slightly tightened print-only spacing so the established seven-page PDF order remains intact.
+- No changes were made to the on-screen system calculations or data behavior.

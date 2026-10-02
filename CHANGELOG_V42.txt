@@ -1,0 +1,6 @@
+PACE GAMING KPI SYSTEM V42
+
+- Increased PDF fonts again, with the largest improvement on Pages 4, 5, and 6.
+- Expanded the four-date report grids to use more of each page.
+- Enlarged table headers, table values, month headings, notes, chart labels, and KPI totals.
+- Kept the exact seven-page order with no cropped or split sections.

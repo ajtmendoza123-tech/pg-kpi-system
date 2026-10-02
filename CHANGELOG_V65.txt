@@ -1,0 +1,8 @@
+V65 — Narrative Email Summary
+
+- Replaced number-heavy email summaries with short plain-English explanations of each comparison.
+- Detailed numbers remain in the attached PDFs instead of being repeated in the email.
+- Added a visible editable Subject field and Email Body textarea under Separate PDF Options.
+- Added Copy Subject and Copy Email Body buttons for easy Gmail/Outlook pasting.
+- Main Email Format suggested draft now uses the same concise narrative summary.
+- Email intro paragraphs are left-aligned for a more natural email layout.

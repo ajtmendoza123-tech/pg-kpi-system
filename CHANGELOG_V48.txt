@@ -1,0 +1,7 @@
+PACE GAMING KPI SYSTEM V48
+
+- All negative currency amounts are now highlighted in red throughout the on-screen report, PDF/print report, executive snapshots, charts, and email report.
+- Negative table cells also receive a soft red background for faster review.
+- Added 12 new professional light themes: Coastal Blue, Deep Ruby, Cobalt Mist, Forest Cream, Mocha Latte, Orchid Pearl, Slate Gold, Honey Beige, Denim Cloud, Pistachio, Berry Blush, and Frosted Teal.
+- Added 10 new font choices: Outfit, Plus Jakarta Sans, Work Sans, Figtree, Urbanist, Mulish, IBM Plex Sans, Noto Sans, Archivo, and Quicksand.
+- Existing reports, anonymized Top 5 patrons, Booking Executive mapping, PDF page structure, email report, Excel, PowerPoint, and report history remain available.

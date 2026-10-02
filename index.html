@@ -236,47 +236,6 @@
         </label>
       </div>
 
-
-      <section id="newProspectEntryPanel" class="prospect-system-card">
-        <div class="prospect-system-heading">
-          <div>
-            <span class="eyebrow">MANUAL KPI INPUT</span>
-            <h3>Number of New Players Added</h3>
-            <p>Enter the new players added for each KPI month. Use the selected report/comparison months or the uploaded Check-Out Date months, then enter the official monthly total and/or Booking Executive breakdown.</p>
-          </div>
-          <span id="prospectMonthStatus" class="status-pill neutral">Waiting for report months</span>
-        </div>
-
-        <div id="prospectDateEditor" class="prospect-date-editor" aria-label="Editable new player dates"></div>
-
-        <div class="prospect-system-actions">
-          <button id="syncPlayerMonthsBtn" class="btn primary" type="button">Use Selected Report Months</button>
-          <button id="refreshProspectMonthsBtn" class="btn secondary" type="button">Use Uploaded KPI Dates</button>
-          <button id="addProspectDateBtn" class="btn secondary" type="button">Add Player Month</button>
-          <button id="clearProspectEntriesBtn" class="btn danger" type="button">Clear Player Entries</button>
-        </div>
-
-        <div class="total-prospect-card">
-          <div class="total-prospect-heading">
-            <div>
-              <span class="eyebrow">EDITABLE MONTHLY TOTAL</span>
-              <h4>Official Total New Players Added</h4>
-              <p>Enter the official total for each month. This field is editable and may differ from the Booking Executive breakdown. If left blank, the system uses the automatic sum of the executive entries.</p>
-            </div>
-          </div>
-          <div id="totalProspectEditor" class="total-prospect-editor" aria-label="Editable total new players added by month"></div>
-        </div>
-
-        <div class="prospect-matrix-wrap">
-          <table class="prospect-input-table">
-            <thead id="prospectInputHead"></thead>
-            <tbody id="prospectInputBody"></tbody>
-          </table>
-        </div>
-        <p class="prospect-system-note">Booking Executive totals calculate automatically. The editable <strong>Official Total New Players Added</strong> is the final monthly total used in reports when entered. Leave it blank to use the automatic executive sum. Leave all cells blank for an executive to hide that executive from the final report; entering 0 remains valid.</p>
-      </section>
-
-
       <div class="comparison-settings">
         <div class="comparison-heading">
           <span class="eyebrow">COMPARISON DATES</span>
@@ -345,6 +304,61 @@
         <button id="useLatestMonthsBtn" class="btn secondary" type="button">Use Latest Completed Months</button>
       </div>
 
+
+
+      <section id="newProspectEntryPanel" class="prospect-system-card manual-new-players-card">
+        <div class="prospect-system-heading">
+          <div>
+            <span class="eyebrow">STEP 3 · MANUAL INPUT BEFORE GENERATING</span>
+            <h3>Enter New Players Added</h3>
+            <p>Enter the official number of new players added for each month <strong>before</strong> you generate the KPI report. The totals you enter here are used in the Complete PDF, separate Month vs Month PDFs, email summary, Excel, and PowerPoint.</p>
+          </div>
+          <span id="prospectMonthStatus" class="status-pill neutral">Waiting for report months</span>
+        </div>
+
+        <div class="manual-player-step">
+          <div class="manual-player-step-heading">
+            <span class="manual-step-number">1</span>
+            <div>
+              <h4>Confirm the months</h4>
+              <p>The months automatically follow your selected KPI months and comparison pairs. You can edit or add a month manually.</p>
+            </div>
+          </div>
+          <div id="prospectDateEditor" class="prospect-date-editor" aria-label="Editable new player dates"></div>
+          <div class="prospect-system-actions">
+            <button id="syncPlayerMonthsBtn" class="btn primary" type="button">Use Selected KPI / Comparison Months</button>
+            <button id="refreshProspectMonthsBtn" class="btn secondary" type="button">Use Uploaded KPI Dates</button>
+            <button id="addProspectDateBtn" class="btn secondary" type="button">+ Add Month Manually</button>
+            <button id="clearProspectEntriesBtn" class="btn danger" type="button">Clear Player Entries</button>
+          </div>
+        </div>
+
+        <div class="manual-player-step manual-player-total-step">
+          <div class="manual-player-step-heading">
+            <span class="manual-step-number">2</span>
+            <div>
+              <h4>Enter Total New Players Added</h4>
+              <p><strong>This is the editable official total.</strong> Type the total for each month. If you leave a month blank, the system will use the optional Booking Executive breakdown total instead.</p>
+            </div>
+          </div>
+          <div id="totalProspectEditor" class="total-prospect-editor prominent-total-player-editor" aria-label="Editable total new players added by month"></div>
+        </div>
+
+        <details class="manual-player-breakdown-details">
+          <summary>
+            <span><strong>Optional: Booking Executive breakdown</strong><small>Open only if you want to record how many new players were added by DL, KA, SP, etc.</small></span>
+            <span class="details-open-label">Open breakdown</span>
+          </summary>
+          <div class="prospect-matrix-wrap">
+            <table class="prospect-input-table">
+              <thead id="prospectInputHead"></thead>
+              <tbody id="prospectInputBody"></tbody>
+            </table>
+          </div>
+          <p class="prospect-system-note">The executive breakdown is optional. The <strong>official monthly total above</strong> is the final number used in reports when entered. Leave all executive cells blank if you only need the monthly total.</p>
+        </details>
+      </section>
+
       <div class="button-row">
         <button id="generateBtn" class="btn primary large" type="button" disabled>Generate Monthly Report</button>
         <button id="loadSampleBtn" class="btn secondary" type="button">Load Demo Data</button>
@@ -364,15 +378,26 @@
           <button id="exportExcelBtn" class="btn secondary" type="button">Export Excel</button>
           <button id="exportPptBtn" class="btn secondary" type="button">Export Presentation</button>
           <button id="emailFormatBtn" class="btn secondary" type="button">Email Format</button>
-          <button id="printBtn" class="btn primary" type="button">Complete PDF Report</button>
+          <button id="printBtn" class="btn primary" type="button">Download All Report (PDF)</button>
         </div>
       </div>
 
-      <section class="snapshot-export-panel no-print" aria-label="Separate comparison PDF exports">
+      <section class="snapshot-export-panel no-print" aria-label="PDF report download options">
         <div class="snapshot-export-copy">
-          <span class="eyebrow">SEPARATE COMPARISON REPORTS</span>
-          <h3>Download each Month vs Month comparison as its own PDF</h3>
-          <p>Every completed comparison pair becomes its own <strong>2-page PDF</strong>: Page 1 = KPI totals &amp; variance; Page 2 = Booking Executive performance &amp; variance. Example: July 2025 vs July 2026, August 2025 vs August 2026, and July 2026 vs August 2026.</p>
+          <span class="eyebrow">PDF DOWNLOAD OPTIONS</span>
+          <h3>Download All Report or a Separate Month vs Month Report</h3>
+          <p>Choose one complete PDF containing the full KPI report, or download each selected comparison separately as its own 2-page PDF.</p>
+        </div>
+        <div class="all-report-download-card">
+          <div>
+            <strong>All Report</strong>
+            <span>One complete PDF with the monthly KPI totals, every selected comparison, Top 5, Booking Executive performance, and New Players Added.</span>
+          </div>
+          <button id="allReportPdfBtn" class="btn primary large" type="button">Download All Report (PDF)</button>
+        </div>
+        <div class="separate-report-heading">
+          <strong>Separate Month vs Month Reports</strong>
+          <span>Each selected comparison downloads as a separate 2-page PDF.</span>
         </div>
         <div id="snapshotExportActions" class="snapshot-export-actions">
           <span class="snapshot-export-empty">Generate the report to see your selected comparison PDF options.</span>

@@ -1,0 +1,9 @@
+Pace Gaming KPI System V50
+
+- Updated the browser-suggested PDF filename for the complete report.
+- New naming convention: YYYY-MM-DD - Pace Gaming KPI - May 2025 vs May 2026 - June 2025 vs June 2026.pdf
+- The first date is the local export date on the user's computer.
+- Comparison dates are pulled from the report and added automatically.
+- Separate snapshot PDF filenames now follow the same convention and include "Snapshot".
+- Kept the export title active while the Print / Save PDF dialog is open for more reliable filenames.
+- Removed the incorrect Charles Venuto alias. Only Chuck Venuto is recognized as CV.

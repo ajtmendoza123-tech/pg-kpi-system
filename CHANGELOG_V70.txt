@@ -1,0 +1,9 @@
+V70 — Clear Comparison Variance / Casino Perspective
+
+- Variance amounts and percentages no longer display with a leading negative sign.
+- Comparison movement now uses arrows with positive magnitudes: ▲ increase, ▼ decrease.
+- Total W/L variance is calculated from Pace/casino perspective because the imported Player W/L is stored from the player perspective.
+- For W/L comparisons, ▲ means Pace/casino won more; ▼ means Pace/casino won less.
+- Booking Executive W/L variance follows the same Pace/casino perspective.
+- Applied consistently to separate comparison PDFs, complete PDF comparison pages, and detailed email comparison tables.
+- Raw uploaded W/L totals remain unchanged so source data integrity is preserved.

@@ -1,0 +1,9 @@
+Pace Gaming KPI System V56
+
+- Replaced the fixed May and June separate PDF buttons with dynamic comparison PDF buttons.
+- The Separate PDF Options area now reads Comparison 1 through Comparison 6 and shows only complete comparison pairs selected by the user.
+- Duplicate comparison pairs are shown only once.
+- Each dynamic button keeps the existing two-page PDF structure: Page 1 KPI totals/variance, Page 2 Booking Executive performance/variance.
+- Works with year-over-year and month-over-month pairs, such as July 2025 vs July 2026, August 2025 vs August 2026, and July 2026 vs August 2026.
+- Buttons update when comparison settings change and enable after the generated report contains both selected months.
+- Existing complete PDF, email, Excel, PowerPoint, prospect, and report calculations remain unchanged.

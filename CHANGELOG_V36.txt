@@ -1,0 +1,6 @@
+PACE GAMING KPI SYSTEM V36
+
+- Fixed excessive blank space in Print / Save PDF.
+- Report sections now continue naturally onto the same page instead of forcing each large block onto a new page.
+- Added compact A4 landscape print spacing, repeated table headers, protected table rows, and cleaner page margins.
+- The Number of New Prospects Added section remains centered and readable while allowing the following KPI section to use the remaining page space.

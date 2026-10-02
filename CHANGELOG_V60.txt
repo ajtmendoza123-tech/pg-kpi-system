@@ -1,0 +1,8 @@
+V60 — Separate PDF Options layout fix
+
+- Fixed the Separate PDF Options panel from squeezing the description into a narrow column.
+- Export actions now use a responsive full-width grid.
+- Each comparison is displayed as a clean action card that wraps safely on smaller screens.
+- Fixed Copy Email Draft button contrast outside the top navigation.
+- Prevented comparison buttons from overflowing the page width.
+- All V59 dynamic comparison exports, email drafts, filenames, complete PDF, and KPI calculations remain unchanged.

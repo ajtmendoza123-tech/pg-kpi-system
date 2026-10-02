@@ -1,0 +1,11 @@
+V72 — Table Email Summary + YoY / MoM
+
+- Rebuilt the combined team email summary to match the requested table format.
+- Monthly KPI summary columns show each unique Month/Year once.
+- Rows: Bookings, Theo, Player Win, Commission, and Top Bookings.
+- Added a separate Year-over-Year comparison table.
+- Added a separate Month-over-Month comparison table.
+- Comparison variance values use arrows + positive magnitudes; W/L comparison remains from Pace/casino perspective.
+- Separate PDF panel now shows a rich email preview instead of a plain textarea.
+- Copy Styled Email Summary preserves table formatting for Gmail/Outlook when supported.
+- Main Email Format includes the same summary tables above the detailed report.

@@ -1,0 +1,7 @@
+PACE GAMING KPI SYSTEM V69
+
+- Restored an editable monthly total for New Prospects Added.
+- The manual total is optional and can differ from the executive breakdown.
+- If the editable total is blank, the report uses the automatic sum of executive entries.
+- The editable total is used consistently in PDF comparison reports, complete report, email summary, Excel, and PowerPoint.
+- The report shows one final row: TOTAL NEW PROSPECTS ADDED.

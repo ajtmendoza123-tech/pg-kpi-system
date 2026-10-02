@@ -1,0 +1,7 @@
+V63 - Ownership role correction
+
+- Owner / Deal Owner = person who booked the trip.
+- Primary Contact Owner = owner of the player, not booking attribution.
+- Trip Contact = person who booked the trip.
+- Booking Executive calculations now use Deal Owner first, Trip Contact second, and legacy Booking Agent only as fallback.
+- Updated anonymized Top 5 patron owner codes, Booking Executive KPI pages, separate comparison PDFs, complete report, Excel/PowerPoint exports, data-quality labels, and email summaries to use the corrected booking attribution.

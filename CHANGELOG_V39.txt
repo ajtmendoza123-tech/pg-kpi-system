@@ -1,0 +1,12 @@
+Pace Gaming KPI System V39
+
+PDF export now follows a fixed seven-page layout:
+1. Pace Gaming Internal KPI title page
+2. Required Monthly KPI Totals
+3. Number of New Prospects Added
+4. W/L and Theoretical by Full Deal Name - four dates
+5. Top 10 Players by Total Bookings
+6. Booking Agent KPI Performance - four dates
+7. Theoretical Comparison Graph
+
+The report scope and accuracy notice remain visible in the browser but are hidden from the PDF so they do not create extra pages. Every report section is kept intact and starts on its assigned page.

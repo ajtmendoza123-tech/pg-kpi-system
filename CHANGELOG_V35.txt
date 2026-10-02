@@ -1,0 +1,7 @@
+PACE GAMING KPI SYSTEM V35
+
+- Added editable New Prospect dates.
+- Dates automatically synchronize with Check-Out Date months in the uploaded KPI file.
+- Added Add Date and Remove Date controls.
+- Added live automated row totals, date totals, and grand total.
+- Included automated totals in PDF/report, email, Excel, PowerPoint, and history.

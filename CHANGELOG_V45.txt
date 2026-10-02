@@ -1,0 +1,10 @@
+PACE GAMING KPI SYSTEM V45
+
+- Restored and retained every existing KPI report and export.
+- Kept the complete seven-page PDF unchanged.
+- Added two separate one-page PDF buttons in the system:
+  1. May 2025 vs May 2026 Snapshot PDF
+  2. June 2025 vs June 2026 Snapshot PDF
+- Fixed the snapshot periods so they are not changed by general comparison settings.
+- Removed all player/patron names from both snapshot PDFs.
+- Snapshot details are aggregated and use Booking Executive names only.

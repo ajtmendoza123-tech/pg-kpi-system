@@ -1,0 +1,7 @@
+PACE GAMING KPI SYSTEM - V53
+
+- Page numbers now sit at the true bottom footer area of each PDF page.
+- Page numbers are smaller, lighter, and less visually distracting.
+- Page numbers remain centered and display as Page X of Y.
+- Theoretical Comparison Graph remains removed.
+- All other reports, calculations, exports, themes, fonts, and email content remain unchanged.

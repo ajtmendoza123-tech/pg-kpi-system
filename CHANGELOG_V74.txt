@@ -1,0 +1,10 @@
+V74 — Manual New Players Before Generate + Clear PDF Export Options
+
+- Manual New Players Added input is now a prominent Step 3 before Generate Monthly Report.
+- Official monthly New Players totals are immediately visible and editable.
+- Booking Executive breakdown is optional and collapsible.
+- Player months automatically follow Month 1–4 and all selected comparison pairs when report dates change.
+- Added a clear PDF Download Options panel after report generation.
+- Download All Report (PDF) exports the complete report.
+- Each selected comparison appears as its own separate Month vs Month PDF button.
+- Existing email, Excel, PowerPoint, calculations, themes, and history remain available.

@@ -1,0 +1,8 @@
+Pace Gaming KPI System V61
+
+- Booking Executive KPIs now use Primary Contact Owner only.
+- Primary Contact Owner is required for report generation; Deal Owner is no longer used as the Booking Executive source.
+- Top 5 anonymized patron owner codes now come from Primary Contact Owner.
+- Booking Executive comparison pages, full report, email, Excel and presentation data now follow the same Primary Contact Owner grouping.
+- Copy Email Draft now generates an actual KPI summary with bookings, theoretical, W/L, commission and new-prospect variances.
+- Email summaries also include Booking Executive highlights (most bookings, highest theoretical and highest player loss) based on Primary Contact Owner.

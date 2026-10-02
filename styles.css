@@ -226,6 +226,115 @@ body[data-theme="mauve"] {
   --shadow: 0 18px 50px rgba(114, 91, 112, 0.12);
 }
 
+/* V48 expanded professional light themes */
+body[data-theme="coastal"] {
+  --primary: #24546a;
+  --primary-2: #4f8298;
+  --accent: #d7b56d;
+  --accent-soft: #fff7e4;
+  --surface-3: #eaf3f7;
+  --shadow: 0 18px 50px rgba(36, 84, 106, 0.13);
+}
+
+body[data-theme="ruby"] {
+  --primary: #713247;
+  --primary-2: #a95b70;
+  --accent: #e0bd73;
+  --accent-soft: #fff5e2;
+  --surface-3: #faedf1;
+  --shadow: 0 18px 50px rgba(113, 50, 71, 0.13);
+}
+
+body[data-theme="cobalt"] {
+  --primary: #334d82;
+  --primary-2: #6f86b3;
+  --accent: #dfba6b;
+  --accent-soft: #fff7e1;
+  --surface-3: #edf1f8;
+  --shadow: 0 18px 50px rgba(51, 77, 130, 0.13);
+}
+
+body[data-theme="forest"] {
+  --primary: #405f49;
+  --primary-2: #77927d;
+  --accent: #d8b96d;
+  --accent-soft: #fff7df;
+  --surface-3: #edf3ee;
+  --shadow: 0 18px 50px rgba(64, 95, 73, 0.13);
+}
+
+body[data-theme="mocha"] {
+  --primary: #654b3f;
+  --primary-2: #9b7563;
+  --accent: #ddb974;
+  --accent-soft: #fff4e5;
+  --surface-3: #f6efeb;
+  --shadow: 0 18px 50px rgba(101, 75, 63, 0.13);
+}
+
+body[data-theme="orchid"] {
+  --primary: #695071;
+  --primary-2: #9b7ca4;
+  --accent: #dfbc72;
+  --accent-soft: #fff6e2;
+  --surface-3: #f3edf5;
+  --shadow: 0 18px 50px rgba(105, 80, 113, 0.13);
+}
+
+body[data-theme="slategold"] {
+  --primary: #465866;
+  --primary-2: #788c9a;
+  --accent: #d6ad58;
+  --accent-soft: #fff6dc;
+  --surface-3: #edf1f3;
+  --shadow: 0 18px 50px rgba(70, 88, 102, 0.13);
+}
+
+body[data-theme="honey"] {
+  --primary: #775b2f;
+  --primary-2: #a9854b;
+  --accent: #e0bd70;
+  --accent-soft: #fff8e5;
+  --surface-3: #f8f2e8;
+  --shadow: 0 18px 50px rgba(119, 91, 47, 0.13);
+}
+
+body[data-theme="denim"] {
+  --primary: #3e5d78;
+  --primary-2: #7591a9;
+  --accent: #dcb96d;
+  --accent-soft: #fff7e1;
+  --surface-3: #ebf1f6;
+  --shadow: 0 18px 50px rgba(62, 93, 120, 0.13);
+}
+
+body[data-theme="pistachio"] {
+  --primary: #5a684b;
+  --primary-2: #8d9c77;
+  --accent: #d9b76a;
+  --accent-soft: #fff7df;
+  --surface-3: #f0f3e9;
+  --shadow: 0 18px 50px rgba(90, 104, 75, 0.13);
+}
+
+body[data-theme="berry"] {
+  --primary: #704d64;
+  --primary-2: #a47b94;
+  --accent: #dfbb70;
+  --accent-soft: #fff6e2;
+  --surface-3: #f5edf2;
+  --shadow: 0 18px 50px rgba(112, 77, 100, 0.13);
+}
+
+body[data-theme="frost"] {
+  --primary: #3f646c;
+  --primary-2: #76989f;
+  --accent: #dcb96d;
+  --accent-soft: #fff7e1;
+  --surface-3: #eaf3f4;
+  --shadow: 0 18px 50px rgba(63, 100, 108, 0.13);
+}
+
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -1330,13 +1439,42 @@ tbody tr:nth-child(even) { background: var(--surface-2); }
 .wl-value.negative-value,
 .negative-value {
   color: #c62828 !important;
-  font-weight: 800;
+  font-weight: 900 !important;
+}
+
+.negative-amount-cell {
+  color: #c62828 !important;
+  font-weight: 900 !important;
+}
+
+td.negative-value,
+th.negative-value,
+td.negative-amount-cell,
+th.negative-amount-cell,
+.kpi-total-value.negative-value {
+  color: #c62828 !important;
+  background: #fff0f0 !important;
+  font-weight: 900 !important;
+  box-shadow: inset 3px 0 0 #d73737;
 }
 
 @media print {
   .wl-value.negative-value,
-  .negative-value {
+  .negative-value,
+  .negative-amount-cell {
     color: #c62828 !important;
+    font-weight: 900 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  td.negative-value,
+  th.negative-value,
+  td.negative-amount-cell,
+  th.negative-amount-cell,
+  .kpi-total-value.negative-value {
+    background: #fff0f0 !important;
+    box-shadow: inset 3px 0 0 #d73737;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -1621,4 +1759,2929 @@ tbody tr:nth-child(even) { background: var(--surface-2); }
 .email-preview table {
   margin-left: auto;
   margin-right: auto;
+}
+
+
+/* V34 — integrated new-prospect KPI system */
+.prospect-system-card {
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--surface-3) 72%, white), #ffffff);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, .05);
+}
+
+.prospect-system-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.prospect-system-heading h3 {
+  margin: 4px 0 5px;
+  color: var(--primary);
+}
+
+.prospect-system-heading p {
+  margin: 0;
+  max-width: 780px;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.55;
+}
+
+.prospect-system-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0 14px;
+}
+
+.prospect-matrix-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.prospect-input-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.prospect-input-table th,
+.prospect-input-table td {
+  padding: 10px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.prospect-input-table th:last-child,
+.prospect-input-table td:last-child {
+  border-right: 0;
+}
+
+.prospect-input-table tbody tr:last-child th,
+.prospect-input-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.prospect-input-table thead th {
+  background: var(--primary);
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+
+.prospect-input-table thead th:first-child {
+  width: 112px;
+}
+
+.prospect-input-table tbody th {
+  background: color-mix(in srgb, var(--surface-3) 58%, white);
+  color: var(--primary);
+  font-size: .84rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.prospect-input-table input {
+  width: 100%;
+  min-width: 88px;
+  padding: 9px 8px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.prospect-input-table input::placeholder {
+  color: color-mix(in srgb, var(--muted) 62%, transparent);
+  font-weight: 600;
+}
+
+.prospect-system-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.5;
+}
+
+.new-prospects-section {
+  background: linear-gradient(145deg, color-mix(in srgb, var(--surface-3) 48%, white), #ffffff);
+}
+
+.prospect-report-table tbody th {
+  background: color-mix(in srgb, var(--surface-3) 68%, white);
+  color: var(--primary);
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.prospect-report-table .prospect-empty-cell {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.prospect-report-table .prospect-total-row th,
+.prospect-report-table .prospect-total-row td {
+  background: color-mix(in srgb, var(--primary) 8%, white);
+  color: var(--primary);
+  font-weight: 900;
+}
+
+@media (max-width: 720px) {
+  .prospect-system-heading {
+    display: grid;
+  }
+
+  .prospect-system-heading .status-pill {
+    justify-self: start;
+  }
+}
+
+@media print {
+  body.kpi-print-mode .new-prospects-section {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.kpi-print-mode .prospect-report-table-wrap {
+    overflow: visible !important;
+  }
+
+  body.kpi-print-mode .prospect-report-table {
+    min-width: 0 !important;
+    font-size: 8.5pt !important;
+  }
+}
+
+
+/* V35 — editable prospect dates and live automated totals */
+.prospect-date-editor {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  margin: 18px 0 4px;
+}
+
+.prospect-date-field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+}
+
+.prospect-date-field label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.prospect-date-field label span {
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.prospect-date-field input[type="month"] {
+  width: 100%;
+  min-width: 0;
+}
+
+.prospect-date-remove {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--danger) 30%, var(--line));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--danger) 7%, white);
+  color: var(--danger);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.prospect-date-empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 14px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.prospect-input-table .prospect-total-column,
+.prospect-input-table .prospect-row-total,
+.prospect-input-table .prospect-live-total-row th,
+.prospect-input-table .prospect-live-total-row td {
+  background: color-mix(in srgb, var(--primary) 8%, white);
+  color: var(--primary);
+  font-weight: 900;
+}
+
+.prospect-input-table .prospect-live-total-row th,
+.prospect-input-table .prospect-live-total-row td {
+  border-top: 2px solid color-mix(in srgb, var(--primary) 35%, var(--line));
+}
+
+.prospect-report-table .prospect-total-column {
+  background: color-mix(in srgb, var(--primary) 7%, white);
+  color: var(--primary);
+  font-weight: 900;
+}
+
+/* V36 - compact, continuous PDF pagination */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm;
+  }
+
+  html,
+  body {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.kpi-print-mode .app-shell,
+  body.kpi-print-mode .report-section,
+  body.kpi-print-mode .report-paper {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  body.kpi-print-mode .report-paper {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body.kpi-print-mode .report-header {
+    margin: 0 !important;
+    padding: 0 0 5mm !important;
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  body.kpi-print-mode .report-brand h1 {
+    font-size: 20pt !important;
+    line-height: 1.12 !important;
+  }
+
+  body.kpi-print-mode .report-header-copy > p,
+  body.kpi-print-mode .report-header-details {
+    font-size: 8pt !important;
+  }
+
+  body.kpi-print-mode .report-block {
+    margin: 4mm 0 0 !important;
+    padding: 4mm !important;
+    border-radius: 3mm !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  body.kpi-print-mode .block-title {
+    margin: 0 0 2.5mm !important;
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  body.kpi-print-mode .block-title h2 {
+    margin: .8mm 0 !important;
+    font-size: 14pt !important;
+    line-height: 1.15 !important;
+  }
+
+  body.kpi-print-mode .eyebrow,
+  body.kpi-print-mode .report-kicker {
+    font-size: 6.8pt !important;
+  }
+
+  body.kpi-print-mode .section-note {
+    margin: .8mm auto 0 !important;
+    max-width: 220mm !important;
+    font-size: 7.4pt !important;
+    line-height: 1.3 !important;
+  }
+
+  body.kpi-print-mode .monthly-kpi-container,
+  body.kpi-print-mode .monthly-section-grid {
+    gap: 3mm !important;
+  }
+
+  body.kpi-print-mode .monthly-card,
+  body.kpi-print-mode .kpi-card {
+    padding: 3mm !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.kpi-print-mode table {
+    width: 100% !important;
+    font-size: 8pt !important;
+  }
+
+  body.kpi-print-mode table th,
+  body.kpi-print-mode table td {
+    height: auto !important;
+    padding: 2mm 2.2mm !important;
+    line-height: 1.2 !important;
+  }
+
+  body.kpi-print-mode thead {
+    display: table-header-group;
+  }
+
+  body.kpi-print-mode tfoot {
+    display: table-footer-group;
+  }
+
+  body.kpi-print-mode tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.kpi-print-mode .new-prospects-section {
+    margin-top: 3mm !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  body.kpi-print-mode .prospect-report-table {
+    min-width: 0 !important;
+    font-size: 8pt !important;
+  }
+
+  body.kpi-print-mode .simple-chart {
+    min-height: 165px !important;
+    padding: 3mm 3mm 2mm !important;
+  }
+
+  body.kpi-print-mode .chart-column {
+    height: 140px !important;
+  }
+
+  body.kpi-print-mode .chart-bar-wrap {
+    height: 92px !important;
+  }
+
+  body.kpi-print-mode .confidential-report-footer {
+    margin-top: 5mm !important;
+    padding-top: 3mm !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* V37 - keep the New Prospects table intact in PDF output */
+@media print {
+  body.kpi-print-mode .new-prospects-section {
+    break-inside: avoid-page !important;
+    page-break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+  }
+
+  body.kpi-print-mode .new-prospects-section .prospect-report-table-wrap,
+  body.kpi-print-mode .new-prospects-section .prospect-report-table,
+  body.kpi-print-mode .new-prospects-section .prospect-report-table tbody {
+    break-inside: avoid-page !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.kpi-print-mode .new-prospects-section .block-title {
+    break-after: avoid-page !important;
+    page-break-after: avoid !important;
+  }
+}
+
+/* V38 - compact the intact New Prospects section so it fits naturally */
+@media print {
+  body.kpi-print-mode .new-prospects-section {
+    margin-top: 2mm !important;
+    padding: 2.6mm !important;
+  }
+
+  body.kpi-print-mode .new-prospects-section .block-title {
+    margin-bottom: 1.4mm !important;
+  }
+
+  body.kpi-print-mode .new-prospects-section .block-title h2 {
+    margin: .4mm 0 !important;
+    font-size: 12pt !important;
+    line-height: 1.08 !important;
+  }
+
+  body.kpi-print-mode .new-prospects-section .eyebrow {
+    font-size: 6.2pt !important;
+  }
+
+  body.kpi-print-mode .new-prospects-section .section-note {
+    margin-top: .4mm !important;
+    font-size: 6.6pt !important;
+    line-height: 1.12 !important;
+  }
+
+  body.kpi-print-mode .new-prospects-section .prospect-report-table {
+    font-size: 7.4pt !important;
+  }
+
+  body.kpi-print-mode .new-prospects-section .prospect-report-table th,
+  body.kpi-print-mode .new-prospects-section .prospect-report-table td {
+    padding: 1.25mm 1.6mm !important;
+    line-height: 1.08 !important;
+  }
+}
+
+/* V39 - exact seven-page PDF export layout */
+.pdf-title-only { display: none; }
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm;
+  }
+
+  body.kpi-print-mode .pdf-hide-on-print,
+  body.kpi-print-mode #reportNotice {
+    display: none !important;
+  }
+
+  body.kpi-print-mode .report-paper {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Page 1: title only */
+  body.kpi-print-mode .pdf-title-page {
+    min-height: 194mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  body.kpi-print-mode .pdf-title-page .report-brand {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7mm !important;
+  }
+
+  body.kpi-print-mode .pdf-title-page .report-logo {
+    width: 28mm !important;
+    height: 28mm !important;
+    border-radius: 5mm !important;
+  }
+
+  body.kpi-print-mode .pdf-title-page #reportTitle {
+    display: none !important;
+  }
+
+  body.kpi-print-mode .pdf-title-page .pdf-title-only {
+    display: block !important;
+    margin: 0 !important;
+    color: var(--primary) !important;
+    font-size: 28pt !important;
+    line-height: 1.08 !important;
+    letter-spacing: .01em !important;
+  }
+
+  body.kpi-print-mode .pdf-title-page .report-kicker {
+    font-size: 8pt !important;
+    letter-spacing: .18em !important;
+  }
+
+  body.kpi-print-mode .pdf-title-page #reportSubtitle {
+    max-width: 235mm !important;
+    margin: 4mm auto 0 !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+  }
+
+  body.kpi-print-mode .pdf-title-page .report-header-details {
+    margin-top: 7mm !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 18mm !important;
+    font-size: 8pt !important;
+  }
+
+  /* Pages 2-7: one complete section per page */
+  body.kpi-print-mode .pdf-report-page {
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 4mm !important;
+    border-radius: 3mm !important;
+    break-before: page !important;
+    page-break-before: always !important;
+    break-inside: avoid-page !important;
+    page-break-inside: avoid !important;
+    overflow: visible !important;
+  }
+
+  body.kpi-print-mode .monthly-kpi-page {
+    break-before: auto !important;
+    page-break-before: auto !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .block-title {
+    margin: 0 0 3mm !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .block-title h2 {
+    margin: .7mm 0 !important;
+    font-size: 15pt !important;
+    line-height: 1.12 !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .section-note {
+    margin: .7mm auto 0 !important;
+    font-size: 7pt !important;
+    line-height: 1.25 !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .table-wrap,
+  body.kpi-print-mode .pdf-report-page .monthly-table-wrap,
+  body.kpi-print-mode .pdf-report-page .prospect-report-table-wrap {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page table {
+    width: 100% !important;
+    min-width: 0 !important;
+    table-layout: auto !important;
+    font-size: 7.2pt !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page table th,
+  body.kpi-print-mode .pdf-report-page table td {
+    padding: 1.55mm 1.8mm !important;
+    line-height: 1.15 !important;
+  }
+
+  /* Page 2 */
+  body.kpi-print-mode .monthly-kpi-page .monthly-kpi-container {
+    margin-top: 2mm !important;
+  }
+
+  body.kpi-print-mode .monthly-kpi-page table {
+    font-size: 9pt !important;
+  }
+
+  body.kpi-print-mode .monthly-kpi-page table th,
+  body.kpi-print-mode .monthly-kpi-page table td {
+    padding: 3mm 2.4mm !important;
+  }
+
+  /* Page 3 */
+  body.kpi-print-mode .new-prospects-page {
+    padding: 4mm !important;
+  }
+
+  body.kpi-print-mode .new-prospects-page .prospect-report-table {
+    font-size: 8.4pt !important;
+  }
+
+  body.kpi-print-mode .new-prospects-page .prospect-report-table th,
+  body.kpi-print-mode .new-prospects-page .prospect-report-table td {
+    padding: 2.2mm 2mm !important;
+  }
+
+  /* Pages 4 and 6: exactly four month cards in a 2 x 2 grid */
+  body.kpi-print-mode .top-players-page .monthly-section-grid,
+  body.kpi-print-mode .booking-agents-page .monthly-section-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+    gap: 2.5mm !important;
+    margin-top: 2mm !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-report-card,
+  body.kpi-print-mode .booking-agents-page .monthly-report-card {
+    min-width: 0 !important;
+    padding: 2.2mm !important;
+    border-radius: 2.5mm !important;
+    break-inside: avoid-page !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-card-heading,
+  body.kpi-print-mode .booking-agents-page .monthly-card-heading {
+    margin-bottom: 1.4mm !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-card-heading span,
+  body.kpi-print-mode .booking-agents-page .monthly-card-heading span {
+    font-size: 8.4pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table,
+  body.kpi-print-mode .booking-agents-page table {
+    font-size: 5.9pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table th,
+  body.kpi-print-mode .top-players-page table td,
+  body.kpi-print-mode .booking-agents-page table th,
+  body.kpi-print-mode .booking-agents-page table td {
+    padding: .75mm .9mm !important;
+    line-height: 1.08 !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1mm !important;
+    margin-bottom: 1.2mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card {
+    padding: 1.1mm !important;
+    border-radius: 1.5mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card span {
+    font-size: 4.9pt !important;
+    line-height: 1.05 !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card strong {
+    margin-top: .5mm !important;
+    font-size: 6.2pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card small {
+    margin-top: .4mm !important;
+    font-size: 5.3pt !important;
+  }
+
+  /* Page 5 */
+  body.kpi-print-mode .player-bookings-page table {
+    font-size: 6.7pt !important;
+    table-layout: fixed !important;
+  }
+
+  body.kpi-print-mode .player-bookings-page table th,
+  body.kpi-print-mode .player-bookings-page table td {
+    padding: 1.45mm 1.2mm !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body.kpi-print-mode .player-bookings-page th:nth-child(1) { width: 15%; }
+  body.kpi-print-mode .player-bookings-page th:nth-child(2) { width: 16%; }
+
+  /* Page 7 */
+  body.kpi-print-mode .theoretical-page .simple-chart {
+    min-height: 145mm !important;
+    height: 145mm !important;
+    padding: 7mm 6mm 4mm !important;
+  }
+
+  body.kpi-print-mode .theoretical-page .chart-column {
+    height: 125mm !important;
+  }
+
+  body.kpi-print-mode .theoretical-page .chart-bar-wrap {
+    height: 94mm !important;
+  }
+
+  body.kpi-print-mode .confidential-report-footer {
+    margin-top: 3mm !important;
+    padding-top: 2mm !important;
+    font-size: 7pt !important;
+    break-before: avoid-page !important;
+    page-break-before: avoid !important;
+  }
+}
+
+/* V39 final print refinements */
+@media print {
+  body.kpi-print-mode .pdf-title-page {
+    border-bottom: 0 !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-report-card:nth-child(n+5),
+  body.kpi-print-mode .booking-agents-page .monthly-report-card:nth-child(n+5) {
+    display: none !important;
+  }
+}
+
+/* V40 - larger, clearer PDF typography while preserving the seven-page layout */
+@media print {
+  body.kpi-print-mode .pdf-report-page .block-title h2 {
+    font-size: 16.5pt !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .section-note {
+    font-size: 7.6pt !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page table {
+    font-size: 7.8pt !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page table th,
+  body.kpi-print-mode .pdf-report-page table td {
+    padding: 1.45mm 1.7mm !important;
+    line-height: 1.16 !important;
+  }
+
+  body.kpi-print-mode .monthly-kpi-page table {
+    font-size: 9.8pt !important;
+  }
+
+  body.kpi-print-mode .monthly-kpi-page table th,
+  body.kpi-print-mode .monthly-kpi-page table td {
+    padding: 2.85mm 2.3mm !important;
+  }
+
+  body.kpi-print-mode .new-prospects-page .prospect-report-table {
+    font-size: 9.2pt !important;
+  }
+
+  body.kpi-print-mode .new-prospects-page .prospect-report-table th,
+  body.kpi-print-mode .new-prospects-page .prospect-report-table td {
+    padding: 2mm 1.9mm !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-card-heading span,
+  body.kpi-print-mode .booking-agents-page .monthly-card-heading span {
+    font-size: 9.2pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table,
+  body.kpi-print-mode .booking-agents-page table {
+    font-size: 6.45pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table th,
+  body.kpi-print-mode .top-players-page table td,
+  body.kpi-print-mode .booking-agents-page table th,
+  body.kpi-print-mode .booking-agents-page table td {
+    padding: .65mm .82mm !important;
+    line-height: 1.1 !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card span {
+    font-size: 5.45pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card strong {
+    font-size: 6.8pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card small {
+    font-size: 5.8pt !important;
+  }
+
+  body.kpi-print-mode .player-bookings-page table {
+    font-size: 7.25pt !important;
+  }
+
+  body.kpi-print-mode .player-bookings-page table th,
+  body.kpi-print-mode .player-bookings-page table td {
+    padding: 1.25mm 1.05mm !important;
+    line-height: 1.12 !important;
+  }
+
+  body.kpi-print-mode .confidential-report-footer {
+    font-size: 7.6pt !important;
+  }
+}
+
+/* V41 - extra-large, presentation-ready PDF typography */
+@media print {
+  /* Use more of each page so the report remains readable at normal zoom. */
+  body.kpi-print-mode .pdf-report-page {
+    padding: 5mm 6mm !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .block-title {
+    margin-bottom: 4mm !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .block-title h2 {
+    font-size: 19pt !important;
+    line-height: 1.08 !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .eyebrow {
+    font-size: 8.2pt !important;
+    letter-spacing: .14em !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .section-note {
+    font-size: 9pt !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Page 2: monthly KPI totals */
+  body.kpi-print-mode .monthly-kpi-page table {
+    font-size: 12pt !important;
+  }
+
+  body.kpi-print-mode .monthly-kpi-page table th,
+  body.kpi-print-mode .monthly-kpi-page table td {
+    padding: 4.2mm 3mm !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Page 3: new prospects */
+  body.kpi-print-mode .new-prospects-page .prospect-report-table {
+    font-size: 11.5pt !important;
+  }
+
+  body.kpi-print-mode .new-prospects-page .prospect-report-table th,
+  body.kpi-print-mode .new-prospects-page .prospect-report-table td {
+    padding: 3.25mm 2.4mm !important;
+    line-height: 1.18 !important;
+  }
+
+  /* Page 4: four Top 5 cards */
+  body.kpi-print-mode .top-players-page .monthly-section-grid {
+    gap: 4mm !important;
+    margin-top: 2mm !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-report-card {
+    padding: 3.5mm !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-card-heading span {
+    font-size: 11pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table {
+    font-size: 8.8pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table th {
+    font-size: 8pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table th,
+  body.kpi-print-mode .top-players-page table td {
+    padding: 1.45mm 1.15mm !important;
+    line-height: 1.16 !important;
+  }
+
+  /* Page 5: Top 10 booking table */
+  body.kpi-print-mode .player-bookings-page table {
+    font-size: 9.3pt !important;
+  }
+
+  body.kpi-print-mode .player-bookings-page table th {
+    font-size: 8.3pt !important;
+  }
+
+  body.kpi-print-mode .player-bookings-page table th,
+  body.kpi-print-mode .player-bookings-page table td {
+    padding: 2.25mm 1.35mm !important;
+    line-height: 1.18 !important;
+  }
+
+  /* Page 6: four booking-agent cards */
+  body.kpi-print-mode .booking-agents-page .monthly-section-grid {
+    gap: 3.6mm !important;
+    margin-top: 1.5mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .monthly-report-card {
+    padding: 3mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .monthly-card-heading span {
+    font-size: 10.2pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .monthly-card-heading strong {
+    font-size: 8.5pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-grid {
+    gap: 1.4mm !important;
+    margin-bottom: 1.8mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card {
+    padding: 1.6mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card span {
+    font-size: 6.8pt !important;
+    line-height: 1.08 !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card strong {
+    font-size: 8.2pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card small {
+    font-size: 7pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page table {
+    font-size: 7.75pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page table th {
+    font-size: 7.1pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page table th,
+  body.kpi-print-mode .booking-agents-page table td {
+    padding: .85mm .8mm !important;
+    line-height: 1.08 !important;
+  }
+
+  /* Page 7 labels and footer */
+  body.kpi-print-mode .theoretical-page .chart-value,
+  body.kpi-print-mode .theoretical-page .chart-label {
+    font-size: 10pt !important;
+  }
+
+  body.kpi-print-mode .confidential-report-footer {
+    font-size: 8.5pt !important;
+  }
+}
+
+/* V42 - maximum readability for the seven-page PDF */
+@media print {
+  body.kpi-print-mode .pdf-report-page .block-title h2 {
+    font-size: 21pt !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .eyebrow {
+    font-size: 8.8pt !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .section-note {
+    font-size: 9.5pt !important;
+  }
+
+  body.kpi-print-mode .monthly-kpi-page table {
+    font-size: 13.5pt !important;
+  }
+
+  body.kpi-print-mode .monthly-kpi-page table th,
+  body.kpi-print-mode .monthly-kpi-page table td {
+    padding: 4.6mm 3.2mm !important;
+  }
+
+  body.kpi-print-mode .new-prospects-page .prospect-report-table {
+    font-size: 12.8pt !important;
+  }
+
+  body.kpi-print-mode .new-prospects-page .prospect-report-table th,
+  body.kpi-print-mode .new-prospects-page .prospect-report-table td {
+    padding: 3.4mm 2.5mm !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-section-grid,
+  body.kpi-print-mode .booking-agents-page .monthly-section-grid {
+    min-height: 150mm !important;
+    align-content: stretch !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-card-heading span {
+    font-size: 12pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table {
+    font-size: 10pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table th {
+    font-size: 8.8pt !important;
+  }
+
+  body.kpi-print-mode .top-players-page table th,
+  body.kpi-print-mode .top-players-page table td {
+    padding: 1.6mm 1.2mm !important;
+    line-height: 1.18 !important;
+  }
+
+  body.kpi-print-mode .player-bookings-page table {
+    font-size: 9.7pt !important;
+  }
+
+  body.kpi-print-mode .player-bookings-page table th {
+    font-size: 8.8pt !important;
+  }
+
+  body.kpi-print-mode .player-bookings-page table th,
+  body.kpi-print-mode .player-bookings-page table td {
+    padding: 2.55mm 1.35mm !important;
+    line-height: 1.2 !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .monthly-card-heading span {
+    font-size: 11pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .monthly-card-heading strong {
+    font-size: 9pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card span {
+    font-size: 7.25pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card strong {
+    font-size: 8.8pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card small {
+    font-size: 7.5pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page table {
+    font-size: 8.5pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page table th {
+    font-size: 7.65pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page table th,
+  body.kpi-print-mode .booking-agents-page table td {
+    padding: .92mm .82mm !important;
+    line-height: 1.1 !important;
+  }
+
+  body.kpi-print-mode .theoretical-page .chart-value,
+  body.kpi-print-mode .theoretical-page .chart-label {
+    font-size: 11pt !important;
+  }
+}
+
+/* V42 fit correction: keep all four booking-agent dates together on Page 6 */
+@media print {
+  body.kpi-print-mode .booking-agents-page .monthly-section-grid {
+    min-height: 0 !important;
+    grid-template-rows: repeat(2, auto) !important;
+    gap: 2.8mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .monthly-report-card {
+    padding: 2.4mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .monthly-card-heading {
+    margin-bottom: 1mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-grid {
+    gap: 1mm !important;
+    margin-bottom: 1.1mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card {
+    padding: 1.15mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card span {
+    font-size: 6.8pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card strong {
+    font-size: 8.3pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card small {
+    font-size: 7.1pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page table {
+    font-size: 8.15pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page table th {
+    font-size: 7.35pt !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page table th,
+  body.kpi-print-mode .booking-agents-page table td {
+    padding: .72mm .75mm !important;
+    line-height: 1.06 !important;
+  }
+}
+
+
+/* V43 - separate one-page executive snapshot PDFs */
+.snapshot-export-panel {
+  margin-top: 14px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  border: 1px solid color-mix(in srgb, var(--primary-2) 24%, var(--line));
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--surface), var(--surface-3));
+  box-shadow: 0 10px 26px rgba(23, 43, 77, .08);
+}
+
+.snapshot-export-copy h3 {
+  margin: 4px 0 5px;
+  font-size: 1.08rem;
+}
+
+.snapshot-export-copy p {
+  max-width: 820px;
+  margin: 0;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.5;
+}
+
+.snapshot-export-actions {
+  flex: none;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.snapshot-print-root { display: none; }
+
+@media (max-width: 900px) {
+  .snapshot-export-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .snapshot-export-actions { justify-content: flex-start; }
+}
+
+@media print {
+  body.snapshot-print-mode {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  body.snapshot-print-mode > *:not(#snapshotPrintRoot) {
+    display: none !important;
+  }
+
+  body.snapshot-print-mode #snapshotPrintRoot {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-page {
+    width: 100% !important;
+    height: 194mm !important;
+    min-height: 194mm !important;
+    max-height: 194mm !important;
+    padding: 5.5mm !important;
+    overflow: hidden !important;
+    display: grid !important;
+    grid-template-rows: auto auto minmax(0, 1fr) auto !important;
+    gap: 3mm !important;
+    color: #1f2937 !important;
+    background: #fff !important;
+    font-family: var(--app-font) !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid-page !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8mm !important;
+    padding: 0 0 3mm !important;
+    border-bottom: 1.4pt solid var(--primary) !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4mm !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-brand img {
+    width: 15mm !important;
+    height: 15mm !important;
+    object-fit: contain !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-kicker {
+    margin: 0 0 .6mm !important;
+    font-size: 7.8pt !important;
+    font-weight: 900 !important;
+    letter-spacing: .13em !important;
+    color: var(--primary-2) !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-brand h1 {
+    margin: 0 !important;
+    font-size: 19pt !important;
+    line-height: 1 !important;
+    color: var(--primary) !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-brand h2 {
+    margin: 1.1mm 0 0 !important;
+    font-size: 12pt !important;
+    line-height: 1 !important;
+    color: #334155 !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-period {
+    min-width: 62mm !important;
+    padding: 2.8mm 3.6mm !important;
+    border: 1px solid #d8dee6 !important;
+    border-radius: 2.5mm !important;
+    background: #f7f9fc !important;
+    text-align: right !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-period span,
+  body.snapshot-print-mode .executive-snapshot-period small {
+    display: block !important;
+    color: #667085 !important;
+    font-size: 7.4pt !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-period strong {
+    display: block !important;
+    margin: .7mm 0 !important;
+    color: var(--primary) !important;
+    font-size: 10.5pt !important;
+  }
+
+  body.snapshot-print-mode .snapshot-highlight-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 2.3mm !important;
+  }
+
+  body.snapshot-print-mode .snapshot-highlight-card {
+    min-width: 0 !important;
+    padding: 2.6mm 3mm !important;
+    border: 1px solid #d8dee6 !important;
+    border-radius: 2.3mm !important;
+    background: #f8fafc !important;
+  }
+
+  body.snapshot-print-mode .snapshot-highlight-card span {
+    display: block !important;
+    margin-bottom: .8mm !important;
+    color: #667085 !important;
+    font-size: 7.2pt !important;
+    font-weight: 800 !important;
+    letter-spacing: .04em !important;
+    text-transform: uppercase !important;
+  }
+
+  body.snapshot-print-mode .snapshot-highlight-card strong {
+    display: block !important;
+    overflow-wrap: anywhere !important;
+    color: #172b4d !important;
+    font-size: 12.2pt !important;
+    line-height: 1.05 !important;
+  }
+
+  body.snapshot-print-mode .snapshot-highlight-card small {
+    display: block !important;
+    margin-top: 1mm !important;
+    font-size: 7.3pt !important;
+    font-weight: 800 !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-content {
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.38fr) !important;
+    gap: 3mm !important;
+  }
+
+  body.snapshot-print-mode .snapshot-table-card {
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 3mm !important;
+    border: 1px solid #d8dee6 !important;
+    border-radius: 2.6mm !important;
+    background: #fff !important;
+    overflow: hidden !important;
+  }
+
+  body.snapshot-print-mode .snapshot-card-heading {
+    min-height: 12mm !important;
+    margin-bottom: 2mm !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 3mm !important;
+  }
+
+  body.snapshot-print-mode .snapshot-card-heading p {
+    margin: 0 !important;
+    color: var(--primary-2) !important;
+    font-size: 6.8pt !important;
+    font-weight: 900 !important;
+    letter-spacing: .11em !important;
+  }
+
+  body.snapshot-print-mode .snapshot-card-heading h3 {
+    margin: .8mm 0 0 !important;
+    color: #243553 !important;
+    font-size: 11pt !important;
+    line-height: 1.08 !important;
+  }
+
+  body.snapshot-print-mode .snapshot-card-heading > span {
+    padding: 1mm 1.8mm !important;
+    border-radius: 99mm !important;
+    background: #eef2f6 !important;
+    color: #526071 !important;
+    font-size: 6.8pt !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+  }
+
+  body.snapshot-print-mode table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    table-layout: fixed !important;
+  }
+
+  body.snapshot-print-mode th,
+  body.snapshot-print-mode td {
+    border: 1px solid #d8dee6 !important;
+    vertical-align: middle !important;
+  }
+
+  body.snapshot-print-mode thead th {
+    padding: 1.75mm 1.2mm !important;
+    background: var(--primary) !important;
+    color: #fff !important;
+    font-size: 7.25pt !important;
+    font-weight: 900 !important;
+    line-height: 1.08 !important;
+    text-align: center !important;
+  }
+
+  body.snapshot-print-mode tbody th,
+  body.snapshot-print-mode tbody td {
+    padding: 1.55mm 1.25mm !important;
+    font-size: 7.8pt !important;
+    line-height: 1.1 !important;
+  }
+
+  body.snapshot-print-mode tbody th {
+    background: #f8fafc !important;
+    color: #243553 !important;
+    font-weight: 800 !important;
+    text-align: left !important;
+  }
+
+  body.snapshot-print-mode tbody td {
+    text-align: right !important;
+  }
+
+  body.snapshot-print-mode .snapshot-kpi-table th:first-child { width: 35% !important; }
+  body.snapshot-print-mode .snapshot-kpi-table th:nth-child(2),
+  body.snapshot-print-mode .snapshot-kpi-table th:nth-child(3) { width: 20% !important; }
+  body.snapshot-print-mode .snapshot-kpi-table th:nth-child(4) { width: 17% !important; }
+  body.snapshot-print-mode .snapshot-kpi-table th:nth-child(5) { width: 8% !important; }
+
+  body.snapshot-print-mode .snapshot-agent-table th:first-child { width: 20% !important; }
+  body.snapshot-print-mode .snapshot-agent-table th:nth-child(2) { width: 10% !important; }
+  body.snapshot-print-mode .snapshot-agent-table th:nth-child(3) { width: 7% !important; }
+  body.snapshot-print-mode .snapshot-agent-table th:nth-child(4) { width: 18% !important; }
+  body.snapshot-print-mode .snapshot-agent-table th:nth-child(5) { width: 16% !important; }
+  body.snapshot-print-mode .snapshot-agent-table th:nth-child(6) { width: 15% !important; }
+  body.snapshot-print-mode .snapshot-agent-table th:nth-child(7) { width: 14% !important; }
+
+  body.snapshot-print-mode .snapshot-agent-table tbody th,
+  body.snapshot-print-mode .snapshot-agent-table tbody td {
+    padding: 1.35mm 1mm !important;
+    font-size: 7.35pt !important;
+  }
+
+  body.snapshot-print-mode .snapshot-positive { color: #147a4b !important; font-weight: 900 !important; }
+  body.snapshot-print-mode .snapshot-negative { color: #b42318 !important; font-weight: 900 !important; }
+  body.snapshot-print-mode .snapshot-neutral { color: #667085 !important; font-weight: 800 !important; }
+  body.snapshot-print-mode .snapshot-empty { text-align: center !important; color: #667085 !important; }
+
+  body.snapshot-print-mode .executive-snapshot-footer {
+    padding-top: 1.8mm !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6mm !important;
+    border-top: 1px solid #d8dee6 !important;
+    color: #667085 !important;
+    font-size: 6.6pt !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-footer p {
+    margin: 0 !important;
+  }
+}
+
+/* V43 snapshot table fit refinement */
+@media print {
+  body.snapshot-print-mode .executive-snapshot-content {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.25fr) !important;
+  }
+
+  body.snapshot-print-mode .snapshot-kpi-table th:first-child { width: 29% !important; }
+  body.snapshot-print-mode .snapshot-kpi-table th:nth-child(2),
+  body.snapshot-print-mode .snapshot-kpi-table th:nth-child(3) { width: 18% !important; }
+  body.snapshot-print-mode .snapshot-kpi-table th:nth-child(4) { width: 24% !important; }
+  body.snapshot-print-mode .snapshot-kpi-table th:nth-child(5) { width: 11% !important; }
+
+  body.snapshot-print-mode .snapshot-kpi-table tbody th,
+  body.snapshot-print-mode .snapshot-kpi-table tbody td {
+    font-size: 7.35pt !important;
+  }
+
+  body.snapshot-print-mode .snapshot-kpi-table tbody td {
+    white-space: nowrap !important;
+  }
+}
+
+
+/* V46 — one private 10-page PDF and matching email report */
+.pdf-only-section { display: none; }
+
+@media print {
+  body.kpi-print-mode .pdf-only-section { display: block !important; }
+  body.kpi-print-mode .player-bookings-page,
+  body.kpi-print-mode .confidential-report-footer,
+  body.kpi-print-mode .snapshot-export-panel { display: none !important; }
+
+  /* Pages 3 and 5: comparison divider/title pages */
+  body.kpi-print-mode .comparison-title-page {
+    min-height: 194mm !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  body.kpi-print-mode .comparison-title-content {
+    width: min(235mm, 88%) !important;
+    padding: 16mm 14mm !important;
+    border: 1.4pt solid #d8dee6 !important;
+    border-radius: 6mm !important;
+    background: linear-gradient(145deg, #ffffff, #f3f6fa) !important;
+  }
+
+  body.kpi-print-mode .comparison-title-page .eyebrow {
+    font-size: 10pt !important;
+    letter-spacing: .2em !important;
+  }
+
+  body.kpi-print-mode .comparison-title-page h2 {
+    margin: 5mm 0 3mm !important;
+    color: var(--primary) !important;
+    font-size: 31pt !important;
+    line-height: 1.08 !important;
+  }
+
+  body.kpi-print-mode .comparison-title-page p:last-child {
+    margin: 0 auto !important;
+    max-width: 190mm !important;
+    color: #526071 !important;
+    font-size: 13pt !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Pages 4 and 6: embedded one-page snapshots */
+  body.kpi-print-mode .comparison-snapshot-page {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    overflow: hidden !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page > div { height: 194mm !important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-page {
+    width: 100% !important;
+    height: 194mm !important;
+    min-height: 194mm !important;
+    max-height: 194mm !important;
+    padding: 5.5mm !important;
+    overflow: hidden !important;
+    display: grid !important;
+    grid-template-rows: auto auto minmax(0, 1fr) auto !important;
+    gap: 3mm !important;
+    color: #1f2937 !important;
+    background: #fff !important;
+    font-family: var(--app-font) !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-header { display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8mm!important;padding:0 0 3mm!important;border-bottom:1.4pt solid var(--primary)!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-brand { display:flex!important;align-items:center!important;gap:4mm!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-brand img { width:15mm!important;height:15mm!important;object-fit:contain!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-kicker { margin:0 0 .6mm!important;font-size:7.8pt!important;font-weight:900!important;letter-spacing:.13em!important;color:var(--primary-2)!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-brand h1 { margin:0!important;font-size:19pt!important;line-height:1!important;color:var(--primary)!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-brand h2 { margin:1.1mm 0 0!important;font-size:12pt!important;line-height:1!important;color:#334155!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-period { min-width:62mm!important;padding:2.8mm 3.6mm!important;border:1px solid #d8dee6!important;border-radius:2.5mm!important;background:#f7f9fc!important;text-align:right!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-period span,
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-period small { display:block!important;color:#667085!important;font-size:7.4pt!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-period strong { display:block!important;margin:.7mm 0!important;color:var(--primary)!important;font-size:10.5pt!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-highlight-grid { display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:2.3mm!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-highlight-card { min-width:0!important;padding:2.6mm 3mm!important;border:1px solid #d8dee6!important;border-radius:2.3mm!important;background:#f8fafc!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-highlight-card span { display:block!important;margin-bottom:.8mm!important;color:#667085!important;font-size:7.2pt!important;font-weight:800!important;letter-spacing:.04em!important;text-transform:uppercase!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-highlight-card strong { display:block!important;overflow-wrap:anywhere!important;color:#172b4d!important;font-size:12.2pt!important;line-height:1.05!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-highlight-card small { display:block!important;margin-top:1mm!important;font-size:7.3pt!important;font-weight:800!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-content { min-height:0!important;display:grid!important;grid-template-columns:minmax(0,1.05fr) minmax(0,1.25fr)!important;gap:3mm!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-table-card { min-width:0!important;min-height:0!important;padding:3mm!important;border:1px solid #d8dee6!important;border-radius:2.6mm!important;background:#fff!important;overflow:hidden!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-card-heading { min-height:12mm!important;margin-bottom:2mm!important;display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:3mm!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-card-heading p { margin:0!important;color:var(--primary-2)!important;font-size:6.8pt!important;font-weight:900!important;letter-spacing:.11em!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-card-heading h3 { margin:.8mm 0 0!important;color:#243553!important;font-size:11pt!important;line-height:1.08!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-card-heading > span { padding:1mm 1.8mm!important;border-radius:99mm!important;background:#eef2f6!important;color:#526071!important;font-size:6.8pt!important;font-weight:800!important;white-space:nowrap!important; }
+  body.kpi-print-mode .comparison-snapshot-page table { width:100%!important;border-collapse:collapse!important;table-layout:fixed!important; }
+  body.kpi-print-mode .comparison-snapshot-page th,
+  body.kpi-print-mode .comparison-snapshot-page td { border:1px solid #d8dee6!important;vertical-align:middle!important; }
+  body.kpi-print-mode .comparison-snapshot-page thead th { padding:1.75mm 1.2mm!important;background:var(--primary)!important;color:#fff!important;font-size:7.25pt!important;font-weight:900!important;line-height:1.08!important;text-align:center!important; }
+  body.kpi-print-mode .comparison-snapshot-page tbody th,
+  body.kpi-print-mode .comparison-snapshot-page tbody td { padding:1.45mm 1.15mm!important;font-size:7.35pt!important;line-height:1.08!important; }
+  body.kpi-print-mode .comparison-snapshot-page tbody th { background:#f8fafc!important;color:#243553!important;font-weight:800!important;text-align:left!important; }
+  body.kpi-print-mode .comparison-snapshot-page tbody td { text-align:right!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-kpi-table th:first-child { width:29%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-kpi-table th:nth-child(2),
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-kpi-table th:nth-child(3) { width:18%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-kpi-table th:nth-child(4) { width:24%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-kpi-table th:nth-child(5) { width:11%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-kpi-table tbody td { white-space:nowrap!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-agent-table th:first-child { width:20%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-agent-table th:nth-child(2) { width:10%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-agent-table th:nth-child(3) { width:7%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-agent-table th:nth-child(4) { width:18%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-agent-table th:nth-child(5) { width:16%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-agent-table th:nth-child(6) { width:15%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-agent-table th:nth-child(7) { width:14%!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-agent-table tbody th,
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-agent-table tbody td { padding:1.25mm .95mm!important;font-size:7.1pt!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-positive { color:#147a4b!important;font-weight:900!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-negative { color:#b42318!important;font-weight:900!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-neutral { color:#667085!important;font-weight:800!important; }
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-empty { text-align:center!important;color:#667085!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-footer { padding-top:1.8mm!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:6mm!important;border-top:1px solid #d8dee6!important;color:#667085!important;font-size:6.6pt!important; }
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-footer p { margin:0!important; }
+
+  /* Page 10: prospects is deliberately last */
+  body.kpi-print-mode .new-prospects-page { break-after: auto !important; page-break-after: auto !important; }
+}
+
+/* V51 — cleaner report presentation and corrected Pages 9–10 */
+.theoretical-clean-chart {
+  width: 100%;
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.theoretical-clean-row {
+  display: grid;
+  grid-template-columns: minmax(105px, 150px) minmax(260px, 1fr) minmax(120px, 180px);
+  align-items: center;
+  gap: 16px;
+}
+
+.theoretical-clean-label {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.theoretical-clean-track {
+  position: relative;
+  height: 28px;
+  overflow: hidden;
+  border: 1px solid #d8dee6;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f7f8fa 0 49.8%, #ffffff 49.8% 50.2%, #f7f8fa 50.2% 100%);
+}
+
+.theoretical-zero-line {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-1px);
+  background: #667085;
+}
+
+.theoretical-clean-bar {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  min-width: 2px;
+  border-radius: 4px;
+}
+
+.theoretical-clean-bar.positive {
+  left: 50%;
+  background: var(--primary-2);
+}
+
+.theoretical-clean-bar.negative {
+  right: 50%;
+  background: #c62828;
+}
+
+.theoretical-clean-value {
+  text-align: right;
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.theoretical-clean-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: .8rem;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .theoretical-clean-row {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+  .theoretical-clean-value { text-align: left; }
+}
+
+@media print {
+  /* A calmer visual hierarchy across the entire PDF. */
+  body.kpi-print-mode .pdf-report-page:not(.comparison-title-page):not(.comparison-snapshot-page) {
+    padding: 7mm 8mm !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page:not(.comparison-title-page):not(.comparison-snapshot-page) > .block-title {
+    margin: 0 0 5mm !important;
+    padding: 0 0 3mm !important;
+    border-bottom: 1pt solid #cfd7e3 !important;
+    align-items: end !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page:not(.comparison-title-page) > .block-title .eyebrow {
+    display: none !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page:not(.comparison-title-page) > .block-title h2 {
+    margin: 0 !important;
+    color: #172b4d !important;
+    font-size: 18pt !important;
+    font-weight: 800 !important;
+    line-height: 1.08 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page .section-note {
+    display: none !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page table {
+    border-collapse: collapse !important;
+    background: #fff !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page table th,
+  body.kpi-print-mode .pdf-report-page table td {
+    border-color: #d8dee6 !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page table thead th {
+    background: #263a5d !important;
+    color: #fff !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  body.kpi-print-mode .pdf-report-page table tbody tr:nth-child(even):not(.prospect-total-row) td,
+  body.kpi-print-mode .pdf-report-page table tbody tr:nth-child(even):not(.prospect-total-row) th {
+    background: #f8fafc !important;
+  }
+
+  /* Minimal comparison divider pages. */
+  body.kpi-print-mode .comparison-title-content {
+    width: min(220mm, 86%) !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  body.kpi-print-mode .comparison-title-page .eyebrow {
+    color: #667085 !important;
+    font-size: 8pt !important;
+    letter-spacing: .14em !important;
+  }
+
+  body.kpi-print-mode .comparison-title-page h2 {
+    margin: 6mm 0 4mm !important;
+    padding: 0 0 5mm !important;
+    border-bottom: 1.5pt solid #263a5d !important;
+    font-size: 29pt !important;
+  }
+
+  body.kpi-print-mode .comparison-title-page p:last-child {
+    max-width: 175mm !important;
+    font-size: 11pt !important;
+  }
+
+  /* Snapshot pages: retain every metric, remove excessive boxes. */
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-page {
+    padding: 7mm 8mm !important;
+    gap: 4mm !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-header {
+    padding-bottom: 3.5mm !important;
+    border-bottom: 1pt solid #263a5d !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-period {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-highlight-grid {
+    gap: 4mm !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-highlight-card {
+    padding: 1.8mm 0 1.8mm 3mm !important;
+    border: 0 !important;
+    border-left: 2.2pt solid #8aa0be !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-table-card {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-card-heading {
+    min-height: 10mm !important;
+    margin-bottom: 1.8mm !important;
+    padding-bottom: 1.5mm !important;
+    border-bottom: 1px solid #d8dee6 !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-card-heading > span {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  /* Pages 7 and 8: clean monthly sections, no floating card look. */
+  body.kpi-print-mode .top-players-page .monthly-report-card,
+  body.kpi-print-mode .booking-agents-page .monthly-report-card {
+    padding: 2mm 0 0 !important;
+    border: 0 !important;
+    border-top: 1pt solid #d8dee6 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+
+  body.kpi-print-mode .top-players-page .monthly-card-heading,
+  body.kpi-print-mode .booking-agents-page .monthly-card-heading {
+    padding: 0 0 1.6mm !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+    margin: 0 0 2mm !important;
+    border: 1px solid #d8dee6 !important;
+    border-bottom: 0 !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card {
+    padding: 1.4mm 1.6mm !important;
+    border: 0 !important;
+    border-right: 1px solid #d8dee6 !important;
+    border-radius: 0 !important;
+    background: #f8fafc !important;
+    text-align: left !important;
+  }
+
+  body.kpi-print-mode .booking-agents-page .agent-mini-card:last-child {
+    border-right: 0 !important;
+  }
+
+  /* Page 9: unique months, true signed zero-baseline chart. */
+  body.kpi-print-mode .theoretical-page .simple-chart {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 12mm 8mm 8mm !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+
+  body.kpi-print-mode .theoretical-clean-chart {
+    gap: 8mm !important;
+    padding: 5mm 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  body.kpi-print-mode .theoretical-clean-row {
+    grid-template-columns: 35mm minmax(0, 1fr) 45mm !important;
+    gap: 5mm !important;
+  }
+
+  body.kpi-print-mode .theoretical-clean-label {
+    font-size: 11pt !important;
+  }
+
+  body.kpi-print-mode .theoretical-clean-track {
+    height: 12mm !important;
+    border-radius: 1.5mm !important;
+    background: #f5f7fa !important;
+  }
+
+  body.kpi-print-mode .theoretical-clean-bar {
+    top: 2.5mm !important;
+    bottom: 2.5mm !important;
+    border-radius: 1mm !important;
+  }
+
+  body.kpi-print-mode .theoretical-clean-value {
+    font-size: 11pt !important;
+  }
+
+  body.kpi-print-mode .theoretical-clean-note {
+    margin-top: 7mm !important;
+    font-size: 7.5pt !important;
+  }
+
+  /* Page 10: exactly the KPI report dates and recalculated totals. */
+  body.kpi-print-mode .new-prospects-page .prospect-report-table {
+    font-size: 10pt !important;
+  }
+
+  body.kpi-print-mode .new-prospects-page .prospect-report-table th,
+  body.kpi-print-mode .new-prospects-page .prospect-report-table td {
+    padding: 3mm 2.5mm !important;
+  }
+
+  body.kpi-print-mode .new-prospects-page .prospect-total-row th,
+  body.kpi-print-mode .new-prospects-page .prospect-total-row td {
+    background: #eaf0f7 !important;
+    color: #172b4d !important;
+    font-weight: 900 !important;
+  }
+}
+
+
+/* V52 - page numbers and streamlined PDF report */
+.pdf-page-number {
+  display: none;
+}
+
+@media print {
+  body.kpi-print-mode .pdf-title-page,
+  body.kpi-print-mode .pdf-report-page {
+    position: relative !important;
+  }
+
+  body.kpi-print-mode .pdf-page-number {
+    position: absolute !important;
+    z-index: 20 !important;
+    left: 50% !important;
+    bottom: 2mm !important;
+    display: block !important;
+    transform: translateX(-50%) !important;
+    color: #667085 !important;
+    font-size: 7.5pt !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: .02em !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* V53 - small page numbers anchored only in the physical PDF footer */
+@media print {
+  body.kpi-print-mode .pdf-title-page,
+  body.kpi-print-mode .pdf-report-page {
+    min-height: 194mm !important;
+    box-sizing: border-box !important;
+    padding-bottom: 10mm !important;
+  }
+
+  body.kpi-print-mode .pdf-page-number {
+    position: absolute !important;
+    z-index: 20 !important;
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: 1.5mm !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translateX(-50%) !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: #8a94a6 !important;
+    font-size: 5.5pt !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* V54 - keep comparison snapshot pages 4 and 6 on one physical PDF page */
+@media print {
+  body.kpi-print-mode .comparison-snapshot-page {
+    width: 100% !important;
+    height: 194mm !important;
+    min-height: 194mm !important;
+    max-height: 194mm !important;
+    padding: 0 0 6mm !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    break-inside: avoid-page !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page > div {
+    width: 100% !important;
+    height: 188mm !important;
+    min-height: 188mm !important;
+    max-height: 188mm !important;
+    overflow: hidden !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-page {
+    width: 100% !important;
+    height: 188mm !important;
+    min-height: 188mm !important;
+    max-height: 188mm !important;
+    padding: 5mm 7mm 3.5mm !important;
+    gap: 2.5mm !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-header {
+    padding-bottom: 2.5mm !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-highlight-grid {
+    gap: 2.5mm !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-highlight-card {
+    padding-top: 1.3mm !important;
+    padding-bottom: 1.3mm !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-content {
+    gap: 2.5mm !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .snapshot-card-heading {
+    min-height: 8mm !important;
+    margin-bottom: 1.3mm !important;
+    padding-bottom: 1mm !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .executive-snapshot-footer {
+    display: none !important;
+  }
+
+  body.kpi-print-mode .comparison-snapshot-page .pdf-page-number {
+    bottom: 1.2mm !important;
+  }
+}
+
+/* V55 — separate month PDFs and two-page year-over-year comparisons */
+@media print {
+  /* Complete PDF: each comparison now uses two readable pages. */
+  body.kpi-print-mode .comparison-split-page {
+    width: 100% !important;
+    height: 194mm !important;
+    min-height: 194mm !important;
+    max-height: 194mm !important;
+    padding: 5mm 8mm 9mm !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    break-inside: avoid-page !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page > div {
+    width: 100% !important;
+    height: 180mm !important;
+    min-height: 180mm !important;
+    max-height: 180mm !important;
+    overflow: hidden !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-split-page {
+    width: 100% !important;
+    height: 180mm !important;
+    min-height: 180mm !important;
+    max-height: 180mm !important;
+    padding: 0 !important;
+    display: grid !important;
+    gap: 4mm !important;
+    color: #1f2937 !important;
+    background: #fff !important;
+    font-family: var(--app-font) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-kpi-only-page {
+    grid-template-rows: auto auto minmax(0, 1fr) auto !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-only-page {
+    grid-template-rows: auto minmax(0, 1fr) auto !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8mm !important;
+    padding: 0 0 3mm !important;
+    border-bottom: 1.2pt solid #263a5d !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4mm !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-brand img {
+    width: 15mm !important;
+    height: 15mm !important;
+    object-fit: contain !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-kicker {
+    margin: 0 0 .8mm !important;
+    color: #667085 !important;
+    font-size: 7.5pt !important;
+    font-weight: 900 !important;
+    letter-spacing: .12em !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-brand h1 {
+    margin: 0 !important;
+    color: #172b4d !important;
+    font-size: 18pt !important;
+    line-height: 1 !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-brand h2 {
+    margin: 1.2mm 0 0 !important;
+    color: #334155 !important;
+    font-size: 12.5pt !important;
+    line-height: 1.1 !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-period {
+    min-width: 62mm !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    text-align: right !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-period span,
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-period small {
+    display: block !important;
+    color: #667085 !important;
+    font-size: 7.5pt !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-period strong {
+    display: block !important;
+    margin: .8mm 0 !important;
+    color: #172b4d !important;
+    font-size: 10.5pt !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-highlight-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 4mm !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-highlight-card {
+    min-width: 0 !important;
+    padding: 2mm 0 2mm 3mm !important;
+    border: 0 !important;
+    border-left: 2.2pt solid #8aa0be !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-highlight-card span {
+    display: block !important;
+    margin-bottom: .8mm !important;
+    color: #667085 !important;
+    font-size: 7.4pt !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-highlight-card strong {
+    display: block !important;
+    color: #172b4d !important;
+    font-size: 13pt !important;
+    line-height: 1.05 !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-highlight-card small {
+    display: block !important;
+    margin-top: 1mm !important;
+    font-size: 7.6pt !important;
+    font-weight: 800 !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-single-content {
+    min-height: 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-table-card {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    overflow: hidden !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-card-heading {
+    min-height: 0 !important;
+    margin: 0 0 3mm !important;
+    padding: 0 0 2mm !important;
+    border-bottom: 1px solid #d8dee6 !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-card-heading p {
+    display: none !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-card-heading h3 {
+    margin: 0 !important;
+    color: #243553 !important;
+    font-size: 15pt !important;
+    line-height: 1.1 !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    table-layout: fixed !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page th,
+  body.kpi-print-mode .comparison-split-page td {
+    border: 1px solid #d8dee6 !important;
+    vertical-align: middle !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page thead th {
+    padding: 2.2mm 1.8mm !important;
+    background: #263a5d !important;
+    color: #fff !important;
+    font-size: 9pt !important;
+    font-weight: 900 !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page tbody th,
+  body.kpi-print-mode .comparison-split-page tbody td {
+    padding: 2.2mm 1.8mm !important;
+    font-size: 9.2pt !important;
+    line-height: 1.12 !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page tbody th {
+    background: #f8fafc !important;
+    color: #243553 !important;
+    font-weight: 800 !important;
+    text-align: left !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page tbody td { text-align: right !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-kpi-table th:first-child { width: 32% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-kpi-table th:nth-child(2),
+  body.kpi-print-mode .comparison-split-page .snapshot-kpi-table th:nth-child(3) { width: 18% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-kpi-table th:nth-child(4) { width: 21% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-kpi-table th:nth-child(5) { width: 11% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-kpi-table tbody td { white-space: nowrap !important; }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table thead th {
+    font-size: 8.5pt !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table tbody th,
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table tbody td {
+    padding: 2.4mm 1.4mm !important;
+    font-size: 9pt !important;
+  }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table th:first-child { width: 20% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table th:nth-child(2) { width: 10% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table th:nth-child(3) { width: 7% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table th:nth-child(4) { width: 18% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table th:nth-child(5) { width: 16% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table th:nth-child(6) { width: 15% !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-agent-table th:nth-child(7) { width: 14% !important; }
+
+  body.kpi-print-mode .comparison-split-page .snapshot-positive { color: #147a4b !important; font-weight: 900 !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-negative { color: #b42318 !important; font-weight: 900 !important; }
+  body.kpi-print-mode .comparison-split-page .snapshot-neutral { color: #667085 !important; font-weight: 800 !important; }
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-footer {
+    padding-top: 2mm !important;
+    border-top: 1px solid #d8dee6 !important;
+    color: #667085 !important;
+    font-size: 7pt !important;
+  }
+  body.kpi-print-mode .comparison-split-page .executive-snapshot-footer p { margin: 0 !important; }
+
+  /* Separate export: one comparison becomes exactly two physical pages. */
+  body.snapshot-print-mode #snapshotPrintRoot {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.snapshot-print-mode .separate-snapshot-print-page {
+    position: relative !important;
+    width: 100% !important;
+    height: 194mm !important;
+    min-height: 194mm !important;
+    max-height: 194mm !important;
+    padding: 5mm 8mm 9mm !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    background: #fff !important;
+    break-inside: avoid-page !important;
+    page-break-inside: avoid !important;
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  body.snapshot-print-mode .separate-snapshot-print-page:last-child {
+    break-after: auto !important;
+    page-break-after: auto !important;
+  }
+
+  body.snapshot-print-mode .executive-snapshot-split-page {
+    width: 100% !important;
+    height: 180mm !important;
+    min-height: 180mm !important;
+    max-height: 180mm !important;
+    padding: 0 !important;
+    display: grid !important;
+    gap: 4mm !important;
+    color: #1f2937 !important;
+    background: #fff !important;
+    font-family: var(--app-font) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  body.snapshot-print-mode .snapshot-kpi-only-page { grid-template-rows: auto auto minmax(0, 1fr) auto !important; }
+  body.snapshot-print-mode .snapshot-agent-only-page { grid-template-rows: auto minmax(0, 1fr) auto !important; }
+  body.snapshot-print-mode .executive-snapshot-split-page .executive-snapshot-content {
+    display: block !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-table-card {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-kpi-card,
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-agent-card {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-card-heading {
+    min-height: 0 !important;
+    margin: 0 0 3mm !important;
+    padding: 0 0 2mm !important;
+    border-bottom: 1px solid #d8dee6 !important;
+  }
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-card-heading p { display: none !important; }
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-card-heading h3 {
+    margin: 0 !important;
+    font-size: 15pt !important;
+  }
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-kpi-table tbody th,
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-kpi-table tbody td {
+    padding: 2.2mm 1.8mm !important;
+    font-size: 9.2pt !important;
+  }
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-agent-table thead th { font-size: 8.5pt !important; }
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-agent-table tbody th,
+  body.snapshot-print-mode .executive-snapshot-split-page .snapshot-agent-table tbody td {
+    padding: 2.4mm 1.4mm !important;
+    font-size: 9pt !important;
+  }
+
+  body.snapshot-print-mode .separate-snapshot-page-number {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 1.5mm !important;
+    transform: translateX(-50%) !important;
+    color: #8a94a6 !important;
+    font-size: 5.5pt !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* V56 — dynamic comparison PDF buttons */
+.snapshot-export-empty {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 4px;
+  color: var(--muted);
+  font-size: .84rem;
+  line-height: 1.45;
+}
+
+.snapshot-export-actions {
+  flex-wrap: wrap;
+}
+
+
+/* V58 — smart reporting period controls */
+.smart-period-row {
+  margin: 20px 0 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface-3) 70%, white);
+}
+.smart-period-copy { min-width: 0; }
+.smart-period-copy p { margin: 5px 0 0; color: var(--muted); line-height: 1.5; }
+.smart-period-row .btn { flex: none; }
+@media (max-width: 760px) {
+  .smart-period-row { align-items: stretch; flex-direction: column; }
+  .smart-period-row .btn { width: 100%; }
+}
+
+/* V59 — team-ready comparison export actions */
+.snapshot-export-action-group {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 86%, var(--surface-3));
+}
+
+.snapshot-export-action-group .btn {
+  min-height: 38px;
+  white-space: nowrap;
+}
+
+.snapshot-export-action-group .comparison-draft-btn {
+  border-color: color-mix(in srgb, var(--primary-2) 24%, var(--line));
+}
+
+@media (max-width: 720px) {
+  .snapshot-export-action-group {
+    width: 100%;
+    flex-direction: column;
+  }
+  .snapshot-export-action-group .btn { width: 100%; }
+}
+
+/* V60 — fixed Separate PDF Options layout */
+.snapshot-export-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+}
+
+.snapshot-export-copy {
+  min-width: 0;
+  width: 100%;
+}
+
+.snapshot-export-copy p {
+  max-width: 1080px;
+}
+
+.snapshot-export-actions {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 12px;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.snapshot-export-action-group {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(132px, auto);
+  align-items: stretch;
+  gap: 8px;
+  padding: 7px;
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--surface) 92%, var(--surface-3));
+  box-shadow: 0 5px 14px rgba(23, 43, 77, .05);
+}
+
+.snapshot-export-action-group .btn {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  line-height: 1.25;
+}
+
+.snapshot-export-action-group .btn.secondary {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.snapshot-export-action-group .comparison-draft-btn {
+  white-space: nowrap;
+  background: var(--surface-2);
+  color: var(--primary);
+  border: 1px solid color-mix(in srgb, var(--primary-2) 28%, var(--line));
+}
+
+.snapshot-export-action-group .comparison-draft-btn:hover:not(:disabled) {
+  background: var(--surface-3);
+}
+
+@media (max-width: 780px) {
+  .snapshot-export-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .snapshot-export-action-group {
+    grid-template-columns: 1fr;
+  }
+  .snapshot-export-action-group .comparison-draft-btn {
+    white-space: normal;
+  }
+}
+
+/* V62 — one email summary for all selected comparison PDFs */
+.snapshot-email-summary-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 8px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface-3) 65%, white);
+}
+.snapshot-email-summary-copy { display: grid; gap: 4px; min-width: 0; }
+.snapshot-email-summary-copy strong { color: var(--ink); font-size: 0.95rem; }
+.snapshot-email-summary-copy span { color: var(--muted); font-size: 0.82rem; line-height: 1.45; }
+.comparison-summary-btn { flex: none; white-space: nowrap; }
+@media (max-width: 760px) {
+  .snapshot-email-summary-row { align-items: stretch; flex-direction: column; }
+  .comparison-summary-btn { width: 100%; }
+}
+
+
+/* V65 — concise narrative email summary + copy-ready email fields */
+.snapshot-email-summary-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.8fr);
+  align-items: start;
+  gap: 14px 18px;
+}
+.snapshot-email-summary-copy { grid-column: 1 / -1; }
+.snapshot-email-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.snapshot-email-field > span {
+  color: var(--muted);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+.snapshot-email-field input,
+.snapshot-email-field textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+.snapshot-email-field input { min-height: 44px; padding: 10px 12px; }
+.snapshot-email-field textarea {
+  min-height: 260px;
+  padding: 13px 14px;
+  resize: vertical;
+  line-height: 1.55;
+}
+.snapshot-email-body-field { grid-column: 1 / -1; }
+.snapshot-email-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.snapshot-email-actions .btn { min-width: 150px; }
+.email-preview { text-align: left; }
+.email-preview > table { margin-left: auto !important; margin-right: auto !important; }
+@media (max-width: 760px) {
+  .snapshot-email-summary-row { grid-template-columns: 1fr; }
+  .snapshot-email-summary-copy,
+  .snapshot-email-body-field,
+  .snapshot-email-actions { grid-column: 1; }
+  .snapshot-email-actions { flex-direction: column; }
+  .snapshot-email-actions .btn { width: 100%; }
+}
+
+
+/* V67 — optional Total Prospects by month */
+.total-prospect-card {
+  margin: 4px 0 16px;
+  padding: 15px 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent-soft) 50%, white);
+}
+.total-prospect-heading h4 {
+  margin: 3px 0 4px;
+  color: var(--primary);
+  font-size: 1rem;
+}
+.total-prospect-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.45;
+}
+.total-prospect-editor {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.total-prospect-field {
+  display: grid;
+  gap: 6px;
+}
+.total-prospect-field span {
+  color: var(--primary);
+  font-size: .75rem;
+  font-weight: 900;
+}
+.total-prospect-field input {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  font-weight: 800;
+}
+.prospect-report-table .prospect-total-prospects-row th,
+.prospect-report-table .prospect-total-prospects-row td {
+  background: color-mix(in srgb, var(--accent-soft) 65%, white);
+  color: var(--primary);
+  font-weight: 900;
+  border-top: 2px solid color-mix(in srgb, var(--accent) 55%, var(--line));
+}
+
+/* V72 — table-style combined email summary */
+.snapshot-email-rich-preview {
+  width: 100%;
+  max-height: 720px;
+  overflow: auto;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: #111827;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .02);
+}
+.snapshot-email-rich-preview > div {
+  max-width: none !important;
+}
+@media (max-width: 760px) {
+  .snapshot-email-rich-preview {
+    padding: 12px;
+  }
+  .snapshot-email-rich-preview table {
+    font-size: 11px !important;
+  }
+}
+
+/* V73 — restored separate comparison exports + clear New Players Added input */
+#newProspectEntryPanel.prospect-system-card {
+  border: 1.5px solid color-mix(in srgb, var(--primary-2) 38%, var(--line));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface-3) 58%, white), var(--surface));
+}
+
+#newProspectEntryPanel .prospect-system-heading h3 {
+  font-size: 1.3rem;
+}
+
+#newProspectEntryPanel .prospect-system-actions {
+  flex-wrap: wrap;
+}
+
+#newProspectEntryPanel #syncPlayerMonthsBtn {
+  font-weight: 800;
+}
+
+.comparison-export-preview {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--primary-2) 22%, var(--line));
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--surface-3) 68%, white);
+}
+
+.comparison-export-preview-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.comparison-export-preview-heading strong {
+  color: var(--ink);
+  font-size: .9rem;
+}
+
+.comparison-export-preview-heading span {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.comparison-export-preview-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.comparison-export-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid color-mix(in srgb, var(--primary-2) 26%, var(--line));
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--primary);
+  font-size: .82rem;
+  font-weight: 800;
+}
+
+.comparison-export-preview-empty {
+  display: block;
+  color: var(--muted);
+  font-size: .84rem;
+  line-height: 1.5;
+}
+
+.snapshot-export-panel {
+  border: 1.5px solid color-mix(in srgb, var(--primary-2) 32%, var(--line));
+}
+
+.snapshot-export-action-group {
+  grid-template-columns: 1fr !important;
+}
+
+.snapshot-export-action-group .btn.secondary {
+  font-weight: 800;
+}
+
+@media (max-width: 680px) {
+  .comparison-export-preview-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  #newProspectEntryPanel .prospect-system-actions .btn {
+    width: 100%;
+  }
+}
+
+/* V74 — explicit manual New Players input BEFORE Generate + clear PDF download choices */
+.manual-new-players-card {
+  margin-top: 22px;
+  border: 2px solid color-mix(in srgb, var(--primary-2) 48%, var(--line)) !important;
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--primary) 10%, transparent);
+}
+.manual-new-players-card .prospect-system-heading {
+  padding-bottom: 15px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid color-mix(in srgb, var(--primary-2) 20%, var(--line));
+}
+.manual-player-step {
+  padding: 16px;
+  margin: 0 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+.manual-player-total-step {
+  border-color: color-mix(in srgb, var(--accent) 58%, var(--line));
+  background: color-mix(in srgb, var(--accent-soft) 56%, white);
+}
+.manual-player-step-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 13px;
+}
+.manual-step-number {
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 900;
+  font-size: .82rem;
+}
+.manual-player-step-heading h4 { margin: 0 0 3px; color: var(--primary); font-size: 1rem; }
+.manual-player-step-heading p { margin: 0; color: var(--muted); font-size: .82rem; line-height: 1.45; }
+.prominent-total-player-editor .total-prospect-field {
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+  border-radius: 12px;
+  background: #fff;
+}
+.prominent-total-player-editor .total-prospect-field span { font-size: .82rem; }
+.prominent-total-player-editor .total-prospect-field input {
+  min-height: 46px;
+  font-size: 1.1rem;
+  border: 1.5px solid color-mix(in srgb, var(--primary-2) 42%, var(--line));
+}
+.manual-player-breakdown-details {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.manual-player-breakdown-details > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+}
+.manual-player-breakdown-details > summary::-webkit-details-marker { display: none; }
+.manual-player-breakdown-details > summary span:first-child { display: grid; gap: 3px; }
+.manual-player-breakdown-details > summary small { color: var(--muted); font-weight: 500; }
+.details-open-label { color: var(--primary-2); font-size: .78rem; font-weight: 900; }
+.manual-player-breakdown-details[open] .details-open-label { font-size: 0; }
+.manual-player-breakdown-details[open] .details-open-label::after { content: "Close breakdown"; font-size: .78rem; }
+.manual-player-breakdown-details .prospect-matrix-wrap { padding: 0 16px 16px; }
+.manual-player-breakdown-details .prospect-system-note { margin: 0 16px 16px; }
+
+.snapshot-export-panel {
+  display: block !important;
+}
+.all-report-download-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 18px 0;
+  padding: 16px 18px;
+  border: 1.5px solid color-mix(in srgb, var(--primary-2) 36%, var(--line));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface-3) 68%, white);
+}
+.all-report-download-card > div { display: grid; gap: 4px; }
+.all-report-download-card strong { color: var(--primary); font-size: 1rem; }
+.all-report-download-card span { color: var(--muted); font-size: .82rem; line-height: 1.45; }
+.all-report-download-card .btn { flex: 0 0 auto; min-width: 250px; }
+.separate-report-heading {
+  display: grid;
+  gap: 3px;
+  margin: 20px 0 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.separate-report-heading strong { color: var(--primary); }
+.separate-report-heading span { color: var(--muted); font-size: .82rem; }
+.separate-pdf-button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+.separate-pdf-button-grid .snapshot-export-action-group { display: block; }
+.separate-pdf-button-grid .btn { width: 100%; min-height: 46px; }
+.snapshot-email-summary-row { margin-top: 18px; }
+
+@media (max-width: 760px) {
+  .all-report-download-card { align-items: stretch; flex-direction: column; }
+  .all-report-download-card .btn { min-width: 0; width: 100%; }
+  .manual-player-step { padding: 13px; }
 }

@@ -1,0 +1,9 @@
+Pace Gaming KPI System V58
+
+- Complete PDF page order now explicitly follows the number and order of selected comparison pairs.
+- Complete PDF button shows the live page count after report generation.
+- Each selected comparison contributes exactly two pages: KPI totals/variance, then Booking Executive performance/variance.
+- Added smart month suggestions for the latest two completed months, their prior-year counterparts, and a current month-over-month comparison.
+- Smart suggestions refresh automatically once when a new reporting month begins, while manual selections remain preserved during that month.
+- Added a Use Latest Completed Months button for manual refresh.
+- New KPI Report now clears the active report and immediately prepares the latest suggested reporting periods.

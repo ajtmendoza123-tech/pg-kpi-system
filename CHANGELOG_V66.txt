@@ -1,0 +1,6 @@
+V66 — Simple Bookings + Prospects Email Summary
+
+- Email summary reduced to booking count and added prospects only.
+- One concise sentence per selected comparison.
+- Full KPI/theoretical/W-L/Booking Executive detail remains in attached PDF reports.
+- Copy Email Body now preserves simple formatting in Gmail/Outlook when supported.
