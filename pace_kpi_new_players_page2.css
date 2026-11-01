@@ -1,0 +1,84 @@
+/* V76: compact extra section on the second comparison PDF page */
+.pace-v76-new-player-summary {
+  box-sizing: border-box;
+  margin: 16px 0 0;
+  width: 100%;
+  border: 1px solid #d7dbe1;
+  border-radius: 4px;
+  padding: 10px 11px 9px;
+  background: #fff;
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+  font-family: inherit;
+}
+.pace-v76-new-player-summary-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #d7dbe1;
+  color: #31363c;
+}
+.pace-v76-new-player-summary-title strong {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.pace-v76-new-player-summary-title span {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+}
+.pace-v76-new-player-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 0;
+  border: 1px solid #d7dbe1;
+}
+.pace-v76-new-player-table thead th {
+  background: #394146;
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  font-weight: 800;
+  padding: 8px 4px;
+  border-right: 1px solid #686f74;
+  white-space: nowrap;
+}
+.pace-v76-new-player-table tbody td {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 9px 4px;
+  border-right: 1px solid #d7dbe1;
+  color: #343a40;
+  background: #f9fafb;
+}
+.pace-v76-new-player-table tbody .pace-v76-total-cell {
+  font-weight: 900;
+  color: #163957;
+  background: #ecf4fa;
+}
+.pace-v76-note {
+  font-size: 9px;
+  line-height: 1.35;
+  color: #667085;
+  margin-top: 7px;
+}
+@media print {
+  .pace-v76-new-player-summary {
+    box-shadow: none !important;
+    margin-top: 10px;
+    padding: 7px 8px;
+    border-radius: 0;
+  }
+  .pace-v76-new-player-summary-title { margin-bottom: 5px; padding-bottom: 4px; }
+  .pace-v76-new-player-summary-title strong { font-size: 10px; }
+  .pace-v76-new-player-summary-title span { font-size: 9px; }
+  .pace-v76-new-player-table thead th { font-size: 9px; padding: 5px 4px; }
+  .pace-v76-new-player-table tbody td { font-size: 11px; padding: 6px 4px; }
+  .pace-v76-note { font-size: 8px; margin-top: 4px; }
+}
