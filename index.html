@@ -227,6 +227,51 @@ table .total-row td{font-weight:850;background:var(--accent2);color:var(--accent
 .report-period-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 @media(max-width:760px){.date-review-header{flex-direction:column}.date-review-toolbar{align-items:stretch;flex-direction:column}.date-review-toolbar select,.date-review-toolbar button{width:100%}.report-period-actions{justify-content:flex-start}}
 
+/* V84: accessible high-contrast theme choices; no changes to the client-approved PDF format. */
+body[data-theme="teal"]{--bg:#eaf2f2;--paper:#ffffff;--paper2:#f1f8f8;--ink:#123335;--muted:#405e63;--accent:#006f75;--accent2:#d5f1f0;--accentdark:#005358;--dark:#14383b;--line:#afcfd1}
+body[data-theme="ocean"]{--bg:#eaf2fb;--paper:#ffffff;--paper2:#f4f8fe;--ink:#142c48;--muted:#49617c;--accent:#165da6;--accent2:#e0efff;--accentdark:#124b87;--dark:#173653;--line:#bed1e7}
+body[data-theme="charcoal"]{--bg:#e9eef0;--paper:#ffffff;--paper2:#f3f6f8;--ink:#17242e;--muted:#4a5b67;--accent:#315b77;--accent2:#dcecf4;--accentdark:#234158;--dark:#1d2c37;--line:#bac9d3}
+body[data-theme="sandstone"]{--bg:#f4efe6;--paper:#ffffff;--paper2:#faf6ee;--ink:#382c21;--muted:#665849;--accent:#796039;--accent2:#f1e7d5;--accentdark:#594525;--dark:#3b3129;--line:#d8c8b0}
+body[data-theme="steel"]{--bg:#ecf2f5;--paper:#ffffff;--paper2:#f5f9fc;--ink:#1c3145;--muted:#506679;--accent:#285d83;--accent2:#dcedf6;--accentdark:#214c6a;--dark:#1d3448;--line:#c4d6e2}
+body[data-theme="indigo"]{--bg:#eff0fb;--paper:#ffffff;--paper2:#f7f7fe;--ink:#232447;--muted:#565a76;--accent:#4c4c9f;--accent2:#e8e8fa;--accentdark:#38377b;--dark:#27274f;--line:#c9c9ed}
+.brand-logo{display:block;width:34px;height:34px;flex:0 0 34px;object-fit:contain;filter:none}
+.top-controls label{font-weight:750}.top-controls select{font-size:13px}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.source-audit{border:1px solid var(--line);border-radius:12px;background:var(--paper);margin-top:17px;overflow:hidden}
+.source-audit>summary{padding:15px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;background:var(--paper2)}
+.source-audit>summary>span:first-child{display:grid;gap:4px}.source-audit>summary strong{color:var(--ink);font-size:14px}.source-audit>summary small{color:var(--muted);font-size:12px}
+.source-audit-body{padding:14px 15px 17px}.source-audit-subtitle{font-weight:800;color:var(--ink);font-size:13px;margin:17px 0 10px}
+.source-audit-alerts{display:grid;gap:7px}.source-audit-alerts p{margin:0;padding:10px 12px;font-size:12px;line-height:1.55;border-radius:9px}
+.import-audit-alert{color:#873b20;background:#fff3e7;border:1px solid #efcab0}.import-audit-ok{color:#135c40;background:#e7f7ed;border:1px solid #b8deca}
+.source-map-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(174px,1fr));gap:8px}
+.source-map-pill{border:1px solid var(--line);border-radius:9px;background:var(--paper2);padding:9px;display:grid;gap:3px}
+.source-map-pill strong{font-size:12px}.source-map-pill small{font-size:11px;color:var(--muted);line-height:1.35;overflow-wrap:anywhere}
+.source-map-pill.unmapped{border-color:#e5a587;background:#fff4eb}
+.audit-table{min-width:860px;font-size:12px}.audit-table th{white-space:nowrap;font-size:11px}.audit-table td{white-space:nowrap;font-variant-numeric:tabular-nums}.audit-table td.audit-warning{color:#a14b1c;font-weight:850;background:#fff3e8}
+.audit-caption{margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.5}
+@media(max-width:760px){.brand-logo{width:28px;height:28px;flex-basis:28px}.source-map-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* V85: direct and unambiguous executive totals, preserving PDF design. */
+.executive-total-entry {padding:13px;display:grid;gap:6px;background:color-mix(in srgb,var(--accent2) 65%,white);border-bottom:1px solid var(--line)}
+.executive-total-entry label{font-size:11px;letter-spacing:.025em;font-weight:900;color:var(--accentdark)}
+.executive-total-entry input{font-size:19px;font-weight:900;padding:10px 12px;min-height:44px;background:white;color:var(--ink);border:1.5px solid var(--accent);border-radius:8px;width:100%}
+.executive-total-entry small{font-size:10px;color:var(--muted);line-height:1.3}
+.executive-names-entry{display:grid;gap:4px}
+.executive-names-entry>label{padding:9px 13px 0;color:var(--ink);font-size:11px;font-weight:800}
+.executive-names-entry>label span{font-weight:500;color:var(--muted)}
+.player-card .executive-names-entry textarea{min-height:86px}
+.numeric-entry-alert{margin:9px 12px 12px;border:1px solid #e6bb74;border-radius:8px;background:#fff8e8;color:#64471b;padding:9px 10px;display:grid;gap:8px;font-size:11px}
+.numeric-entry-alert .btn{justify-self:start}
+.manual-count-warning{border-top:1px solid #e6bb74;margin-top:8px;padding:8px;color:#99592f;font-size:11px}
+
+/* V86 — visible reconciliation of user-entered executive totals */
+.player-matrix-warning { padding:12px 14px;border:1px solid #e4b06a;border-radius:10px;background:#fff7e8;color:#815018;font-weight:650;line-height:1.5;margin:12px 0; }
+
+.player-backup-tools {display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:12px 0 20px;padding:12px 14px;border:1px solid #d4e2e3;border-radius:12px;background:#f5f9fa;}
+.player-backup-tools>span {display:grid;gap:3px;flex:1 1 310px;font-size:.84rem;}
+.player-backup-tools small {color:#60757a;line-height:1.35;}
+.player-restore-label {display:inline-flex;align-items:center;cursor:pointer;}
+
 </style>
   <script>
 
@@ -440,7 +485,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 
 </script>
   <script>
-/* Pace Gaming KPI System V83 — uploaded Check-Out date synchronization; original PDF layout preserved.
+/* Pace Gaming KPI System V87 — Pace casino-perspective variance with positive magnitude; correct per-executive new-player numeric totals, verified source mapping and original PDF layout.
    Import/operations data stays in the user's browser. Team PDF/email exports contain no player names. */
 'use strict';
 (() => {
@@ -460,11 +505,12 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     ['bookingAgent','Booking Agent (fallback)', ['booking agent','booking executive','booking owner']],
     ['status','Status', ['status','deal status','booking status','stage','deal stage']],
     ['property','Property', ['property','casino','casino property','hotel','destination property']],
-    ['credit','Credit', ['credit','total credit','credit amount']],
-    ['frontMoney','Front Money', ['front money','frontmoney','total front money']],
-    ['bankroll','Bankroll', ['bankroll','total bankroll']],
-    ['theo','Theoretical', ['theoretical','total theoretical','theo','theoretical win']],
-    ['wl','Player Win/Loss', ['player win loss','player win/loss','win/loss','w/l','player w/l','total w/l','win loss','p/l']],
+    ['credit','Credit', ['trip credit','credit','total credit','credit amount']],
+    ['frontMoney','Front Money', ['trip front money','front money','frontmoney','total front money']],
+    ['cash','Trip Cash (source check only)', ['trip cash','total trip cash','cash']],
+    ['bankroll','Bankroll', ['total trip bankroll','trip bankroll','bankroll','total bankroll']],
+    ['theo','Theoretical', ['final trip theo','final trip theoretical','total final trip theo','trip theo','theoretical','total theoretical','theo','theoretical win']],
+    ['wl','Player Win/Loss', ['final trip player win','final trip player win loss','final trip player win/loss','trip player win','player win loss','player win/loss','win/loss','w/l','player w/l','total w/l','win loss','p/l']],
     ['commission','Commission', ['commission','total commission','commission amount']],
     ['currency','Currency', ['currency','currency code']]
   ];
@@ -569,7 +615,14 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     [...$('monthInputs').querySelectorAll('input')].forEach((x,i)=>x.value=v[i]);
     comparisons=defaultComps();renderComparisons();syncPlayerMonths();persist();notice('Latest completed months suggested. You can edit them at any time.');
   }
-  function normalizedRawValue(row,key){return mapping[key] ? (row[mapping[key]]??'') : '';}
+  function normalizedRawValue(row,key){
+    const preferred=mapping[key];
+    if(preferred && Object.prototype.hasOwnProperty.call(row,preferred))return row[preferred]??'';
+    const aliases=FIELD.find(f=>f[0]===key)?.[2]||[];
+    const header=Object.keys(row).find(h=>aliases.some(alias=>norm(h)===norm(alias))) ||
+                 Object.keys(row).find(h=>aliases.some(alias=>norm(h).startsWith(norm(alias)+' ')));
+    return header ? (row[header]??'') : '';
+  }
   function autoMapping(headers){
     const mapped={};
     FIELD.forEach(([key,,aliases])=>{
@@ -579,6 +632,60 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     });
     return mapped;
   }
+  function renderSourceAudit(){
+    const panel=$('sourceAudit');if(!panel)return;
+    if(!raw.length){panel.classList.add('hidden');return;}
+    panel.classList.remove('hidden');
+    const important=[['checkoutDate','Check-Out / Departure Date'],['dealName','Deal name'],['bankroll','Total Trip Bankroll'],
+      ['cash','Trip Cash'],['credit','Trip Credit'],['frontMoney','Trip Front Money'],['theo','Final Trip Theo'],
+      ['wl','Final Trip Player Win'],['commission','Commission'],['dealOwner','Deal Owner'],['tripContact','Trip Contact']];
+    const missing=important.filter(([key])=>!mapping[key]);
+    const labels=important.map(([key,label])=>{
+      const col=mapping[key];
+      return `<span class="source-map-pill ${col?'mapped':'unmapped'}"><strong>${esc(label)}</strong><small>${col?`← ${esc(col)}`:'Not mapped'}</small></span>`;
+    }).join('');
+    const grouped=new Map();const missedRows=[];
+    for(const row of raw){
+      const status=String(normalizedRawValue(row,'status')||'');
+      if(/^(cancelled|canceled)(\b|$)/i.test(status.trim()))continue;
+      const month=parseDate(normalizedRawValue(row,'checkoutDate'));
+      if(!month){if(missedRows.length<5)missedRows.push(String(normalizedRawValue(row,'checkoutDate')||'(blank)'));continue;}
+      if(!grouped.has(month))grouped.set(month,{month,deals:new Set(),rows:0,bankroll:0,cash:0,credit:0,frontMoney:0,theo:0,wl:0,commission:0,missingTheo:0,missingWL:0,unbalanced:0,guestCheckedOutDeals:new Set(),missingRatingDeals:new Set()});
+      const g=grouped.get(month);g.rows++;
+      const dealID=cleanName(normalizedRawValue(row,'dealName')).toLowerCase()||`row-${g.rows}`;
+      g.deals.add(dealID);
+      if(/guest\s*checked\s*out/i.test(status))g.guestCheckedOutDeals.add(dealID);
+      if(['theo','wl'].some(key=>String(normalizedRawValue(row,key)??'').trim()===''))g.missingRatingDeals.add(dealID);
+      for(const key of ['bankroll','cash','credit','frontMoney','theo','wl','commission']){
+        const val=normalizedRawValue(row,key);
+        if(val===null||val===undefined||String(val).trim()===''){
+          if(key==='theo')g.missingTheo++;
+          if(key==='wl')g.missingWL++;
+        }else g[key]+=numeric(val);
+      }
+      if(mapping.bankroll&&mapping.cash&&mapping.credit&&mapping.frontMoney){
+        const bank=numeric(normalizedRawValue(row,'bankroll'));
+        const allocated=numeric(normalizedRawValue(row,'cash'))+numeric(normalizedRawValue(row,'credit'))+numeric(normalizedRawValue(row,'frontMoney'));
+        if(Math.abs(bank-allocated)>0.011)g.unbalanced++;
+      }
+    }
+    const formatAuditAmount=n=>money(n,2);
+    const rows=[...grouped.values()].sort((a,b)=>a.month.localeCompare(b.month));
+    const allMissing=rows.reduce((sum,g)=>sum+g.missingTheo,0);
+    const allMissingWL=rows.reduce((sum,g)=>sum+g.missingWL,0);
+    const badBalance=rows.reduce((sum,g)=>sum+g.unbalanced,0);
+    const pendingStatusTotal=rows.reduce((sum,g)=>sum+g.guestCheckedOutDeals.size,0);
+    const totals=rows.length?rows.map(g=>`<tr><th scope="row">${esc(fmtMonth(g.month))}</th><td>${number(g.deals.size)}</td><td>${esc(formatAuditAmount(g.bankroll))}</td><td>${esc(formatAuditAmount(g.theo))}</td><td class="${g.missingTheo?'audit-warning':''}">${g.missingTheo?`${number(g.missingTheo)} missing`:'Complete'}</td><td>${esc(formatAuditAmount(g.wl))}</td><td class="${g.missingWL?'audit-warning':''}">${g.missingWL?`${number(g.missingWL)} missing`:'Complete'}</td><td>${esc(formatAuditAmount(g.commission))}</td><td class="${g.guestCheckedOutDeals.size?'audit-warning':''}">${g.guestCheckedOutDeals.size?`${number(g.guestCheckedOutDeals.size)} awaiting ratings`:'Complete'}</td></tr>`).join(''):'<tr><td colspan="9">No usable dates. Check the date mapping.</td></tr>';
+    $('sourceAuditStatus').textContent=rows.length?`${rows.length} months · ${number(raw.length)} source rows`:'Check column mapping';
+    const missingKpis=missing.filter(([key])=>['checkoutDate','dealName','bankroll','credit','frontMoney','theo','wl','commission'].includes(key));
+    $('sourceAuditMessage').innerHTML=`${missingKpis.length?`<p class="import-audit-alert">Important fields not mapped: ${missingKpis.map(([,label])=>esc(label)).join(', ')}. Please review the column mapping.</p>`:''}
+      ${pendingStatusTotal||allMissing||allMissingWL?`<p class="import-audit-alert"><strong>Guest Checked Out — Awaiting Ratings:</strong> ${number(pendingStatusTotal)} booking(s). ${number(allMissing)} blank final Theo and ${number(allMissingWL)} blank final Player Win entries. Bookings remain included in KPI totals; missing financial ratings are not estimated.</p>`:'<p class="import-audit-ok">All imported bookings have final Theo and Player Win amounts; none are marked Guest Checked Out.</p>'}
+      ${mapping.bankroll&&mapping.cash&&mapping.credit&&mapping.frontMoney?`<p class="${badBalance?'import-audit-alert':'import-audit-ok'}">Bankroll cross-check (Trip Cash + Trip Credit + Trip Front Money): ${badBalance?number(badBalance)+' mismatched row(s).':'All rows reconcile.'}</p>`:''}
+      ${missedRows.length?`<p class="import-audit-alert">Some dates were blank or unreadable: ${esc(missedRows.join(', '))}</p>`:''}`;
+    $('sourceMapPills').innerHTML=labels;
+    $('sourceAuditTable').innerHTML=`<thead><tr><th>Imported month</th><th>Bookings</th><th>Bankroll</th><th>Final Theo</th><th>Missing Theo</th><th>Player Win</th><th>Missing Win</th><th>Commission</th><th>Guest Checked Out</th></tr></thead><tbody>${totals}</tbody>`;
+  }
+
   function renderMapping(){
     const options=columns.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
     $('mappingGrid').innerHTML=FIELD.map(([key,label])=>`<label>${esc(label)}<select data-field="${key}"><option value="">Not included / select...</option>${options}</select></label>`).join('');
@@ -636,8 +743,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     if(count){
       // Ignore a stale mapping from a previous upload when the earlier source rows were cleared.
       const inferred=autoMapping(columns);
-      mapping={...inferred,...Object.fromEntries(Object.entries(mapping).filter(([,value])=>columns.includes(value)))};
-      renderMapping();renderFileList();refreshReadiness();
+      mapping={...Object.fromEntries(Object.entries(mapping).filter(([,value])=>columns.includes(value))),...inferred};
+      renderMapping();renderFileList();refreshReadiness();renderSourceAudit();
       const detected=renderDateReview();
       // Do not silently guess a month when every slash-formatted source date is ambiguous.
       const mustConfirmDateOrder = Boolean(detected.warning && /Mixed day\/month formats|Dates such as/.test(detected.warning));
@@ -794,7 +901,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     const slots=[...$('monthInputs').querySelectorAll('input')];
     slots.forEach((slot,i)=>{slot.value=selected[i]||'';});
     comparisons=pairs.slice(0,6);
-    renderComparisons();syncPlayerMonths();persist();invalidate();
+    renderComparisons();syncPlayerMonths();persist();invalidate();renderSourceAudit();
     dateSelectionEdited=false;
     renderSelectedDateWarning();
     if(!automatic)notice(`Report dates set from uploaded Check-Out records: ${selected.map(fmtMonth).join(', ')}.`,false);
@@ -817,9 +924,12 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       const ow=rowOwner(r);
       out.push({month:d,deal:cleanName(normalizedRawValue(r,'dealName')),player:cleanName(normalizedRawValue(r,'playerName')),owner:ow.code,ownerName:ow.name,
         playerOwner:cleanName(normalizedRawValue(r,'playerOwner')),property:cleanName(normalizedRawValue(r,'property')),
+        status:cleanName(normalizedRawValue(r,'status')),
         credit:numeric(normalizedRawValue(r,'credit')),frontMoney:numeric(normalizedRawValue(r,'frontMoney')),
-        bankroll:numeric(normalizedRawValue(r,'bankroll')),theo:numeric(normalizedRawValue(r,'theo')),
-        wl:numeric(normalizedRawValue(r,'wl')),commission:numeric(normalizedRawValue(r,'commission'))});
+        cash:numeric(normalizedRawValue(r,'cash')),bankroll:numeric(normalizedRawValue(r,'bankroll')),theo:numeric(normalizedRawValue(r,'theo')),
+        wl:numeric(normalizedRawValue(r,'wl')),commission:numeric(normalizedRawValue(r,'commission')),
+        theoMissing:String(normalizedRawValue(r,'theo')??'').trim()==='',
+        wlMissing:String(normalizedRawValue(r,'wl')??'').trim()===''});
     }
     return {rows:out,skipped,cancelled};
   }
@@ -828,6 +938,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     if(!players[month].names || typeof players[month].names !== 'object')players[month].names={};
     if(!players[month].counts || typeof players[month].counts !== 'object')players[month].counts={};
     if(!players[month].extras || typeof players[month].extras !== 'object')players[month].extras={};
+    if(!players[month].executiveTotals || typeof players[month].executiveTotals !== 'object')players[month].executiveTotals={};
     if(!players[month].ownerResolutions || typeof players[month].ownerResolutions !== 'object')players[month].ownerResolutions={};
     return players[month];
   }
@@ -839,7 +950,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   };
   function playerCounts(month){
     const data=playerFor(month);
-    const byExec={},namedByExec={},unnamedByExec={},duplicateNames=[];
+    const byExec={},namedByExec={},unnamedByExec={},autoByExec={},manualByExec={},duplicateNames=[];
     const allNames=new Map();
     // Build a unique name inventory per month, collecting all executives that listed a name.
     // No player is counted twice in the same month, even if the case or spacing differs.
@@ -875,7 +986,12 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       // Otherwise a legacy count and the named players could count twice.
       const unnamed=extra!==null ? extra : names.length===0 ? (legacy??0) : 0;
       unnamedByExec[code]=unnamed;
-      byExec[code]=namedByExec[code]+unnamed;
+      autoByExec[code]=namedByExec[code]+unnamed;
+      const manual=validCount(data.executiveTotals[code]);
+      manualByExec[code]=manual;
+      // A per-executive total is the full executive count, NOT an additional count.
+      // If blank, the unique-name inventory plus optional unnamed extras is used.
+      byExec[code]=manual!==null ? manual : autoByExec[code];
     });
     const subtotal=EXEC.reduce((sum,code)=>sum+byExec[code],0);
     const savedTotal=validCount(data.total);
@@ -883,7 +999,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     const hasOfficial=manualEnabled && savedTotal!==null;
     const total=hasOfficial?savedTotal:subtotal;
     const unresolvedNames=duplicateNames.filter(d=>!d.resolved);
-    return {byExec,namedByExec,unnamedByExec,subtotal,total,hasOfficial,
+    const manualConflicts=EXEC.filter(code=>manualByExec[code]!==null && manualByExec[code]<namedByExec[code]);
+    return {byExec,namedByExec,unnamedByExec,autoByExec,manualByExec,manualConflicts,subtotal,total,hasOfficial,
       hasSavedOfficial:savedTotal!==null,savedTotal,manualEnabled,
       difference:hasOfficial?total-subtotal:0,duplicateNames,unresolvedNames};
   }
@@ -913,13 +1030,31 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     const rows=EXEC.map(code=>`<tr><th scope="row">${code}${KNOWN[code]&&KNOWN[code]!==code?` <small>${esc(KNOWN[code])}</small>`:''}</th>${months.map(m=>`<td class="${m===playerMonth?'selected-month-column':''}">${number(values[m].byExec[code])}</td>`).join('')}</tr>`).join('');
     const calc=`<tr class="matrix-total-row"><th scope="row">CALCULATED TOTAL</th>${months.map(m=>`<td class="${m===playerMonth?'selected-month-column':''}">${number(values[m].subtotal)}</td>`).join('')}</tr>`;
     const used=`<tr class="matrix-used-row"><th scope="row">TOTAL USED IN REPORT</th>${months.map(m=>`<td class="${m===playerMonth?'selected-month-column':''}">${number(values[m].total)}${values[m].hasOfficial?' <sup title="Manual override active">*</sup>':''}</td>`).join('')}</tr>`;
+    const discrepancy=months.some(m=>values[m].hasOfficial&&values[m].difference!==0)
+      ? '<p class="player-matrix-warning">A manual monthly override differs from the sum of executive entries. The executive counts remain exactly as entered; the report total reflects the explicitly enabled override. Turn off the override to use the executive sum.</p>' : '';
     table.innerHTML=`<thead><tr><th scope="col">BOOKING EXECUTIVE</th>${heads}</tr></thead><tbody>${rows}${calc}${used}</tbody>`;
+    const warning=$('playerCountDiscrepancy');if(warning)warning.innerHTML=discrepancy;
   }
   function renderPlayers(){
     renderPlayerMonthChips();
     if(!playerMonth){$('playerNamesGrid').innerHTML='<p>Choose a month above to add names.</p>';renderPlayerMonthMatrix();return;}
     const data=playerFor(playerMonth),counts=playerCounts(playerMonth);
-    $('playerNamesGrid').innerHTML=EXEC.map(code=>`<div class="player-card"><div class="player-card-head"><strong>${code} <span style="font-weight:500">${KNOWN[code]&&KNOWN[code]!==code?esc('· '+KNOWN[code]):''}</span></strong><span data-badge="${code}">${number(counts.byExec[code])} players</span></div><textarea aria-label="${code} new player names for ${esc(fmtMonth(playerMonth))}" data-executive="${code}" placeholder="One new player name per line">${esc(data.names[code]||'')}</textarea></div>`).join('');
+    $('playerNamesGrid').innerHTML=EXEC.map(code=>{
+      const rawNames=String(data.names[code]||'').trim();
+      const looksLikeAmount=/^\d+$/.test(rawNames) && validCount(rawNames)!==null;
+      const manual=data.executiveTotals[code]===undefined?'':data.executiveTotals[code];
+      const suggestAmount=looksLikeAmount
+        ? `<div class="numeric-entry-alert" data-number-alert="${code}"><span>“${esc(rawNames)}” is in the name box. That counts as <strong>one name/ID</strong>, not ${esc(rawNames)} players.</span><button class="btn secondary small" type="button" data-convert-number="${code}">Use ${esc(rawNames)} as ${code} total</button></div>`
+        : '';
+      return `<div class="player-card">
+        <div class="player-card-head"><strong>${code} <span style="font-weight:500">${KNOWN[code]&&KNOWN[code]!==code?esc('· '+KNOWN[code]):''}</span></strong><span data-badge="${code}">${number(counts.byExec[code])} players</span></div>
+        <div class="executive-total-entry"><label for="count-${code}">TOTAL ADDED BY ${code} (${esc(shortMonth(playerMonth))})</label>
+          <input id="count-${code}" data-executive-total="${code}" type="number" inputmode="numeric" min="0" step="1" value="${esc(manual)}" placeholder="Enter a number" aria-label="Total new players added by ${code} in ${esc(fmtMonth(playerMonth))}">
+          <small data-total-mode="${code}">${counts.manualByExec[code]!==null?'Manual executive total used in report':`${number(counts.autoByExec[code])} calculated from names / unnamed additions`}</small></div>
+        <div class="executive-names-entry"><label for="names-${code}">Optional player names / IDs <span>(one per line)</span></label>
+          <textarea id="names-${code}" aria-label="${code} new player names for ${esc(fmtMonth(playerMonth))}" data-executive="${code}" placeholder="One new player name or ID per line">${esc(data.names[code]||'')}</textarea></div>
+        ${suggestAmount}</div>`;
+    }).join('');
     const override=$('officialOverride');
     override.checked=data.useOfficial===true;
     $('officialTotal').value=override.checked ? (data.total===undefined?'':data.total) : '';
@@ -935,17 +1070,29 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     if(!playerMonth)return;
     const c=playerCounts(playerMonth);
     if(!$('officialOverride').checked)$('officialTotal').placeholder=`Automatic total: ${number(c.subtotal)}`;
-    EXEC.forEach(code=>{const el=document.querySelector(`[data-badge="${code}"]`);if(el)el.textContent=`${number(c.byExec[code])} new players`;});
+    EXEC.forEach(code=>{
+      const el=document.querySelector(`[data-badge="${code}"]`);if(el)el.textContent=`${number(c.byExec[code])} new players`;
+      const mode=document.querySelector(`[data-total-mode="${code}"]`);
+      if(mode)mode.textContent=c.manualByExec[code]!==null?'Manual executive total used in report':`${number(c.autoByExec[code])} calculated from names / unnamed additions`;
+      const alert=document.querySelector(`[data-number-alert="${code}"]`);
+      if(alert){
+        const rawValue=String(playerFor(playerMonth).names[code]||'').trim();
+        alert.classList.toggle('hidden', !/^\d+$/.test(rawValue));
+      }
+    });
     renderPlayerMonthChips();
     renderPlayerMonthMatrix();
     const box=$('playerReconcile');
-    box.classList.toggle('warn',c.hasOfficial&&c.difference!==0 || c.manualEnabled&&!c.hasOfficial || c.unresolvedNames.length>0);
+    box.classList.toggle('warn',c.hasOfficial&&c.difference!==0 || c.manualEnabled&&!c.hasOfficial || c.unresolvedNames.length>0 || c.manualConflicts.length>0);
     const calc=`<small>Automatically calculated from names + additional unnamed players</small><strong>${number(c.subtotal)} players</strong>`;
     const overrideStatus=c.hasOfficial
       ? `<small>Manual override ACTIVE: ${number(c.total)} used in reports${c.difference!==0?` · ${number(Math.abs(c.difference))} ${c.difference>0?'not allocated to an executive':'more assigned than official total'}`:' · matches executive sum'}</small>`
       : c.manualEnabled ? '<small>Override enabled: enter a valid non-negative whole number to apply it. Automatic total is currently used.</small>'
       : c.hasSavedOfficial ? `<small>Saved manual value ${number(c.savedTotal)} is NOT applied. Automatic total is used until you enable the override.</small>`
       : '<small>AUTOMATIC total is used in reports. No manual override is active.</small>';
+    const manualCheck=c.manualConflicts.length
+      ? `<div class="manual-count-warning"><strong>Review executive totals:</strong> ${c.manualConflicts.map(code=>`${code} entered ${number(c.manualByExec[code])} but has ${number(c.namedByExec[code])} distinct assigned names`).join(' · ')}. The entered number is used in the report; correct it if unintended.</div>`
+      : '';
     const duplicateNotice=c.duplicateNames.length
       ? `<div class="player-duplicates"><strong>${c.unresolvedNames.length ? 'Review shared names — each is counted only once:' : 'Shared names resolved — counted once per player:'}</strong>
         ${c.duplicateNames.map(d=>`<label class="duplicate-owner-row">
@@ -956,7 +1103,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         ${c.unresolvedNames.length ? '<button type="button" class="btn secondary small confirm-duplicate-owners" id="confirmDuplicateOwners">Confirm displayed assignments</button>' : ''}
         <small class="duplicate-footnote">If the entries are the same person, choose one executive. If they are actually different people with the same name, choose “Different people”. Names never appear in PDF or email exports.</small>
       </div>` : '';
-    box.innerHTML=calc+overrideStatus+duplicateNotice;
+    box.innerHTML=calc+overrideStatus+manualCheck+duplicateNotice;
   }
   function confirmDuplicateOwners(month){
     const data=playerFor(month);
@@ -969,6 +1116,63 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     invalidate();
   }
   function setPlayerName(code,value){playerFor(playerMonth).names[code]=value;updatePlayerTotals();persist();}
+  function setExecutiveTotal(code,value){
+    if(!EXEC.includes(code) || !playerMonth)return;
+    const data=playerFor(playerMonth);
+    data.executiveTotals[code]=value;
+    // A new executive TOTAL ADDED entry is authoritative. Disable any stale
+    // whole-month override; users may explicitly re-enable it afterwards.
+    if(data.useOfficial && validCount(value)!==null){
+      data.useOfficial=false;
+      $('officialOverride').checked=false;
+      $('officialTotal').disabled=true;
+      $('officialTotal').value='';
+      notice(`Your entered ${code} total is now used. An older whole-month override was switched off for ${fmtMonth(playerMonth)}.`);
+    }
+    updatePlayerTotals();persist();
+  }
+  function backupPlayerEntries(){
+    persist();
+    const contents=JSON.stringify({format:'pace-gaming-private-player-entries',version:1,createdAt:new Date().toISOString(),entries:players},null,2);
+    download(new Blob([contents],{type:'application/json;charset=utf-8'}),`${exportDate()} - Pace KPI - PRIVATE Player Entries.json`);
+    notice('Private new-player entry backup downloaded. Keep it secure; it may include player names.');
+  }
+  async function restorePlayerEntries(file){
+    if(!file)return;
+    try{
+      if(file.size>4*1024*1024)throw new Error('Backup is unusually large (over 4 MB).');
+      const parsed=JSON.parse(await file.text());
+      if(parsed?.format!=='pace-gaming-private-player-entries'||!parsed.entries||typeof parsed.entries!=='object')
+        throw new Error('This is not a Pace Gaming player-entry backup.');
+      const incoming=Object.entries(parsed.entries).filter(([month,item])=>/^\d{4}-\d{2}$/.test(month)&&item&&typeof item==='object');
+      if(!incoming.length)throw new Error('No valid monthly player entries found.');
+      if(!confirm(`Restore saved player entries for ${incoming.length} month(s)? Existing entries for these same months will be replaced. Other months remain unchanged.`))return;
+      incoming.forEach(([month,item])=>{
+        const data=playerFor(month);
+        for(const code of EXEC){
+          if(item.names&&typeof item.names[code]==='string')data.names[code]=item.names[code].slice(0,50000);
+          if(item.executiveTotals&&item.executiveTotals[code]!==undefined){
+            const c=validCount(item.executiveTotals[code]);
+            if(c!==null)data.executiveTotals[code]=String(c);
+          }
+          if(item.extras&&item.extras[code]!==undefined){
+            const c=validCount(item.extras[code]);if(c!==null)data.extras[code]=String(c);
+          }
+          if(item.counts&&item.counts[code]!==undefined){
+            const c=validCount(item.counts[code]);if(c!==null)data.counts[code]=String(c);
+          }
+        }
+        if(item.ownerResolutions&&typeof item.ownerResolutions==='object'){
+          for(const [key,code] of Object.entries(item.ownerResolutions))if(key.length<200&&(EXEC.includes(code)||code==='__SEPARATE__'))data.ownerResolutions[key]=code;
+        }
+        data.useOfficial=item.useOfficial===true;
+        const official=validCount(item.total);
+        if(official!==null)data.total=String(official);
+      });
+      persist();syncPlayerMonths();invalidate();
+      notice(`Restored player entries for ${incoming.length} month(s). Verify the executive-by-month table before generating.`);
+    }catch(error){notice(`Could not restore player backup: ${error.message}`,true);}
+  }
   function setPlayerCount(code,value){
     const d=playerFor(playerMonth);
     d.extras[code]=value;
@@ -993,7 +1197,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   function aggregate(rows,month){
     const list=rows.filter(r=>r.month===month);
     const m={month,bookings:0,credit:0,frontMoney:0,bankroll:0,theo:0,wl:0,commission:0,
-      executives:{},topPatrons:[],dealNames:new Set(),rows:list.length};
+      executives:{},topPatrons:[],dealNames:new Set(),rows:list.length,missingTheo:0,missingWL:0,
+      guestCheckedOutDeals:new Set(),missingRatingDeals:new Set()};
     const patrons=new Map();
     const dealAttribution=new Map();
     // A deal gets exactly one booking executive, even when its source export has multiple rows.
@@ -1007,6 +1212,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       const owner=dealAttribution.get(dealID);
       m.dealNames.add(dealID);
       m.credit+=r.credit;m.frontMoney+=r.frontMoney;m.bankroll+=r.bankroll;m.theo+=r.theo;m.wl+=r.wl;m.commission+=r.commission;
+      if(r.theoMissing)m.missingTheo++;
+      if(r.wlMissing)m.missingWL++;
+      if(/guest\s*checked\s*out/i.test(r.status||''))m.guestCheckedOutDeals.add(dealID);
+      if(r.theoMissing||r.wlMissing)m.missingRatingDeals.add(dealID);
       if(!m.executives[owner.code])m.executives[owner.code]={code:owner.code,name:owner.name,bookings:0,theo:0,wl:0,commission:0,dealNames:new Set()};
       const ex=m.executives[owner.code];ex.dealNames.add(dealID);ex.theo+=r.theo;ex.wl+=r.wl;ex.commission+=r.commission;
       if(r.player){
@@ -1016,6 +1225,11 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       }
     }
     m.bookings=m.dealNames.size;
+    m.guestCheckedOut=m.guestCheckedOutDeals.size;
+    m.missingRatingBookings=m.missingRatingDeals.size;
+    m.awaitingRatings=new Set([...m.guestCheckedOutDeals,...m.missingRatingDeals]).size;
+    delete m.guestCheckedOutDeals;
+    delete m.missingRatingDeals;
     Object.values(m.executives).forEach(ex=>{ex.bookings=ex.dealNames.size;delete ex.dealNames;});
     m.topPatrons=[...patrons.values()].sort((a,b)=>b.theo-a.theo).slice(0,5).map((p,i)=>({label:`Patron ${i+1} - ${p.owner}`,theo:p.theo,wl:p.wl}));
     delete m.dealNames;
@@ -1077,7 +1291,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     return [...codes].map(code=>({...executiveData(month,code),newPlayers:monthData(month).newPlayers.byExec[code]||0})).sort((a,b)=>b.bookings-a.bookings||b.newPlayers-a.newPlayers||a.name.localeCompare(b.name));
   }
   function comparisonSummary(pair){const old=monthData(pair.from),cur=monthData(pair.to);return {old,cur,pair};}
-  function diff(a,b,metric){return metric==='wl'? (a-b):(b-a);}
+  // Uploaded Player W/L is from the player's perspective. A player loss (negative)
+  // is a positive net win for Pace. Preserve raw Player W/L in import/internal tables.
+  function paceNetWin(playerWinLoss){return -(Number(playerWinLoss)||0);}
+  function diff(a,b,metric){return metric==='wl'? (paceNetWin(b)-paceNetWin(a)):(b-a);}
   function pct(oldVal,currentVal,metric){
     const base=Number(oldVal)||0;if(base===0)return null;
     return Math.abs(diff(base,currentVal,metric))/Math.abs(base)*100;
@@ -1090,7 +1307,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   function deltaClass(oldVal,currentVal,metric){const d=diff(oldVal,currentVal,metric);return d>0?'positive':d<0?'negative':'neutral';}
   function totalByExec(month,code){return monthData(month).newPlayers.byExec[code]||0;}
   function formattedMonthRows(){
-    const metrics=[['Bookings','bookings',number],['Credit','credit',money],['Front Money','frontMoney',money],['Bankroll','bankroll',money],['Theo','theo',money],['Player W/L','wl',money],['Commission','commission',money],['New Players Added','newPlayers',x=>number(x.total)]];
+    const metrics=[['Bookings','bookings',number],['Credit','credit',money],['Front Money','frontMoney',money],['Bankroll','bankroll',money],['Theo','theo',money],['Player W/L','wl',money],['Commission','commission',money],['New Players Added','newPlayers',x=>number(x.total)],['Guest Checked Out - Awaiting Ratings','guestCheckedOut',number]];
     return metrics.map(([label,key,fmt])=>({label,values:report.months.map(m=>fmt(key==='newPlayers'?monthData(m).newPlayers:monthData(m)[key]))}));
   }
   function sampleData(){
@@ -1144,7 +1361,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     return {text:`${d>0?'▲':d<0?'▼':'–'} ${val}${pc===null?'':` · ${pc.toFixed(1)}%`}`,color:d>0?'#08784d':d<0?'#b13a32':'#67717b'};
   }
   function buildEmailHTML(){
-    const monthMetrics=[['Bookings','bookings','count'],['Theo','theo','money'],['Player W/L','wl','money'],['Commission','commission','money'],['Top Bookings','executive','exec'],['New Players Added','newPlayers','count']];
+    const monthMetrics=[['Bookings','bookings','count'],['Theo','theo','money'],['Pace Net Win / Loss','wl','money'],['Commission','commission','money'],['Top Bookings','executive','exec'],['New Players Added','newPlayers','count'],['Guest Checked Out / Awaiting Ratings','guestCheckedOut','count']];
     const months=report.months;
     const cell=(value)=>`<td style="border-bottom:1px solid #e4e8ec;padding:10px 8px;text-align:right;white-space:nowrap;">${esc(value)}</td>`;
     const monthly=monthMetrics.map(([label,key,kind])=>`<tr><th style="padding:10px;text-align:left;background:#f8fafb;border-bottom:1px solid #e4e8ec;white-space:nowrap">${esc(label)}</th>${months.map(m=>{
@@ -1152,7 +1369,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       let v;
       if(kind==='exec') { const top=reportExecutives(m).find(x=>x.bookings>0);v=top?`${top.code} — ${number(top.bookings)}`:'—'; }
       else if(key==='newPlayers')v=number(data.newPlayers.total);
-      else v=kind==='money'?money(data[key]):number(data[key]);
+      else v=kind==='money'?money(key==='wl'?paceNetWin(data[key]):data[key]):number(data[key]);
       return cell(v);
     }).join('')}</tr>`).join('');
     function compTable(type){
@@ -1162,7 +1379,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         const values=[emailCompareCell(p,'bookings','count'),emailCompareCell(p,'theo'),emailCompareCell(p,'wl'),emailCompareCell(p,'commission')];
         return `<tr><th style="padding:10px;text-align:left;border-bottom:1px solid #e4e8ec;white-space:nowrap;">${esc(shortMonth(p.from))} vs ${esc(shortMonth(p.to))}</th>${values.map(v=>`<td style="padding:10px 8px;text-align:right;border-bottom:1px solid #e4e8ec;white-space:nowrap;font-weight:bold;color:${v.color}">${esc(v.text)}</td>`).join('')}</tr>`;
       }).join('');
-      return `<h3 style="font-size:16px;margin:23px 0 10px;color:#253845">${esc(type)}</h3><div style="max-width:100%;overflow:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;min-width:620px;"><thead><tr><th style="text-align:left">Comparison</th><th>Bookings Δ</th><th>Theo Δ</th><th>Pace W/L Δ</th><th>Commission Δ</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+      return `<h3 style="font-size:16px;margin:23px 0 10px;color:#253845">${esc(type)}</h3><div style="max-width:100%;overflow:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;min-width:620px;"><thead><tr><th style="text-align:left">Comparison</th><th>Bookings Δ</th><th>Theo Δ</th><th>Pace Net W/L Δ</th><th>Commission Δ</th></tr></thead><tbody>${rows}</tbody></table></div>`;
     }
     const list=report.pairs.map(p=>`<li>${esc(fmtMonth(p.from))} vs ${esc(fmtMonth(p.to))}</li>`).join('');
     return `<div style="font-family:Arial,Helvetica,sans-serif;color:#24303a;font-size:13px;line-height:1.6;max-width:960px;margin:auto">
@@ -1170,6 +1387,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       <h2 style="font-size:18px;margin:22px 0 11px">KPI Summary by Month</h2>
       <div style="max-width:100%;overflow:auto"><table style="border-collapse:collapse;width:100%;font-size:12px;min-width:620px"><thead><tr><th style="text-align:left">KPI</th>${months.map(m=>`<th style="text-align:right">${esc(shortMonth(m))}</th>`).join('')}</tr></thead><tbody>${monthly}</tbody></table></div>
       ${compTable('Year-over-Year')}${compTable('Month-over-Month')}${compTable('Cross-Year')}
+      <p style="color:#667085;font-size:11px;margin:7px 0 0">Pace Net W/L is shown from the casino perspective (the inverse of Player W/L in Excel). Variance amounts and percentages use positive magnitudes; arrows indicate whether performance improved or declined.</p>
+      ${report.months.some(m=>monthData(m).awaitingRatings>0)?`<p style="margin-top:18px;padding:12px;border-left:3px solid #b7791f;background:#fff9ee;"><strong>Outstanding final ratings:</strong> ${report.months.filter(m=>monthData(m).awaitingRatings>0).map(m=>`${esc(fmtMonth(m))}: ${number(monthData(m).guestCheckedOut)} Guest Checked Out, ${number(monthData(m).missingRatingBookings)} booking(s) with missing final rating values`).join('; ')}. These bookings are included in the booking KPI; Theo and Player W/L include only available final ratings.</p>`:''}
       <p style="margin-top:22px">The attached PDFs include the detailed monthly variances and Booking Executive performance.</p>
       <p>Thank you,<br>${esc(report.preparedBy)}</p>
       </div>`;
@@ -1180,11 +1399,13 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     lines.push('','KPI Summary by Month');
     report.months.forEach(m=>{
       const d=monthData(m),top=reportExecutives(m).find(ex=>ex.bookings>0);
-      lines.push(`${fmtMonth(m)} | Bookings ${number(d.bookings)} | Theo ${money(d.theo)} | Player W/L ${money(d.wl)} | Commission ${money(d.commission)} | Top Bookings ${top?top.code+' ('+number(top.bookings)+')':'—'} | New Players ${number(d.newPlayers.total)}`);
+      lines.push(`${fmtMonth(m)} | Bookings ${number(d.bookings)} | Theo ${money(d.theo)} | Pace Net W/L ${money(paceNetWin(d.wl))} | Commission ${money(d.commission)} | Top Bookings ${top?top.code+' ('+number(top.bookings)+')':'—'} | New Players ${number(d.newPlayers.total)} | Guest Checked Out / Awaiting Ratings ${number(d.guestCheckedOut)} | Missing Final Rating Records ${number(d.missingRatingBookings)}`);
     });
     report.pairs.forEach(p=>{lines.push(`${p.type}: ${fmtMonth(p.from)} vs ${fmtMonth(p.to)}`);
       ['bookings','theo','wl','commission'].forEach(k=>lines.push(`  ${k==='wl'?'Pace W/L Change':k}: ${emailCompareCell(p,k,k==='bookings'?'count':'money').text}`));
     });
+    const outstanding=report.months.filter(m=>monthData(m).awaitingRatings>0);
+    if(outstanding.length)lines.push('','Outstanding final ratings:',...outstanding.map(m=>`${fmtMonth(m)}: ${number(monthData(m).guestCheckedOut)} Guest Checked Out, ${number(monthData(m).missingRatingBookings)} booking(s) with missing final ratings. All bookings are counted; Theo and Player W/L use available final ratings only.`));
     lines.push('','The attached PDFs include the detailed KPI totals, variances, and Booking Executive performance.','','Thank you,',report.preparedBy);
     return lines.join('\n');
   }
@@ -1211,6 +1432,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   }
   /* Vector PDF engine. Explicit fixed pages prevent browser print cropping and permit real downloadable filenames. */
   const PDF_W=792,PDF_H=612;
+  const SMALL_PACE_LOGO_JPEG='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';
+
   const rgb=h=>{h=h.replace('#','');return [0,2,4].map(i=>(parseInt(h.slice(i,i+2),16)/255).toFixed(3)).join(' ');};
   const printable=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/€/g,'EUR ').replace(/₱/g,'PHP ').replace(/[▲]/g,'UP ').replace(/[▼]/g,'DOWN ').replace(/[–—−]/g,'-').replace(/[•]/g,'*').replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"').replace(/[^\x20-\x7e]/g,'?');
   const pdfSafe=s=>printable(s).replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');
@@ -1227,6 +1450,9 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       this.rect(x,y,w,h,fill);
       this.line(x,y,x+w,y,border,.55);this.line(x,y+h,x+w,y+h,border,.55);
       this.line(x,y,x,y+h,border,.55);this.line(x+w,y,x+w,y+h,border,.55);
+    }
+    logo(x,top,w=24,h=24){
+      this.ops.push(`q ${w.toFixed(1)} 0 0 ${h.toFixed(1)} ${x.toFixed(1)} ${(PDF_H-top-h).toFixed(1)} cm /ImLogo Do Q`);
     }
     deltaGlyph(x,top,size=7,color='#ffffff'){
       // Vector outline of Greek Delta, avoiding missing glyphs in built-in PDF fonts.
@@ -1268,7 +1494,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     page(title,subtitle=''){
       const p=new PDFPage();this.pages.push(p);
       p.rect(0,0,PDF_W,10,'#1b6b65');
-      p.text(39,38,'PACE GAMING  /  INTERNAL KPI',10,'#1b6b65',true);
+      p.logo(39,20,25,25);
+      p.text(73,38,'PACE GAMING  /  INTERNAL KPI',10,'#1b6b65',true);
       p.text(PDF_W-40,38,`EXPORT ${exportDate()}`,8,'#708087',false,'right');
       p.line(39,51,PDF_W-39,51,'#d5dfdf',1);
       p.text(40,90,title,20,'#202d36',true);
@@ -1289,12 +1516,13 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       const p=this.page('Required monthly KPI totals',`Reporting months · ${batch.map(fmtMonth).join(' / ')}${total>1?` · Section ${part} of ${total}`:''}`);
       const h=['KPI',...batch.map(shortMonth)];
       const w=[180,...batch.map(()=>Math.floor(532/batch.length))];
-      const rowKeys=[['Number of Bookings','bookings','count'],['Total Credit','credit'],['Total Front Money','frontMoney'],['Total Bankroll','bankroll'],['Total Theo','theo'],['Player Win/Loss','wl'],['Total Commission','commission'],['New Players Added','newPlayers','count']];
+      const rowKeys=[['Number of Bookings','bookings','count'],['Total Credit','credit'],['Total Front Money','frontMoney'],['Total Bankroll','bankroll'],['Total Theo','theo'],['Player Win/Loss','wl'],['Total Commission','commission'],['New Players Added','newPlayers','count'],['Guest Checked Out / Pending','guestCheckedOut','count']];
       const rows=rowKeys.map(([label,key,kind])=>[label,...batch.map(m=>{
         const value=key==='newPlayers'?monthData(m).newPlayers.total:monthData(m)[key];return kind==='count'?number(value):money(value);
       })]);
-      p.table(39,150,h,rows,w,{rowH:39,font:10,headerH:34});
-      p.text(40,540,'Player W/L is the signed value supplied by PipelineCRM.',9,'#65747c');
+      p.table(39,150,h,rows,w,{rowH:36,font:9.6,headerH:34});
+      p.text(40,525,'Guest Checked Out bookings remain in booking counts; final ratings pending are not estimated.',8.5,'#85612e');
+      p.text(40,544,'Player W/L is the signed value supplied by PipelineCRM.',8.5,'#65747c');
     }
     comparisonPage(pair,kind){
       // Match the existing client-approved blue-and-white two-page comparison export.
@@ -1302,7 +1530,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       const from=fmtMonth(pair.from),to=fmtMonth(pair.to);
       const navy='#2c5475',title='#263b55',muted='#788491',line='#d4dae2';
       const isTotals=kind==='totals';
-      p.rect(55,45,22,22,'#50b9c2');p.rect(62,51,9,9,'#2c5475');
+      p.logo(53,43,26,26);
       p.text(98,43,`CONFIDENTIAL  /  ${pair.type.toUpperCase()} KPI`,7.5,'#50799b',true);
       p.text(98,63,'Pace Gaming Internal KPI',18,title,true);
       p.text(98,80,`${from} vs ${to} / ${isTotals?'KPI Variance':'Booking Executives'}`,11,title,true);
@@ -1311,7 +1539,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       p.text(735,65,`${shortMonth(pair.from)} vs ${shortMonth(pair.to)}`,10.6,navy,true,'right');
       p.text(735,78,`Generated ${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}`,7,muted,false,'right');
       p.line(46,97,746,97,navy,.9);
-      p.comparisonNote='Variance shows the size and direction of change. UP = increase; DOWN = decrease. W/L variance is shown from Pace perspective.';
+      p.comparisonNote='Pace W/L = inverse of uploaded Player W/L. Variance and % show positive magnitudes; UP / DOWN arrows show direction.';
       return p;
     }
     comparisonTableCell(p,x,y,w,h,entry,{isHeader=false,isMetric=false,align='right',emphasis=false,negative=false,shade=false,indicator=0,font=8.2}={}){
@@ -1374,7 +1602,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       const items=[
         ['BOOKINGS',cur.bookings,'bookings','count'],
         ['TOTAL THEORETICAL',cur.theo,'theo','money'],
-        ['TOTAL W/L',cur.wl,'wl','money'],
+        ['PACE NET WIN / LOSS',cur.wl,'wl','money'],
         ['NEW PLAYERS',cur.newPlayers.total,'newPlayers','count']
       ];
       items.forEach(([label,current,metric,kind],i)=>{
@@ -1383,9 +1611,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         const xx=46+i*177;
         p.outlinedRect(xx,110,169,50,'#f7f9fb','#d6dce3');
         p.text(xx+9,123,label,7,'#697887',true);
-        p.text(xx+9,143,kind==='count'?number(current):money(current,2),12,Number(current)<0?'#af2925':'#223950',true);
+        const shownCurrent=metric==='wl'?paceNetWin(current):current;
+        p.text(xx+9,143,kind==='count'?number(shownCurrent):money(shownCurrent,2),12,Number(shownCurrent)<0?'#af2925':'#223950',true);
         if(d!==0)p.triangle(xx+11,153,d>0?1:-1,d>0?'#117a4c':'#b33527',4);
-        const msg=metric==='wl'?(d>0?'Pace won more':d<0?'Pace won less':'no change'):'vs prior period';
+        const msg=metric==='wl'?(d>0?'more won by Pace':d<0?'less won by Pace':'no change'):'vs prior period';
         p.text(xx+19,154,`${this.comparisonValue(Math.abs(d),kind)} ${msg}`,6.3,d<0?'#ab382d':'#1b7455',true);
       });
       const heading=pair.type==='Year-over-Year'?'Year Over Year KPI variance':pair.type==='Month-over-Month'?'Month Over Month KPI variance':'Selected Month Comparison KPI variance';
@@ -1394,15 +1623,21 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       const defs=[
         ['NUMBER OF BOOKINGS PLAYERS','bookings','count'],['TOTAL CREDIT','credit','money'],
         ['TOTAL FRONT MONEY','frontMoney','money'],['TOTAL BANKROLL','bankroll','money'],
-        ['TOTAL THEORETICAL','theo','money'],['TOTAL W/L','wl','money'],
+        ['TOTAL THEORETICAL','theo','money'],['PACE NET WIN / LOSS','wl','money'],
         ['TOTAL COMMISSION','commission','money'],['TOTAL NEW PLAYERS ADDED','newPlayers','count']
       ];
       const vals=(o,k)=>k==='newPlayers'?o.newPlayers.total:o[k];
       const rows=defs.map(([label,metric,kind])=>{
         const a=vals(old,metric),b=vals(cur,metric),d=this.comparisonDeltaEntry(a,b,metric,kind);
-        return [label,this.comparisonValue(a,kind),{text:this.comparisonValue(b,kind),emphasis:true,negative:b<0},{text:d.text,indicator:d.indicator},{text:d.percent,indicator:d.indicator}];
+        const shownPrior=metric==='wl'?paceNetWin(a):a;
+        const shownCurrent=metric==='wl'?paceNetWin(b):b;
+        return [label,this.comparisonValue(shownPrior,kind),{text:this.comparisonValue(shownCurrent,kind),emphasis:true,negative:shownCurrent<0},{text:d.text,indicator:d.indicator},{text:d.percent,indicator:d.indicator}];
       });
       this.comparisonGrid(p,202,['KPI',fmtMonth(pair.from),fmtMonth(pair.to),'VARIANCE','%'],rows,[201,121,125,173,80],{headerH:20,rowH:24,font:8.2,headFont:8.7});
+      if(old.awaitingRatings||cur.awaitingRatings){
+        p.text(46,451,'GUEST CHECKED OUT - FINAL RATINGS PENDING; ALL BOOKINGS INCLUDED IN KPI.',8.1,'#965e25',true);
+        p.text(46,466,`${shortMonth(pair.from)}: ${number(old.guestCheckedOut)} checked out / ${number(old.missingRatingBookings)} unrated  |  ${shortMonth(pair.to)}: ${number(cur.guestCheckedOut)} checked out / ${number(cur.missingRatingBookings)} unrated. Theo and W/L use rated values only.`,7.45,'#755e45');
+      }
     }
     addComparisonAgents(pair){
       const p=this.comparisonPage(pair,'executives');
@@ -1422,10 +1657,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         const dt=this.comparisonDeltaEntry(a.theo,b.theo,'theo','money');
         const dw=this.comparisonDeltaEntry(a.wl,b.wl,'wl','money');
         return [String(b.name||KNOWN[code]||code).toUpperCase(),number(b.bookings),{text:db.text,indicator:db.indicator},
-          this.comparisonValue(b.theo,'money'),{text:dt.text,indicator:dt.indicator},{text:this.comparisonValue(b.wl,'money'),negative:b.wl<0},
+          this.comparisonValue(b.theo,'money'),{text:dt.text,indicator:dt.indicator},{text:this.comparisonValue(paceNetWin(b.wl),'money'),negative:paceNetWin(b.wl)<0},
           {text:dw.text,indicator:dw.indicator}];
       });
-      const end=this.comparisonGrid(p,146,['BOOKING EXECUTIVE','BOOKINGS','Δ','THEORETICAL','Δ THEO','W/L','Δ W/L (PACE)'],rows,
+      const end=this.comparisonGrid(p,146,['BOOKING EXECUTIVE','BOOKINGS','Δ','THEORETICAL','Δ THEO','PACE W/L','Δ W/L (PACE)'],rows,
         [167,62,47,117,108,96,103],{headerH:22,rowH,font:rowsInView.length>13?7:8.1,headFont:8.5});
       const sectionY=Math.min(Math.max(end+26,297),465);
       p.text(46,sectionY,`NEW PLAYERS ADDED BY EXECUTIVE - ${fmtMonth(pair.to).toUpperCase()}`,12,'#2c3d55',true);
@@ -1440,6 +1675,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         : counts.hasOfficial?'Official total matches the executive entries.':'Total calculated from the executive entries.';
       p.text(46,sectionY+80,info,7.5,counts.difference!==0?'#aa6a24':'#687582');
       if(allRows.length>rowsInView.length) p.text(46,sectionY+92,`${allRows.length-rowsInView.length} low-activity booking executives are not displayed on this page.`,7.2,'#aa6a24');
+      const month=monthData(pair.to);
+      if(month.awaitingRatings>0 && sectionY+103<556) p.text(46,sectionY+103,`${shortMonth(pair.to)}: ${number(month.guestCheckedOut)} Guest Checked Out / ${number(month.missingRatingBookings)} booking(s) missing final ratings; bookings remain included.`,7.3,'#9a6425');
     }
     addTopPatrons(batch){
       const p=this.page('Top 5 theoretical patrons','ANONYMIZED  /  PLAYER NAMES ARE NEVER SHOWN');
@@ -1475,12 +1712,15 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       objects[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';
       objects[4]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>';
       const refs=[];
+      const logoObjectID=5+2*this.pages.length;
       this.pages.forEach((page,i)=>{
         const p=5+2*i,c=p+1;refs.push(`${p} 0 R`);
         const contents=page.ops.join('\n')+'\n';
-        objects[p]=`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PDF_W} ${PDF_H}] /Resources << /Font << /FR 3 0 R /FB 4 0 R >> >> /Contents ${c} 0 R >>`;
+        objects[p]=`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PDF_W} ${PDF_H}] /Resources << /Font << /FR 3 0 R /FB 4 0 R >> /XObject << /ImLogo ${logoObjectID} 0 R >> >> /Contents ${c} 0 R >>`;
         objects[c]=`<< /Length ${contents.length} >>\nstream\n${contents}endstream`;
       });
+      const jpegBytes=atob(SMALL_PACE_LOGO_JPEG);
+      objects[logoObjectID]=`<< /Type /XObject /Subtype /Image /Width 144 /Height 144 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpegBytes.length} >>\nstream\n${jpegBytes}\nendstream`;
       objects[2]=`<< /Type /Pages /Count ${total} /Kids [${refs.join(' ')}] >>`;
       let pdf='%PDF-1.4\n%KPI-REPORT\n';const offsets=[0];
       const n=Math.max(...Object.keys(objects).map(Number));
@@ -1488,7 +1728,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       const xref=pdf.length;pdf+=`xref\n0 ${n+1}\n0000000000 65535 f \n`;
       for(let i=1;i<=n;i++)pdf+=`${String(offsets[i]).padStart(10,'0')} 00000 n \n`;
       pdf+=`trailer\n<< /Size ${n+1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`;
-      return new Blob([pdf],{type:'application/pdf'});
+      return new Blob([Uint8Array.from(pdf, c => c.charCodeAt(0))],{type:'application/pdf'});
     }
   }
   const chunks=(a,n)=>Array.from({length:Math.ceil(a.length/n)},(_,i)=>a.slice(i*n,i*n+n));
@@ -1524,7 +1764,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     if(!report)return notice('Generate report first.',true);
     if(!window.JSZip)return notice('Excel export component not found. Keep the assets folder.',true);
     const months=report.months;
-    const metrics=[['Bookings','bookings'],['Credit','credit'],['Front Money','frontMoney'],['Bankroll','bankroll'],['Theoretical','theo'],['Player W/L','wl'],['Commission','commission'],['New Players Added','newPlayers']];
+    const metrics=[['Bookings','bookings'],['Credit','credit'],['Front Money','frontMoney'],['Bankroll','bankroll'],['Theoretical','theo'],['Player W/L','wl'],['Commission','commission'],['New Players Added','newPlayers'],['Guest Checked Out / Awaiting Ratings','guestCheckedOut']];
     const summary=[['KPI',...months.map(fmtMonth)],...metrics.map(([name,key])=>[name,...months.map(m=>key==='newPlayers'?monthData(m).newPlayers.total:monthData(m)[key])])];
     const agents=[['Month','Booking Executive','Code','Bookings','Theo','Player W/L','Commission','New Players Added']];
     months.forEach(m=>reportExecutives(m).forEach(e=>agents.push([fmtMonth(m),e.name,e.code,e.bookings,e.theo,e.wl,e.commission,e.newPlayers])));
@@ -1533,10 +1773,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     growth.push(['OFFICIAL MONTHLY TOTAL',...months.map(m=>monthData(m).newPlayers.total)]);
     const compare=[['Comparison','Type','KPI','From Total','To Total','Change Direction','Pace Variance Magnitude','Percent Magnitude']];
     report.pairs.forEach(p=>{
-      [['Bookings','bookings'],['Theoretical','theo'],['Player W/L','wl'],['Commission','commission'],['New Players Added','newPlayers']].forEach(([title,key])=>{
+      [['Bookings','bookings'],['Theoretical','theo'],['Pace Net W/L','wl'],['Commission','commission'],['New Players Added','newPlayers']].forEach(([title,key])=>{
         const a=key==='newPlayers'?monthData(p.from).newPlayers.total:monthData(p.from)[key];
         const b=key==='newPlayers'?monthData(p.to).newPlayers.total:monthData(p.to)[key];
-        const change=diff(a,b,key);compare.push([`${fmtMonth(p.from)} vs ${fmtMonth(p.to)}`,p.type,title,a,b,change>0?'UP':change<0?'DOWN':'SAME',Math.abs(change),pct(a,b,key)]);
+        const change=diff(a,b,key);compare.push([`${fmtMonth(p.from)} vs ${fmtMonth(p.to)}`,p.type,title,key==='wl'?paceNetWin(a):a,key==='wl'?paceNetWin(b):b,change>0?'UP':change<0?'DOWN':'SAME',Math.abs(change),pct(a,b,key)]);
       });
     });
     const sheets=[['Monthly KPIs',summary],['Booking Executives',agents],['New Players',growth],['Comparisons',compare]];
@@ -1563,7 +1803,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     slides.push(makeSlideLines(report.title,[`${report.pairs.length} selected comparisons`,`Prepared by ${report.preparedBy}`,...report.pairs.map(p=>`${fmtMonth(p.from)} vs ${fmtMonth(p.to)}`)]));
     report.months.forEach(m=>{
       const d=monthData(m);slides.push(makeSlideLines(fmtMonth(m),[
-        `Bookings: ${number(d.bookings)}`,`Total Theo: ${money(d.theo)}`,`Player W/L: ${money(d.wl)}`,`Commission: ${money(d.commission)}`,`New Players Added: ${number(d.newPlayers.total)}`,
+        `Bookings: ${number(d.bookings)}`,`Total Theo: ${money(d.theo)}`,`Player W/L: ${money(d.wl)}`,`Commission: ${money(d.commission)}`,`New Players Added: ${number(d.newPlayers.total)}`,`Guest Checked Out / Awaiting Ratings: ${number(d.guestCheckedOut)}`,
         ...reportExecutives(m).slice(0,4).map(x=>`${x.code} - ${number(x.bookings)} bookings, ${number(x.newPlayers)} new players`)
       ]));
     });
@@ -1572,7 +1812,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       slides.push(makeSlideLines(`${fmtMonth(p.from)} vs ${fmtMonth(p.to)}`,[
         p.type,`Bookings: ${number(a.bookings)} to ${number(b.bookings)} (${deltaText(a.bookings,b.bookings,'bookings',number)})`,
         `Theo: ${money(a.theo)} to ${money(b.theo)} (${deltaText(a.theo,b.theo,'theo')})`,
-        `Player W/L: ${money(a.wl)} to ${money(b.wl)}`,`Pace W/L gain: ${deltaText(a.wl,b.wl,'wl')}`,
+        `Pace Net W/L: ${money(paceNetWin(a.wl))} to ${money(paceNetWin(b.wl))}`,`Pace Net W/L change: ${deltaText(a.wl,b.wl,'wl')}`,
         `New Players Added: ${number(a.newPlayers.total)} to ${number(b.newPlayers.total)}`
       ]));
     });
@@ -1588,12 +1828,12 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   function changedSettings(){persist();syncPlayerMonths();refreshReadiness();invalidate();}
   function invalidate(){if(report){report=null;$('reportWorkspace').classList.add('hidden');$('reportStatus').textContent='Changes not generated';}}
   function init(){
-    $('theme').value=settings.theme||'linen';$('font').value=settings.font||'inter';
+    $('theme').value=settings.theme||'teal';$('font').value=settings.font||'inter';
     $('sourceDateFormat').value=settings.sourceDateFormat||'auto';
     document.body.dataset.theme=$('theme').value;document.body.dataset.font=$('font').value;
     $('company').value=settings.company||'Pace Gaming';$('preparedBy').value=settings.preparedBy||'Anne Joy';
     $('reportTitle').value=settings.title||'Pace Gaming Internal KPI';$('currency').value=settings.currency||'USD';
-    initMonthControls();syncPlayerMonths();refreshReadiness();renderMapping();renderDateReview();
+    initMonthControls();syncPlayerMonths();refreshReadiness();renderMapping();renderDateReview();renderSourceAudit();
     $('theme').addEventListener('change',()=>{document.body.dataset.theme=$('theme').value;persist();});
     $('font').addEventListener('change',()=>{document.body.dataset.font=$('font').value;persist();});
     for(const id of ['company','preparedBy','reportTitle','currency'])$(id).addEventListener('change',changedSettings);
@@ -1619,24 +1859,24 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('fileInput').click();}});
     $('mappingGrid').addEventListener('change',e=>{
       const sel=e.target.closest('select[data-field]');if(!sel)return;
-      mapping[sel.dataset.field]=sel.value;refreshReadiness();renderDateReview();invalidate();
+      mapping[sel.dataset.field]=sel.value;refreshReadiness();renderDateReview();renderSourceAudit();invalidate();
     });
     $('demoBtn').addEventListener('click',()=>{sampleData();renderDateReview();invalidate();});
     $('sourceDateFormat').addEventListener('change',()=>{
-      renderDateReview();persist();invalidate();
+      renderDateReview();renderSourceAudit();persist();invalidate();
       notice('Date format changed. Review detected dates and click Use uploaded dates to synchronize report months.');
     });
     $('useUploadedDatesBtn').addEventListener('click',()=>applyUploadedMonths());
     $('useUploadedDatesConfigBtn').addEventListener('click',()=>applyUploadedMonths());
     $('clearUploads').addEventListener('click',()=>{
       if(raw.length && !confirm('Clear the uploaded rating data? Your saved new-player entries will remain.'))return;
-      raw=[];columns=[];mapping={};sourceFiles=[];renderFileList();renderMapping();refreshReadiness();renderDateReview();invalidate();
+      raw=[];columns=[];mapping={};sourceFiles=[];renderFileList();renderMapping();refreshReadiness();renderDateReview();renderSourceAudit();invalidate();
       $('uploadStatus').textContent='No files uploaded';$('dataNotes').classList.add('hidden');notice('Uploaded rating data cleared. New-player entries remain saved.');
     });
     $('newReport').addEventListener('click',()=>{
       if(raw.length && !confirm('Start a new KPI report? Uploaded rating data will be cleared. Saved new-player entries will remain available.'))return;
       raw=[];columns=[];mapping={};sourceFiles=[];renderFileList();renderMapping();
-      dateSelectionEdited=false;renderDateReview();
+      dateSelectionEdited=false;renderDateReview();renderSourceAudit();
       $('uploadStatus').textContent='No files uploaded';$('dataNotes').classList.add('hidden');
       suggestPeriods();syncPlayerMonths();refreshReadiness();invalidate();
       $('upload').scrollIntoView({behavior:'smooth'});notice('New report ready with the latest completed month suggestions.');
@@ -1665,8 +1905,34 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     });
     $('syncMonths').addEventListener('click',()=>{syncPlayerMonths();notice('New-player entry months synced to report comparisons.');});
     $('playerNamesGrid').addEventListener('input',e=>{
+      const numeric=e.target.closest('input[data-executive-total]');
+      if(numeric){setExecutiveTotal(numeric.dataset.executiveTotal,numeric.value);invalidate();return;}
       const ta=e.target.closest('textarea[data-executive]');if(!ta)return;
-      setPlayerName(ta.dataset.executive,ta.value);invalidate();
+      setPlayerName(ta.dataset.executive,ta.value);
+      // Surface an actionable warning rather than accidentally treating "500" as 500 names.
+      const card=ta.closest('.player-card');
+      const previous=card?.querySelector('.numeric-entry-alert');
+      if(previous)previous.remove();
+      const typed=String(ta.value||'').trim();
+      if(/^\d+$/.test(typed) && validCount(typed)!==null){
+        const note=document.createElement('div');
+        note.className='numeric-entry-alert';
+        note.dataset.numberAlert=ta.dataset.executive;
+        note.innerHTML=`<span>“${esc(typed)}” counts as <strong>one ID</strong> here. Enter a number above or use the conversion button.</span><button class="btn secondary small" type="button" data-convert-number="${ta.dataset.executive}">Use ${esc(typed)} as ${ta.dataset.executive} total</button>`;
+        card.appendChild(note);
+      }
+      invalidate();
+    });
+    $('playerNamesGrid').addEventListener('click',e=>{
+      const btn=e.target.closest('[data-convert-number]');if(!btn)return;
+      const code=btn.dataset.convertNumber;
+      const data=playerFor(playerMonth);
+      const rawValue=String(data.names[code]||'').trim();
+      if(!/^\d+$/.test(rawValue) || validCount(rawValue)===null)return;
+      data.executiveTotals[code]=rawValue;
+      data.names[code]='';
+      persist();renderPlayers();invalidate();
+      notice(`${code}: ${number(rawValue)} players recorded as the executive total for ${fmtMonth(playerMonth)}.`);
     });
     $('officialOverride').addEventListener('change',e=>{
       const data=playerFor(playerMonth);
@@ -1678,6 +1944,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     });
     $('officialTotal').addEventListener('input',e=>{playerFor(playerMonth).total=e.target.value;updatePlayerTotals();persist();invalidate();});
     $('manualCountGrid').addEventListener('input',e=>{const x=e.target.closest('[data-manual]');if(x){setPlayerCount(x.dataset.manual,x.value);invalidate();}});
+    $('backupPlayers').addEventListener('click',backupPlayerEntries);
+    $('restorePlayersFile').addEventListener('change',async e=>{await restorePlayerEntries(e.target.files?.[0]);e.target.value='';});
     $('clearPlayers').addEventListener('click',()=>{
       if(!confirm('Clear ALL saved player-name entries and official totals for every month?'))return;
       Object.keys(players).forEach(k=>delete players[k]);renderPlayers();persist();invalidate();notice('Saved new-player entries cleared.');
@@ -1692,8 +1960,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     $('downloadEmail').addEventListener('click',downloadEmail);
     window.PaceKpiDiagnostics={
       dates:()=>({format:$('sourceDateFormat').value,order:detectedDateOrder,audit:uploadedDateAudit(),selected:getMonths(),pairs:getPairs()}),
-      summary:()=>report?{months:report.months,pairs:report.pairs,monthly:report.months.map(m=>({month:m,bookings:monthData(m).bookings,theo:monthData(m).theo,wl:monthData(m).wl,newPlayers:monthData(m).newPlayers.total})),importedRows:raw.length}:null,
-      players:()=>Object.fromEntries(getMonths().map(month=>{const c=playerCounts(month);return [month,{byExecutive:c.byExec,automaticTotal:c.subtotal,reportTotal:c.total,overrideActive:c.hasOfficial,duplicateCount:c.duplicateNames.length,unresolvedDuplicateCount:c.unresolvedNames.length}];}))
+      summary:()=>report?{months:report.months,pairs:report.pairs,monthly:report.months.map(m=>({month:m,bookings:monthData(m).bookings,theo:monthData(m).theo,wl:monthData(m).wl,guestCheckedOut:monthData(m).guestCheckedOut,missingFinalRatingBookings:monthData(m).missingRatingBookings,newPlayers:monthData(m).newPlayers.total,byExecutive:monthData(m).newPlayers.byExec})),importedRows:raw.length}:null,
+      players:()=>Object.fromEntries(getMonths().map(month=>{const c=playerCounts(month);return [month,{byExecutive:c.byExec,manualExecutiveTotals:c.manualByExec,calculatedFromNames:c.autoByExec,automaticTotal:c.subtotal,reportTotal:c.total,overrideActive:c.hasOfficial,duplicateCount:c.duplicateNames.length,unresolvedDuplicateCount:c.unresolvedNames.length}];}))
     };
   }
   document.addEventListener('DOMContentLoaded',init);
@@ -1701,13 +1969,13 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 
 </script>
 </head>
-<body data-theme="linen" data-font="inter">
+<body data-theme="teal" data-font="inter">
 <header class="topbar">
-  <div class="brand"><div class="brand-symbol">PG</div><div><strong>Pace Gaming</strong><span>INTERNAL KPI SYSTEM</span></div></div>
+  <div class="brand"><img class="brand-logo" src="data:image/png;base64,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" alt="Pace Gaming logo"><div><strong>Pace Gaming</strong><span>INTERNAL KPI SYSTEM</span></div></div>
   <nav class="top-nav"><a href="#upload">Upload</a><a href="#configure">Comparisons</a><a href="#players">New Players</a><a href="#results">Reports</a></nav>
   <div class="top-controls">
     <button id="newReport" class="btn ghost small" type="button">New Report</button>
-    <label>Theme<select id="theme"><option value="linen">Soft Linen</option><option value="navy">Executive Navy</option><option value="emerald">Emerald</option><option value="slate">Slate</option><option value="plum">Plum</option></select></label>
+    <label>Theme<select id="theme"><option value="linen">Soft Linen</option><option value="navy">Executive Navy</option><option value="emerald">Emerald</option><option value="slate">Slate</option><option value="plum">Plum</option><option value="teal">High-Contrast Teal</option><option value="ocean">Ocean Blue</option><option value="charcoal">Charcoal & Ice</option><option value="sandstone">Warm Sandstone</option><option value="steel">Steel Blue</option><option value="indigo">Clear Indigo</option></select></label>
     <label>Font<select id="font"><option value="inter">Inter</option><option value="manrope">Manrope</option><option value="serif">Georgia</option><option value="arial">Arial</option></select></label>
   </div>
 </header>
@@ -1724,7 +1992,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     <div class="upload-foot"><span>Older <code>.xls</code> files should be saved as <code>.xlsx</code> first.</span><div class="upload-actions"><button id="clearUploads" type="button" class="btn ghost danger">Clear uploaded data</button><button id="demoBtn" type="button" class="btn ghost">Load Sample Data</button></div></div>
     <div id="fileList" class="file-list"></div>
     <div class="date-review" id="dateReview" aria-live="polite">
-      <div class="date-review-header"><div><strong>Check-Out dates detected in the uploaded file</strong><small>The report uses the Check-Out Date column, not the upload date or today's date.</small></div><span id="dateReviewStatus" class="date-review-status">Upload a file to see its dates.</span></div>
+      <div class="date-review-header"><div><strong>Departure / Check-Out dates detected in the uploaded file</strong><small>The report uses your mapped Departure Date / Check-Out Date—not the upload date or today's date.</small></div><span id="dateReviewStatus" class="date-review-status">Upload a file to see its dates.</span></div>
       <div class="date-review-toolbar"><label>Date format in the source file
         <select id="sourceDateFormat"><option value="auto">Auto-detect (review ambiguous dates)</option><option value="mdy">MM/DD/YYYY (month first)</option><option value="dmy">DD/MM/YYYY (day first)</option></select>
       </label><button id="useUploadedDatesBtn" type="button" class="btn primary small" disabled>Use these uploaded months</button></div>
@@ -1732,6 +2000,18 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     </div>
     <details id="mappingDetails" class="mapping-detail"><summary><span><strong>Review source column mapping</strong><small>Booking Executive uses Deal Owner first, Trip Contact second. Primary Contact Owner is the player owner.</small></span><span>Expand <span aria-hidden="true">⌄</span></span></summary><div id="mappingGrid" class="mapping-grid"></div></details>
     <div id="dataNotes" class="notice hidden"></div>
+    <details id="sourceAudit" class="source-audit hidden" open>
+      <summary><span><strong>Import verification — actual source values</strong><small>Verify Theo, Bankroll and Player Win, plus Guest Checked Out bookings awaiting final ratings, before exporting.</small></span><span id="sourceAuditStatus" class="tag">Waiting for file</span></summary>
+      <div class="source-audit-body">
+        <div id="sourceAuditMessage" class="source-audit-alerts"></div>
+        <div class="source-audit-subtitle">Columns recognized in your workbook</div>
+        <div id="sourceMapPills" class="source-map-grid"></div>
+        <div class="source-audit-subtitle">Totals read from the uploaded file — by Departure / Check-Out month</div>
+        <div class="scroll-table"><table id="sourceAuditTable" class="audit-table"></table></div>
+        <p class="audit-caption">Source financial totals retain their original Excel signs. In comparisons, Pace Net W/L reverses the Player W/L sign to show what Pace won or lost; variance and % use positive magnitudes with direction arrows. Blank final ratings are not estimated. Trip Cash remains part of the bankroll reconciliation.</p>
+      </div>
+    </details>
+
   </section>
 
   <section id="configure" class="panel">
@@ -1749,19 +2029,20 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   </section>
 
   <section id="players" class="panel">
-    <div class="panel-head"><div><div class="eyebrow">STEP 03 · MANUAL INPUT</div><h2>New Players Added</h2><p>Enter the new player names for each month by Booking Executive. These names are for internal tracking only—they will never appear in the PDF or email reports.</p></div><button id="clearPlayers" class="btn ghost danger" type="button">Clear player entries</button></div>
+    <div class="panel-head"><div><div class="eyebrow">STEP 03 · MANUAL INPUT</div><h2>New Players Added</h2><p><strong>Enter the actual number added by each Booking Executive for each month.</strong> Individual player names / IDs are optional for internal tracking and never appear in PDF or email exports.</p></div><button id="clearPlayers" class="btn ghost danger" type="button">Clear player entries</button></div>
     <div class="player-tools"><div><strong>Booking Executives</strong><p>DL · KA · SP · CV · LR · TF · KH</p></div><div class="player-tools-right"><label>Month <select id="playerMonth"></select></label><button id="syncMonths" type="button" class="btn secondary small">Sync report months</button></div></div>
     <div class="player-month-shortcuts"><strong>New players by month</strong><div id="playerMonthChips" class="player-month-chips" aria-label="Select a month to enter new players"></div></div>
-    <div class="player-note"><span class="note-icon">i</span><span>Type <strong>one player name per line</strong>. Each executive and each month is counted automatically. If the same player appears under two executives, the system counts them once and lets you choose the correct executive before export.</span></div>
+    <div class="player-note"><span class="note-icon">i</span><span><strong>IMPORTANT:</strong> Type the total quantity in each executive's <strong>TOTAL ADDED</strong> number field. A value such as “500” entered in the name/ID box counts as <strong>one</strong> entry, not 500. Leave the quantity blank to count individual names automatically. Monthly totals add the seven executives.</span></div>
+    <div class="player-backup-tools"><span><strong>Keep your exact executive numbers when switching versions.</strong><small>Back up and restore the private month-by-month entries. This backup can contain player names—do not share it with report recipients.</small></span><button id="backupPlayers" class="btn secondary small" type="button">Backup player entries</button><label class="btn secondary small player-restore-label" for="restorePlayersFile">Restore entries<input id="restorePlayersFile" type="file" accept=".json,application/json" hidden></label></div>
     <div id="playerNamesGrid" class="player-grid"></div>
     <div class="totals-row">
-      <div class="official-total"><span>Official Total New Players Added</span><label class="official-override-option"><input id="officialOverride" type="checkbox"><strong>Use manual total override for this month</strong></label><input id="officialTotal" type="number" min="0" step="1" placeholder="Optional official number" disabled><small>Automatic count is always the default. Only turn on the override when the official number must differ from the executive subtotal. Previously saved manual values will not override automatically.</small></div>
+      <div class="official-total"><span>Official Total New Players Added</span><label class="official-override-option"><input id="officialOverride" type="checkbox"><strong>Use manual total override for this month</strong></label><input id="officialTotal" type="number" min="0" step="1" placeholder="Optional official number" disabled><small>The executive values above are added automatically to produce the monthly total. Use this optional override only if the official month total needs to differ from the sum of the seven executives.</small></div>
       <div id="playerReconcile" class="reconcile" aria-live="polite"></div>
     </div>
-    <details class="optional-counts"><summary>Optional: add players without names under each executive</summary><p>Enter an <strong>additional unnamed player count</strong> for any executive. These counts are added to their listed names. Do not enter a player here if you already listed that player's name.</p><div id="manualCountGrid" class="count-grid"></div></details>
+    <details class="optional-counts"><summary>Advanced: additional unnamed players (only if using name-based totals)</summary><p>These additions apply only when the executive's main <strong>TOTAL ADDED</strong> field is blank. If you enter a main total, it overrides the name count and these advanced additions for that executive.</p><div id="manualCountGrid" class="count-grid"></div></details>
     <section class="player-month-matrix-section" aria-label="Calculated player additions by month and executive">
-      <div class="subhead"><h3>Verify added players per executive and month</h3><small>The table updates when you assign a shared name to an executive. An asterisk means a manual monthly override is active.</small></div>
-      <div class="scroll-table"><table id="playerMonthMatrix" class="player-month-matrix"></table></div>
+      <div class="subhead"><h3>Verify added players per executive and month</h3><small>The table shows the exact monthly numbers used in PDF and email exports. A main executive total overrides their name count; an asterisk indicates an optional whole-month override.</small></div>
+      <div id="playerCountDiscrepancy" aria-live="polite"></div><div class="scroll-table"><table id="playerMonthMatrix" class="player-month-matrix"></table></div>
     </section>
     <div class="privacy-line">Player names stay in your browser. Reports include only executive codes and totals.</div>
   </section>
