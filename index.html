@@ -1358,7 +1358,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     const d=diff(a,b,key);
     const val=kind==='count'?number(Math.abs(d)):money(Math.abs(d));
     const pc=pct(a,b,key);
-    return {text:`${d>0?'▲':d<0?'▼':'–'} ${val}${pc===null?'':` · ${pc.toFixed(1)}%`}`,color:d>0?'#08784d':d<0?'#b13a32':'#67717b'};
+    return {text:`${d>0?'▲':d<0?'▼':'–'} ${val}${pc===null?'':` · ${pc.toFixed(1)}%`}`,color:d>0?'#08784d':d<0?'#537087':'#67717b'};
   }
   function buildEmailHTML(){
     const monthMetrics=[['Bookings','bookings','count'],['Theo','theo','money'],['Pace Net Win / Loss','wl','money'],['Commission','commission','money'],['Top Bookings','executive','exec'],['New Players Added','newPlayers','count'],['Guest Checked Out / Awaiting Ratings','guestCheckedOut','count']];
@@ -1387,7 +1387,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       <h2 style="font-size:18px;margin:22px 0 11px">KPI Summary by Month</h2>
       <div style="max-width:100%;overflow:auto"><table style="border-collapse:collapse;width:100%;font-size:12px;min-width:620px"><thead><tr><th style="text-align:left">KPI</th>${months.map(m=>`<th style="text-align:right">${esc(shortMonth(m))}</th>`).join('')}</tr></thead><tbody>${monthly}</tbody></table></div>
       ${compTable('Year-over-Year')}${compTable('Month-over-Month')}${compTable('Cross-Year')}
-      <p style="color:#667085;font-size:11px;margin:7px 0 0">Pace Net W/L is shown from the casino perspective (the inverse of Player W/L in Excel). Variance amounts and percentages use positive magnitudes; arrows indicate whether performance improved or declined.</p>
+      <p style="color:#667085;font-size:11px;margin:7px 0 0">Pace Net W/L is shown from the casino perspective (the inverse of Player W/L in Excel). Variance amounts and percentages use positive magnitudes; up/down arrows indicate direction, not necessarily profit or loss.</p>
       ${report.months.some(m=>monthData(m).awaitingRatings>0)?`<p style="margin-top:18px;padding:12px;border-left:3px solid #b7791f;background:#fff9ee;"><strong>Outstanding final ratings:</strong> ${report.months.filter(m=>monthData(m).awaitingRatings>0).map(m=>`${esc(fmtMonth(m))}: ${number(monthData(m).guestCheckedOut)} Guest Checked Out, ${number(monthData(m).missingRatingBookings)} booking(s) with missing final rating values`).join('; ')}. These bookings are included in the booking KPI; Theo and Player W/L include only available final ratings.</p>`:''}
       <p style="margin-top:22px">The attached PDFs include the detailed monthly variances and Booking Executive performance.</p>
       <p>Thank you,<br>${esc(report.preparedBy)}</p>
@@ -1558,7 +1558,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         } else p.text(x+w/2,y+h*.67,heading,font*.83,'#ffffff',true,'center');
         return;
       }
-      const col=negative?'#b32725':indicator<0?'#b23629':indicator>0?'#11754b':'#273a55';
+      const col=negative?'#263b55':indicator<0?'#537087':indicator>0?'#11754b':'#273a55';
       let text=String(entry??'');
       const pad=7;
       const size=Math.min(font, (w-2*pad)/(Math.max(1,printable(text).length)*.50));
@@ -1612,10 +1612,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         p.outlinedRect(xx,110,169,50,'#f7f9fb','#d6dce3');
         p.text(xx+9,123,label,7,'#697887',true);
         const shownCurrent=metric==='wl'?paceNetWin(current):current;
-        p.text(xx+9,143,kind==='count'?number(shownCurrent):money(shownCurrent,2),12,Number(shownCurrent)<0?'#af2925':'#223950',true);
-        if(d!==0)p.triangle(xx+11,153,d>0?1:-1,d>0?'#117a4c':'#b33527',4);
+        p.text(xx+9,143,kind==='count'?number(shownCurrent):money(shownCurrent,2),12,Number(shownCurrent)<0?'#263b55':'#223950',true);
+        if(d!==0)p.triangle(xx+11,153,d>0?1:-1,d>0?'#117a4c':'#537087',4);
         const msg=metric==='wl'?(d>0?'more won by Pace':d<0?'less won by Pace':'no change'):'vs prior period';
-        p.text(xx+19,154,`${this.comparisonValue(Math.abs(d),kind)} ${msg}`,6.3,d<0?'#ab382d':'#1b7455',true);
+        p.text(xx+19,154,`${this.comparisonValue(Math.abs(d),kind)} ${msg}`,6.3,d<0?'#537087':'#1b7455',true);
       });
       const heading=pair.type==='Year-over-Year'?'Year Over Year KPI variance':pair.type==='Month-over-Month'?'Month Over Month KPI variance':'Selected Month Comparison KPI variance';
       p.text(46,185,heading,15,'#2c3d55',true);
